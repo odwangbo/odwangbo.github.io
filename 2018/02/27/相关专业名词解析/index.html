@@ -79,9 +79,9 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="服务器"> 服务器 </li>
-    
     <li data-rel="其他"> 其他 </li>
+    
+    <li data-rel="服务器"> 服务器 </li>
     
 </ul>
 <div class="left-bottom">
@@ -128,15 +128,15 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">名词解析</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">部署应用</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">域名解析</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <div class="clearfix"></div>
@@ -153,20 +153,20 @@
             <span class="post-date" title="2018-02-23 18:07:25">2018/02/23</span>
         </a>
         
-        <a  class="服务器 "
-           href="/2018/02/24/服务器部署应用详解/"
-           data-tag="部署应用,域名解析"
-           data-author="" >
-            <span class="post-title" title="服务器部署应用详解">服务器部署应用详解</span>
-            <span class="post-date" title="2018-02-24 16:34:27">2018/02/24</span>
-        </a>
-        
         <a  class="其他 "
            href="/2018/02/27/相关专业名词解析/"
            data-tag="名词解析"
            data-author="" >
             <span class="post-title" title="相关专业名词解析">相关专业名词解析</span>
             <span class="post-date" title="2018-02-27 14:18:50">2018/02/27</span>
+        </a>
+        
+        <a  class="服务器 "
+           href="/2018/02/24/服务器部署应用详解/"
+           data-tag="部署应用,域名解析"
+           data-author="" >
+            <span class="post-title" title="服务器部署应用详解">服务器部署应用详解</span>
+            <span class="post-date" title="2018-02-24 16:34:27">2018/02/24</span>
         </a>
         
     </nav>
@@ -205,7 +205,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-02-27 19:05:52'>2018-02-27 14:18</time>
+        创建时间:<time class="date" title='更新时间: 2018-02-27 19:08:14'>2018-02-27 14:18</time>
         
     </div>
     <div class="article-meta">
@@ -254,8 +254,9 @@
 <li>分布式关系型数据库OceanBase  </li>
 <li>一站式移动平台mPaaS  </li>
 <li>金融级大数据平台  </li>
-<li>智能云客服<br><font color="red"><br>蚂蚁金融云的产品服务介绍<br></font><br>基础设施服务（Infrastructure as a Service，简称 IaaS）<br>平台即服务（Platform as a Service，简称 PaaS）<br>软件即服务（Software as a Service，简称 SaaS）<br><img src="http://p4qtgamvn.bkt.clouddn.com/AFC.png" alt="整体框架">  </li>
+<li>智能云客服  </li>
 </ol>
+<p><font color="red"><br>蚂蚁金融云的产品服务介绍<br></font><br>基础设施服务（Infrastructure as a Service，简称 IaaS）<br>平台即服务（Platform as a Service，简称 PaaS）<br>软件即服务（Software as a Service，简称 SaaS）<br><img src="http://p4qtgamvn.bkt.clouddn.com/AFC.png" alt="整体框架">  </p>
 <ul>
 <li>运维管理：云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾，多租户权限管控。  </li>
 <li>监控：分布式云环境集中化监控，统一资源及应用状态视图，智能分析及故障定位。  </li>
@@ -308,7 +309,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#部署应用','#域名解析','#名词解析',],
+            'data': ['#名词解析','#部署应用','#域名解析',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
