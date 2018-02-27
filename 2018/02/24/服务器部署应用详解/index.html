@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="stylesheet" href="/css/hl_theme/atom-light.css">
+<link rel="stylesheet" href="/css/hl_theme/darcula.css">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -79,9 +79,9 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="其他"> 其他 </li>
-    
     <li data-rel="服务器"> 服务器 </li>
+    
+    <li data-rel="其他"> 其他 </li>
     
 </ul>
 <div class="left-bottom">
@@ -128,10 +128,6 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">部署应用</a>
     </li>
     
@@ -139,19 +135,15 @@
         <a href="javascript:" class="color5">域名解析</a>
     </li>
     
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">名词解析</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
     
     <nav id="title-list-nav">
-        
-        <a  class="其他 "
-           href="/2018/02/27/相关专业名词解析/"
-           data-tag="名词解析"
-           data-author="" >
-            <span class="post-title" title="相关专业名词解析">相关专业名词解析</span>
-            <span class="post-date" title="2018-02-27 14:18:50">2018/02/27</span>
-        </a>
         
         <a  class="服务器 "
            href="/2018/02/24/服务器部署应用详解/"
@@ -167,6 +159,14 @@
            data-author="" >
             <span class="post-title" title="Hello World">Hello World</span>
             <span class="post-date" title="2018-02-23 18:07:25">2018/02/23</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2018/02/27/相关专业名词解析/"
+           data-tag="名词解析"
+           data-author="" >
+            <span class="post-title" title="相关专业名词解析">相关专业名词解析</span>
+            <span class="post-date" title="2018-02-27 14:18:50">2018/02/27</span>
         </a>
         
     </nav>
@@ -207,7 +207,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-02-27 20:23:15'>2018-02-24 16:34</time>
+        创建时间:<time class="date" title='更新时间: 2018-02-27 20:35:40'>2018-02-24 16:34</time>
         
     </div>
     <div class="article-meta">
@@ -265,7 +265,47 @@
 <blockquote>
 <p>大家好  </p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.qyf404.learn.maven;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> App app;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Before</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;app = <span class="keyword">new</span> App();&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = app.add(a, b);</span><br><span class="line"></span><br><span class="line">Assert.assertEquals(a + b, result);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@After</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">package com.qyf404.learn.maven;
+
+import org.junit.After;
+
+import org.junit.Assert;
+
+import org.junit.Before;
+
+import org.junit.Test;
+
+public class AppTest {
+
+private App app;
+
+@Before
+
+public void setUp() {app = new App();}
+
+@Test
+
+public void testAdd() throws InterruptedException {
+
+int a = 1;
+
+int b = 2;
+
+int result = app.add(a, b);
+
+Assert.assertEquals(a + b, result);
+
+}
+
+@After
+
+public void tearDown() throws Exception {
+
+}
+
+}
+</code></pre>
+
       
        
     </div>
@@ -309,7 +349,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#名词解析','#部署应用','#域名解析',],
+            'data': ['#部署应用','#域名解析','#名词解析',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
@@ -625,7 +665,7 @@
         border-right: 1px solid #C3CCD0;
         text-align: right;
         color: #AAA;
-        background-color: #fafafa;
+        background-color: ;
     }
 </style>
 
