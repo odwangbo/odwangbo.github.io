@@ -79,9 +79,9 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="其他"> 其他 </li>
-    
     <li data-rel="服务器"> 服务器 </li>
+    
+    <li data-rel="其他"> 其他 </li>
     
 </ul>
 <div class="left-bottom">
@@ -128,15 +128,15 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5"><td bgcolor=#0099ff>部署应用</td></a>
+        <a href="javascript:" class="color5"><bgcolor=#0099ff>部署应用</></a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">域名解析</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <div class="clearfix"></div>
@@ -144,6 +144,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="服务器 "
+           href="/2018/02/24/服务器部署应用详解/"
+           data-tag="&lt;bgcolor=#0099ff&gt;部署应用&lt;/&gt;,域名解析"
+           data-author="" >
+            <span class="post-title" title="服务器部署应用详解">服务器部署应用详解</span>
+            <span class="post-date" title="2018-02-24 16:34:27">2018/02/24</span>
+        </a>
         
         <a  class=""
            href="/2018/02/23/hello-world/"
@@ -159,14 +167,6 @@
            data-author="" >
             <span class="post-title" title="相关专业名词解析">相关专业名词解析</span>
             <span class="post-date" title="2018-02-27 14:18:50">2018/02/27</span>
-        </a>
-        
-        <a  class="服务器 "
-           href="/2018/02/24/服务器部署应用详解/"
-           data-tag="&lt;td bgcolor=#0099ff&gt;部署应用&lt;/td&gt;,域名解析"
-           data-author="" >
-            <span class="post-title" title="服务器部署应用详解">服务器部署应用详解</span>
-            <span class="post-date" title="2018-02-24 16:34:27">2018/02/24</span>
         </a>
         
     </nav>
@@ -282,7 +282,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#名词解析','#&lt;td bgcolor=#0099ff&gt;部署应用&lt;/td&gt;','#域名解析',],
+            'data': ['#&lt;bgcolor=#0099ff&gt;部署应用&lt;/&gt;','#域名解析','#名词解析',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
