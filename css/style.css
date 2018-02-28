@@ -1424,6 +1424,7 @@ left0px
 .post .pjax article pre > code {
   font-size: 15px;
   border-radius: 3px;
+  font-family: Consolas;
 /* 滚动条 */
 }
 .post .pjax article pre > code::-webkit-scrollbar-thumb:horizontal {
