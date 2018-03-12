@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>about me | 王博</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="about me | 王博">
+  <title>数据库唯一索引 | 王博</title>
+  <meta name="keywords" content=" 索引 , 数据库 ">
+  <meta name="description" content="数据库唯一索引 | 王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -225,24 +225,38 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-数据库唯一索引" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">about me</h1>
+        <h1 class="article-title">数据库唯一索引</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            
+            <a href="javascript:" data-rel="数据库">数据库</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">索引</a>
+            
+            <a href="javascript:" class="color4">数据库</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-02-24 15:40:37'>2018-02-24 15:40</time>
+        创建时间:<time class="date" title='更新时间: 2018-03-06 14:33:31'>2018-03-02 10:07</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:98</span>
+        <span>字数:231</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -261,7 +275,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#个人简介"><span class="toc-text">个人简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最近"><span class="toc-text">最近</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#联系"><span class="toc-text">联系</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图示"><span class="toc-text">图示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -276,14 +290,20 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h2><p><strong>王博</strong>，<br>毕业于<a href="http://www.lcu.edu.cn/" target="_blank" rel="noopener">聊城大学</a>，目前从事Java及相关工作。<br>喜欢研究新型技术和未来发展方向。  </p>
-<h2 id="最近"><a href="#最近" class="headerlink" title="最近"></a>最近</h2><p>在北京一家公司开发商业软件，<br>在研习阅读方法，知识管理，时间管理等方法，<br>在坚持健身，坚持读国外名著。  </p>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
-<li>手机 : 17862515760  </li>
-<li>QQ : 2993829505  </li>
-<li>微信 : 17862515760  </li>
-<li>邮箱 : <a href="mailto:17862515760@163.com" target="_blank" rel="noopener">17862515760@163.com</a>  </li>
-</ul>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>主键保证数据库里面的每一行都是唯一的，比如身份证，学号等，在表中要求唯一，不重复。唯一索引的作用跟主键的作用一样。<br>不同的是，在一张表里面只能有一个主键，主键不能为空，唯一索引可以有多个，唯一索引可以有一条记录为空，即保证跟别人不一样就行。  </p>
+<p>比如学生表，在学校里面一般用学号做主键，身份证则弄成唯一索引；而到了教育局，他们就把身份证号弄成主键，学号换成了唯一索引。<br>选谁做表的主键，要看实际应用，主键不能为空。  </p>
+<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180306114450.png" alt="数据库实例表"><br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180306114401.png" alt="索引设置"></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="java">@Autowired
+private PolicyVisitDAO policyVisitDAO;
+try {
+    policyVisitDAO.insertSelective(policyVisitDO);
+} catch (DuplicateKeyException e) {
+    //出现了插入异常(唯一索引冲突异常)，查询是否有必答题填否的，更新回访状态
+    //......
+} finally {
+}
+</code></pre>
+<hr>
 
       
        
