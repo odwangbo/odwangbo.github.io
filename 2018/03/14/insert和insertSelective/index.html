@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>服务器部署应用详解（待续） | 王博</title>
-  <meta name="keywords" content=" 部署应用 , 域名解析 ">
-  <meta name="description" content="服务器部署应用详解（待续） | 王博">
+  <title>insert和insertSelective | 王博</title>
+  <meta name="keywords" content=" Mabatis , 数据库 ">
+  <meta name="description" content="insert和insertSelective | 王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -285,9 +285,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-服务器部署应用详解" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-insert和insertSelective" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">服务器部署应用详解（待续）</h1>
+        <h1 class="article-title">insert和insertSelective</h1>
     
     <div class="article-meta">
         
@@ -295,28 +295,28 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="服务器">服务器</a>
+            <a href="javascript:" data-rel="开发">开发</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">部署应用</a>
+            <a href="javascript:" class="color3">Mabatis</a>
             
-            <a href="javascript:" class="color5">域名解析</a>
+            <a href="javascript:" class="color4">数据库</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-03-13 20:49:36'>2018-02-24 16:34</time>
+        创建时间:<time class="date" title='更新时间: 2018-03-14 18:01:33'>2018-03-14 17:55</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:200</span>
+        <span>字数:385</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -335,7 +335,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gray"><span class="toc-text">gray  </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#color-gray"><span class="toc-text">color=gray  </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在一行字下面紧贴用一条横线，则它成了标题"><span class="toc-text">在一行字下面紧贴用一条横线，则它成了标题  </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一级标题"><span class="toc-text">一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二级标题"><span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三级标题"><span class="toc-text">三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#四级标题"><span class="toc-text">四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#五级标题"><span class="toc-text">五级标题</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比"><span class="toc-text">对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展"><span class="toc-text">拓展</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -350,92 +350,30 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id=""><a href="#" class="headerlink" title=" "></a><img src="http://p4qtgamvn.bkt.clouddn.com/43934322a3b5ea2c546467916a7d6833.jpg" alt="phtoname"> </h2><p>啊啊啊啊啊啊啊啊啊啊啊啊</p>
-<p><font face="黑体">我是黑体字</font>  </p>
-<p><font face="微软雅黑">我是微软雅黑</font>  </p>
-<p><font face="STCAIYUN">我是华文彩云</font>  </p>
-<p><font color="#0099ff" size="12" face="黑体">黑体</font>  </p>
-<p><font color="#00ffff" size="3">null</font>  </p>
-<h2 id="gray"><a href="#gray" class="headerlink" title="gray  "></a><font color="gray" size="5">gray</font>  </h2><p><font face="黑体">我是黑体字</font>  </p>
-<p><font face="微软雅黑">我是微软雅黑</font>  </p>
-<p><font face="STCAIYUN">我是华文彩云</font>  </p>
-<p><font color="#0099ff" size="7" face="黑体">color=#0099ff size=72 face=”黑体”</font>  </p>
-<p><font color="#00ffff" size="72">color=#00ffff</font>  </p>
-<h2 id="color-gray"><a href="#color-gray" class="headerlink" title="color=gray  "></a><font color="gray" size="72">color=gray</font>  </h2><p><table><tr><td bgcolor="#7FFFD4"><br>背景颜色</td></tr></table></p>
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><blockquote>
-<p>你好  </p>
-</blockquote>
-<blockquote>
-<p>他好  </p>
-</blockquote>
-<blockquote>
-<p>大家好  </p>
-</blockquote>
-<pre><code class="java">package com.qyf404.learn.maven;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-public class AppTest {
-private App app;
-@Before
-public void setUp() {app = new App();}
+        <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="java">@Test  
+public void testInsert() {  
+    User record=new User();  
+    record.setName(&quot;sansan&quot;);  
+ // 使用所有的属性作为字段使用  
+    this.newUserMapper.insert(record);  
+}  
 </code></pre>
-<h2 id="在一行字下面紧贴用一条横线，则它成了标题"><a href="#在一行字下面紧贴用一条横线，则它成了标题" class="headerlink" title="在一行字下面紧贴用一条横线，则它成了标题  "></a>在一行字下面紧贴用一条横线，则它成了标题  </h2><p>下面是标题的简单写法(注意：#后面有一个空格)  </p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><p>普通文字<br><strong>加粗文字</strong>  </p>
-<table>
-<thead>
-<tr>
-<th>水果</th>
-<th style="text-align:right">价格</th>
-<th style="text-align:center">数量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>香蕉</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td>苹果</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">6</td>
-</tr>
-<tr>
-<td>草莓</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">7</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<table>
-<thead>
-<tr>
-<th>水果</th>
-<th style="text-align:right">价格</th>
-<th style="text-align:center">数量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>哈哈</td>
-<td style="text-align:right">454</td>
-<td style="text-align:center">999</td>
-</tr>
-<tr>
-<td>露露</td>
-<td style="text-align:right">565</td>
-<td style="text-align:center">555</td>
-</tr>
-<tr>
-<td>皮皮</td>
-<td style="text-align:right">676</td>
-<td style="text-align:center">444</td>
-</tr>
-</tbody>
-</table>
+<pre><code class="sql">INSERT INTO tb_user (AGE,USER_NAME,ID,NAME,BIRTHDAY,SEX,PASSWORD,UPDATED,CREATED) VALUES ( ?,?,?,?,?,?,?,?,? ) 
+</code></pre>
+<pre><code class="java">@Test  
+public void testInsertSelective() {  
+    User record=new User();  
+    record.setName(&quot;test_insertSelective&quot;);  
+    //插入数据，使用不为null的属性作为字段使用  
+    this.newUserMapper.insertSelective(record);  
+}
+</code></pre>
+<pre><code class="sql">INSERT INTO tb_user ( ID,NAME ) VALUES ( ?,? ) 
+</code></pre>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p>对于insert:<br>插入一条数据<br>支持Oracle序列,UUID,类似Mysql的INDENTITY自动增长(自动回写)<br>优先使用传入的参数值,参数值空时,才会使用序列、UUID,自动增长<br>int insert(T record);  </p>
+<p>对于InsertSelective<br>插入一条数据,只插入不为null的字段,不会影响有默认值的字段<br>支持Oracle序列,UUID,类似Mysql的INDENTITY自动增长(自动回写)<br>优先使用传入的参数值,参数值空时,才会使用序列、UUID,自动增长<br>int insertSelective(T record);  </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>insertSelective对应的sql语句加入了NULL校验，即只会插入数据不为null的字段值。<br>insert则会插入所有字段，会插入null。</p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>在SQL SERVER中NULL跟’’是完全不一样的,NULL表示未知,没有类型可言,而’’是有类型的,表示一个空的字符串.<br>所以有not null约束的列是可以插入’’的. 而且有时候做判断的时候可能某个列既有NULL值又有’’值,这时候就经常用 where isnull(列名,’’)=’’进行判断;<br>然而在ORACLE中,’’是等同于NULL值进行处理的,这时候有not null约束的列就肯定不能插入’’了.</p>
 
       
        
