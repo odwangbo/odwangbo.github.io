@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>为什么要写单元测试 | 王博</title>
-  <meta name="keywords" content=" 代码质量 , 测试 ">
-  <meta name="description" content="为什么要写单元测试 | 王博">
+  <title>读取本地文件和url网络文件 | 王博</title>
+  <meta name="keywords" content=" IO ">
+  <meta name="description" content="读取本地文件和url网络文件 | 王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -337,9 +337,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-为什么要写单元测试 " class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-读取本地文件和url网络文件" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">为什么要写单元测试</h1>
+        <h1 class="article-title">读取本地文件和url网络文件</h1>
     
     <div class="article-meta">
         
@@ -354,21 +354,19 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">代码质量</a>
-            
-            <a href="javascript:" class="color3">测试</a>
+            <a href="javascript:" class="color3">IO</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-03-20 21:56:14'>2018-03-15 16:32</time>
+        创建时间:<time class="date" title='更新时间: 2018-03-21 11:35:34'>2018-03-21 11:04</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2,696</span>
+        <span>字数:542</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -387,7 +385,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#场景1：Hello-World"><span class="toc-text">场景1：Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景2：简单计算器"><span class="toc-text">场景2：简单计算器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景3：图书管理系统"><span class="toc-text">场景3：图书管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景4：大型库存管理系统"><span class="toc-text">场景4：大型库存管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问答"><span class="toc-text">问答</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-text">解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -402,31 +400,79 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>客观来说，单元测试和使用版本控制系统（GIT,SVN）是一样重要的。<br>为什么单元测试如此重要，但你却感受不到。<br>首先要知道，代码的终极目标有两个，第一个是实现需求，第二个是提高代码质量和可维护性。<br>单元测试是为了提高代码质量和可维护性，是实现代码的第二个目标的一种方法。<br>（注：代码的可维护性是指增加一个新功能，或改变现有功能的成本，成本越低，可维护性即越高。）    </p>
-<p><img src="http://p4qtgamvn.bkt.clouddn.com/timg.jpg" alt=""></p>
-<h2 id="场景1：Hello-World"><a href="#场景1：Hello-World" class="headerlink" title="场景1：Hello World"></a>场景1：Hello World</h2><p>任何一个伟大的程序员都是从最简单的代码开始写起的，假设你的第一个程序是Hello World，任何一个语言实现这个程序都只需要不到5行代码。  </p>
-<p><font color="#9ACD32">这个程序需要单元测试吗？</font><br>我们看看这个程序是否实现了软件的两个目标：<br>1.需求很简单，输出Hello World，这个程序完全满足需求。<br>2.只有5行代码的“软件”无论是代码质量，还是可维护性，都相当高，你想要把Hello改成Hi真的很轻松。<br>既然我们已经实现了代码的目标，要不要使用单元测试是无所谓的，同样这么简单的代码也没人会使用GIT或SVN。<br><strong>代码量：5行</strong>    </p>
-<h2 id="场景2：简单计算器"><a href="#场景2：简单计算器" class="headerlink" title="场景2：简单计算器"></a>场景2：简单计算器</h2><p>接下来你写了一个相对更复杂的程序，一个简单计算器。<br>这个程序实现了数字的加减乘除，整个程序共写了大概50行代码。  </p>
-<p><font color="#9ACD32">这个程序需要单元测试吗？</font><br>1.需求是对数字进行加减乘除，这个程序满足了需求。<br>2.你的代码风格很好（你已经了解到代码风格很重要），你使用了缩进，良好的变量命名，逻辑也清晰，代码的质量和可维护性仍然相当高，如果你想增加一个“求x的平方”功能，你轻而易举就可以做到。<br>这个时候让你去写单元测试，你仍然会觉得那纯粹是浪费时间。<br><strong>代码量：50行</strong>    </p>
-<h2 id="场景3：图书管理系统"><a href="#场景3：图书管理系统" class="headerlink" title="场景3：图书管理系统"></a>场景3：图书管理系统</h2><p>你想要做一个真正的实用系统，给学校开发一个图书管理系统。<br>你相信这个系统的代码量比起计算器会很多（可能会有1000行）。<br>你从书上看到有这样一些方法可以简化你的开发工作：<br>1.工具库（类似你家里的工具箱），使用工具库带来的好处是非常明显的，假如你要实现“返回一个数字数组中的最大值”，你只需要使用某个工具库的Max()函数，只需要1行代码，而不是10行代码自己实现。<br>2.MVC框架，虽然比起工具库更复杂，需要花更多时间学习，但MVC框架带来的好处也非常明显，轻而易举调用数据库（Model），实现简单的UI界面（View），实现了类似“书名为空的书不允许添加到数据库”的一些逻辑（Controller）。<br>你最终很好的实现了这个系统，基于MVC模型，你的代码被很好的分割成了很多小的独立的模块：4个Controller，2个Model，4个View。并且在工具库的帮助下，代码量得到了缩减，每个模块大概只有50行代码（等同于一个简单计算器的代码量）。    </p>
-<p><font color="#9ACD32">这个系统需要单元测试吗？</font><br>1.你实现了对图书的添加、删除、修改、借阅，你很好的满足了需求（校长表扬了你）。<br>2.得益于框架与库的使用，你的代码被很好的模块化了，每个模块都像一个“简单计算器”那样简单，增加新功能，或修改现有功能似乎也没有什么大麻烦，虽然会出现一些小bug，但很快就修复了，代码质量和可维护性都比较高。<br>既然你又实现了代码的目标——“完成需求，高代码质量和可维护性”，那好像也没“单元测试”什么事，毕竟写它要浪费额外的功夫，而且也没感觉到有多少好处。<br><strong>代码量：500行</strong>     </p>
-<h2 id="场景4：大型库存管理系统"><a href="#场景4：大型库存管理系统" class="headerlink" title="场景4：大型库存管理系统"></a>场景4：大型库存管理系统</h2><p>你被一家IT公司雇佣了，你通过了面试，进入了一个即将开启的项目——为一家大的电商公司做一个库存管理系统。<br>项目初期一切都很顺利，技术上和你做过的图书管理系统差不多。<br>首先你了解了客户的需求，然后根据他们的需求，使用你已经掌握的MVC框架和一些库，实现了他们的需求。<br>你写了30个Controller， 50个Model，50个View，每个模块的代码都达到了大概150行，总代码达到了惊人的20000行！<br>你觉得自己很了不起，能hold住这么多代码，这完全是得益于你的高智商，以及工作努力。客户很满意，老板也很满意，你的自我感觉也很不错。<br>并且你发现了比单元测试更好的东西，面向对象编程（OOP），或函数式编程（FP），无论是哪一种，你发现你可以把一个模块里的150行堆砌在一起的代码再提取成1个对象的15种方法，或者15个独立的函数（具体怎么提取，你得看相关的书籍），OOP或FP像MVC模型一样，成功的把你的代码分割成了更小的组成部分，每个方法或函数里代码都只有10行左右，你几乎回到了“Hello World”时代。  </p>
-<p><font color="#9ACD32">你需要单元测试吗？（你能保证你的系统没有BUG吗？）</font><br>这个复杂系统是由1950个函数和方法组成，如果想要确定系统整体没有BUG，就等同于确定组成这个系统的1950个函数和方法没有BUG。<br>而单元测试就是做这个事情的，显而易见，如果你写了单元测试，并且每个函数都通过了，你就可以骄傲的说：这个系统没有BUG!（当然这是代码的角度，而非功能和产品的角度）<br><strong>代码量：20000行</strong>  </p>
-<p><img src="http://p4qtgamvn.bkt.clouddn.com/timg%20%281%29.jpg" alt=""></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>虽然，从绝对的角度说，单元测试很重要，但是，从相对的角度来讲，小的代码量，简单固定的需求，个人开发，一锤子买卖等等都会让单元测试显得不那么重要，并且你一直开发的很舒服，这就是为什么有的人感受不到单元测试的重要性（这种情况下的确也许不用写单元测试）。<br><strong>记住，单元测试的威力更多不是体现在新代码的编写上，而是对已有代码的更改。</strong><br>但程序员的智慧是有限的，系统的复杂度却是无限的，随着更大挑战的到来，当系统的复杂度超过了你的逻辑，记忆能力，你必须依靠别的工具来帮助你减少问题。<br>如果你现在在做一个较大的项目，这个项目的需求很多，所以你一直在开发，你遇到了这样的痛苦状况：<br><strong>1.客户总能在使用中找出BUG，</strong><br><strong>2.每次代码的改动，都会导致一些意想不到的BUG出现。这个时候，单元测试可以挽救你。</strong>    </p>
-<h2 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h2><p><font color="#8470FF">即使我看了单元测试的书，也一头雾水，不知道怎么测试我的系统：</font><br>这种情况可能是你代码本身导致的，<br>首先你要写具有“可测性”的代码，这意味着你不能写面向过程的，流水式的，几百行逻辑堆一起的代码（也叫意大利面代码，就像一盘意大利面一样搅在一起的代码。）<br>你要学一些模块化技巧，面向对象和函数式编程理念，还有很多其它具体方法，比如能用本地变量，就不要用全局变量等等，让你的代码具有可测性，这些知识的学习应该放在单元测试之前。  </p>
-<p><font color="#8470FF">单元测试代码比功能代码也多，这样成本很高：</font><br>事实上单元测试代码都是异常简单的一些“断言”代码，断言就是判断一个函数或对象的一个方法所产生的结果是否等于你期望的那个结果，这样的代码看起来很多，但事实上书写的成本很低。<br>（因为我们开发软件的大部分时间用在了思考上，而不是敲代码上，单元测试的代码逻辑很简单，不需要太多思考）。  </p>
-<p><font color="#8470FF">不是有UI界面吗，点来点去就可以测试了啊：</font><br>你完全可以这样做，直到你觉得这么枯燥的事情真的应该交给电脑去做，或者功能越来越多，你只点击你认为影响到的功能，但总会有那些你认为不会影响到的功能也被影响了，你又懒得全部点一遍，单元测试是在你每次改完代码后自动执行，获得反馈只要几秒，并且会把所有功能跑一遍。  </p>
-<p><font color="#8470FF">我们项目有专职测试人员啊，写单元测试的必要还大吗：</font><br>单元测试是检查代码粒度的bug（一般是以函数和对象的方法为粒度），你可以依赖测试人员，但如果你不想在修改自己一个月前写的代码时自己把自己弄到吐血（或者把别人弄到吐血），<br>最好在当初就写好测试代码，这个工作的责任完全属于程序员。外国已经有很多资深程序员论证了，不论你的单元测试代码质量有多高，覆盖面有多全，单单是你去做这一件事，就可以很大程度的提高你的功能代码的质量，以及大幅减少BUG的存在。  </p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>这是另一篇讲解的 <a href="https://www.cnblogs.com/mq0036/p/4100084.html" target="_blank" rel="noopener">单元测试的意义</a>     </p>
-<ul>
-<li>能够协助程序员尽快找到BUG的具体位置    </li>
-<li>能够让程序员对自己的程序更有自信    </li>
-<li>能够让程序员在提交项目之前就将代码变的更加健壮    </li>
-<li>能够协助程序员更好的进行开发    </li>
-<li>能够向其他程序员展现你的程序该如何调用    </li>
-<li>能够让项目主管更了解系统的当前状况    </li>
-</ul>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>url<br>统一资源定位符是对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。<br>互联网上的每个文件都有一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。<br>网络url和本地地址不一样。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>开发时遇到的一个问题<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180321113354.png" alt=""></p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p><strong>两种文件读取使用的Java类是不同的</strong>  </p>
+<pre><code class="java">import java.io.*;
+import java.net.URL;
+public class XXX {
+    public static void main(String[] args){
+        try {
+            //读取本地文件
+            File file=new File(&quot;C:\\Users\\xinmei\\.gitconfig&quot;);
+            InputStream inputStream = new FileInputStream(file);
+
+            //读取网络文件
+            URL url = new URL(&quot;http://p4qtgamvn.bkt.clouddn.com/43934322a3b5ea2c546467916a7d6833.jpg&quot;);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            String s;
+            while ((s = reader.readLine()) != null) {
+                //System.out.println(s);
+            }
+            reader.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>读取网络文件并保存到本地一个例子  </p>
+<pre><code class="java">import java.io.File;  
+import java.io.FileOutputStream;  
+import java.io.InputStream;  
+import java.net.HttpURLConnection;  
+import java.net.URL;  
+public class ImageRequest {  
+    public static void main(String[] args) throws Exception {  
+        //new一个URL对象  
+        URL url = new URL(&quot;http://img.hexun.com/2011-06-21/130726386.jpg&quot;);  
+        //打开链接  
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
+        //设置请求方式为&quot;GET&quot;  
+        conn.setRequestMethod(&quot;GET&quot;);  
+        //超时响应时间为5秒  
+        conn.setConnectTimeout(5 * 1000);  
+        //通过输入流获取图片数据  
+        InputStream inStream = conn.getInputStream();  
+        //得到图片的二进制数据，以二进制封装得到数据，具有通用性  
+        byte[] data = readInputStream(inStream);  
+        //new一个文件对象用来保存图片，默认保存当前工程根目录  
+        File imageFile = new File(&quot;BeautyGirl.jpg&quot;);  
+        //创建输出流  
+        FileOutputStream outStream = new FileOutputStream(imageFile);  
+        //写入数据  
+        outStream.write(data);  
+        //关闭输出流  
+        outStream.close();  
+    }  
+    public static byte[] readInputStream(InputStream inStream) throws Exception{  
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
+        //创建一个Buffer字符串  
+        byte[] buffer = new byte[1024];  
+        //每次读取的字符串长度，如果为-1，代表全部读取完毕  
+        int len = 0;  
+        //使用一个输入流从buffer里把数据读取出来  
+        while( (len=inStream.read(buffer)) != -1 ){  
+            //用输出流往buffer里写入数据，中间参数代表从哪个位置开始读，len代表读取的长度  
+            outStream.write(buffer, 0, len);  
+        }  
+        //关闭输入流  
+        inStream.close();  
+        //把outStream里的数据写入内存  
+        return outStream.toByteArray();  
+    }  
+}  
+</code></pre>
 
       
        
