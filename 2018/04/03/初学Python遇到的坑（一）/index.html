@@ -150,6 +150,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">语录</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">数据库</a>
     </li>
     
@@ -162,15 +166,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">事务</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">语录</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">Python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">事务</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -178,15 +178,23 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">索引</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">名词解析</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">批处理</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">报文</a>
+        <a href="javascript:" class="color3">IO</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">索引</a>
+        <a href="javascript:" class="color3">报文</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -195,14 +203,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">域名解析</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">IO</a>
     </li>
     
     <div class="clearfix"></div>
@@ -423,12 +423,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-04-03 20:23:08'>2018-04-03 19:31</time>
+        创建时间:<time class="date" title='更新时间: 2018-04-03 20:45:21'>2018-04-03 19:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:305</span>
+        <span>字数:350</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -447,7 +447,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：安装包失败"><span class="toc-text">一：安装包失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二：使用IDE更新python包"><span class="toc-text">二：使用IDE更新python包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三：代码格式错误"><span class="toc-text">三：代码格式错误</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：安装包失败"><span class="toc-text">一：安装包失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二：使用IDE更新python包"><span class="toc-text">二：使用IDE更新python包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三：代码格式错误"><span class="toc-text">三：代码格式错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四：python新版本语法修改"><span class="toc-text">四：python新版本语法修改</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -485,6 +485,18 @@ for xxxxxx：
 （空格）xxxxx
 </code></pre>
 <p>一句话:<font color="#8B008B"><strong>有冒号的下一行往往要缩进，该缩进就缩进</strong></font>   </p>
+<h2 id="四：python新版本语法修改"><a href="#四：python新版本语法修改" class="headerlink" title="四：python新版本语法修改"></a>四：python新版本语法修改</h2><p>原来版本的代码，如果用新的python解释器就会报错：    </p>
+<pre><code class="python">try:
+    ...
+except Exception,e:
+    ...
+</code></pre>
+<p>现在版本的代码：  </p>
+<pre><code class="python">try:
+    ...
+except Exception as e:
+    ...
+</code></pre>
 
       
        
@@ -529,7 +541,7 @@ for xxxxxx：
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GIT','#指令','#Mybatis','#数据库','#代码质量','#测试','#事务','#语录','#Python','#效率','#批处理','#报文','#索引','#部署应用','#域名解析','#名词解析','#IO',],
+            'data': ['#GIT','#指令','#Mybatis','#语录','#数据库','#代码质量','#测试','#Python','#事务','#效率','#索引','#名词解析','#批处理','#IO','#报文','#部署应用','#域名解析',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
