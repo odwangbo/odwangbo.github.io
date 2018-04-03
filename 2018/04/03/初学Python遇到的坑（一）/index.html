@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux常用日志查看命令 | 王博</title>
-  <meta name="keywords" content=" 指令 ">
-  <meta name="description" content="Linux常用日志查看命令 | 王博">
+  <title>初学Python遇到的坑（一） | 王博</title>
+  <meta name="keywords" content=" Python ">
+  <meta name="description" content="初学Python遇到的坑（一） | 王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -399,9 +399,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Linux常用日志查看命令" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-初学Python遇到的坑（一）" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux常用日志查看命令</h1>
+        <h1 class="article-title">初学Python遇到的坑（一）</h1>
     
     <div class="article-meta">
         
@@ -409,26 +409,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="服务器">服务器</a>
+            <a href="javascript:" data-rel="Python开发">Python开发</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">指令</a>
+            <a href="javascript:" class="color2">Python</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-03-13 15:32:46'>2018-03-12 17:44</time>
+        创建时间:<time class="date" title='更新时间: 2018-04-03 20:14:55'>2018-04-03 19:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:401</span>
+        <span>字数:306</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -447,7 +447,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：根据日志的开始和结束查询"><span class="toc-text">一：根据日志的开始和结束查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二：根据关键字查询"><span class="toc-text">二：根据关键字查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三：循环实时读取日志"><span class="toc-text">三：循环实时读取日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四：根据日期查询"><span class="toc-text">四：根据日期查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五：分页查看"><span class="toc-text">五：分页查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六：保存到本地查看"><span class="toc-text">六：保存到本地查看</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：安装包失败"><span class="toc-text">一：安装包失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二：使用phthon的IDE更新包"><span class="toc-text">二：使用phthon的IDE更新包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三：代码格式错误"><span class="toc-text">三：代码格式错误</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -462,32 +462,25 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一：根据日志的开始和结束查询"><a href="#一：根据日志的开始和结束查询" class="headerlink" title="一：根据日志的开始和结束查询"></a>一：根据日志的开始和结束查询</h2><pre><code class="shell">tail  -n  10  test.log   //查询日志尾部最后10行的日志;
-tail -n +10 test.log     //查询10行之后的所有日志;
-head -n 10  test.log        //查询日志文件中的头10行日志;
-head -n -10  test.log    //查询日志文件除了最后10行的其他所有日志;
-</code></pre>
-<h2 id="二：根据关键字查询"><a href="#二：根据关键字查询" class="headerlink" title="二：根据关键字查询"></a>二：根据关键字查询</h2><pre><code class="shell">cat -n default.log |grep &quot;关键字&quot;
-</code></pre>
-<p>以上的命令可以找出一些相关的日志，找到需要的日志<strong>行号</strong><br>例如所需日志在111行，想要查看关键字前10行和后10行的日志：  </p>
-<pre><code class="shell">cat -n default.log |tail -n +101 |head -n 20
-</code></pre>
-<font color="#7FFF00">tail -n +92表示查询92行之后的日志</font><br><font color="#7FFF00">head -n 20 则表示在前面的查询结果里再查前20条记录</font>   
+        <h2 id="一：安装包失败"><a href="#一：安装包失败" class="headerlink" title="一：安装包失败"></a>一：安装包失败</h2><p>提示信息：<font color="#8470FF"><strong>modulenotfounderror: no module named ‘matplotlib._path’</strong></font>       </p>
+<ol>
+<li>使用<strong>pip install matplotlib</strong>安装此包，（如果已经安装，会提示如下信息）<br> &lt;显示已经安装成功和安装的位置&gt;<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180403193448.png" alt=""><br>这是另一篇<a href="https://blog.csdn.net/zhaluo0051/article/details/78239417" target="_blank" rel="noopener">有关python安装模块的博客</a>  </li>
+<li>如果此命令执行失败，则系统会用红色字体显示异常信息，抛出异常。<br>可能的原因是：网络问题。<br>解决方法：使用国内的镜像源来加速。<br>例如：原本的原本执行的命令是：<br>pip install selenium==3.3<br>改为：<br>pip install selenium==3.3 <font color="#7FFF00">-i <a href="http://pypi.douban.com/simple/" target="_blank" rel="noopener">http://pypi.douban.com/simple/</a> –trusted-host pypi.douban.com</font><br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180403195026.png" alt=""><br>这是另一篇<a href="https://www.cnblogs.com/botoo/p/7410316.html" target="_blank" rel="noopener">通过镜像源安装python模块的博客</a>    </li>
+</ol>
+<h2 id="二：使用phthon的IDE更新包"><a href="#二：使用phthon的IDE更新包" class="headerlink" title="二：使用phthon的IDE更新包"></a>二：使用phthon的IDE更新包</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180403200456.png" alt="">  </p>
+<h2 id="三：代码格式错误"><a href="#三：代码格式错误" class="headerlink" title="三：代码格式错误"></a>三：代码格式错误</h2><p>提示信息：<font color="#8470FF"><strong>IndentationError:expected an indented block</strong></font><br>在编译时会出现这样的错说明此处需要缩进，你只要在出现错误的那一行，按空格或Tab（但不能混用）键缩进就行。<br>该缩进的地方就要缩进，不缩进反而会出错，例如：  </p>
+<pre><code class="python">if xxxxxx：
+（空格）xxxxx
 
-<h2 id="三：循环实时读取日志"><a href="#三：循环实时读取日志" class="headerlink" title="三：循环实时读取日志"></a>三：循环实时读取日志</h2><pre><code class="shell">tail -f default.log
+#或者
+def xxxxxx：
+（空格）xxxxx
+
+#还有
+for xxxxxx：
+（空格）xxxxx
 </code></pre>
-<h2 id="四：根据日期查询"><a href="#四：根据日期查询" class="headerlink" title="四：根据日期查询"></a>四：根据日期查询</h2><p>查询到一个时间段内的日志<br>注意：如果不指定毫秒，默认到.000毫秒<br>即：16:17:20.000 –&gt;&gt; 16:17:36.000<br>1秒=1000毫秒(ms) 1毫秒=1000微秒(μs) 1微秒=1000纳秒(ns) 1纳秒=1000皮秒(ps)  </p>
-<pre><code class="shell">sed -n &#39;/2014-12-17 16:17:20/,/2014-12-17 16:17:36/p&#39;  default.log
-</code></pre>
-<p>查询一秒内的日志<br>(也可以确定日志中是否有改时间点)  </p>
-<pre><code class="shell">grep &#39;2018-03-13 13:56:03&#39; default.log  
-</code></pre>
-<p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180313153014.png" alt=""></p>
-<h2 id="五：分页查看"><a href="#五：分页查看" class="headerlink" title="五：分页查看"></a>五：分页查看</h2><p>使用<strong>more</strong>和<strong>less</strong>命令，可以分页打印，通过空格键翻页<br>less 与 more 相似，但支持向前翻页  </p>
-<pre><code class="shell">cat -n default.log |grep &quot;短信回访补偿&quot; |more
-</code></pre>
-<h2 id="六：保存到本地查看"><a href="#六：保存到本地查看" class="headerlink" title="六：保存到本地查看"></a>六：保存到本地查看</h2><pre><code class="shell">cat -n default.log |grep &quot;短信回访补偿&quot; &gt;xxx.txt
-</code></pre>
+<p>一句话:<font color="#8B008B"><strong>有冒号的下一行往往要缩进，该缩进就缩进</strong></font>   </p>
 
       
        

@@ -81,11 +81,13 @@
     
     <li data-rel="GIT"> GIT </li>
     
-    <li data-rel="服务器"> 服务器 </li>
-    
     <li data-rel="开发"> 开发 </li>
     
+    <li data-rel="服务器"> 服务器 </li>
+    
     <li data-rel="生活"> 生活 </li>
+    
+    <li data-rel="Python开发"> Python开发 </li>
     
     <li data-rel="数据库"> 数据库 </li>
     
@@ -101,8 +103,8 @@
     </div>
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="21">
-<input type="hidden" id="yelog_site_word_count" value="13.1k">
+<input type="hidden" id="yelog_site_posts_number" value="22">
+<input type="hidden" id="yelog_site_word_count" value="13.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -156,11 +158,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">事务</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">效率</a>
+        <a href="javascript:" class="color2">Python</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -172,15 +170,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">批处理</a>
+        <a href="javascript:" class="color3">事务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">效率</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">报文</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">索引</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -192,11 +190,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
+        <a href="javascript:" class="color4">批处理</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">索引</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">IO</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <div class="clearfix"></div>
@@ -204,6 +210,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="Python开发 "
+           href="/2018/04/03/初学Python遇到的坑（一）/"
+           data-tag="Python"
+           data-author="" >
+            <span class="post-title" title="初学Python遇到的坑（一）">初学Python遇到的坑（一）</span>
+            <span class="post-date" title="2018-04-03 19:31:19">2018/04/03</span>
+        </a>
         
         <a  class="开发 "
            href="/2018/03/29/Mybatis insert返回值不正确/"
@@ -518,7 +532,7 @@ public void testInsertSelective() {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GIT','#指令','#Mybatis','#语录','#数据库','#事务','#效率','#代码质量','#测试','#批处理','#报文','#索引','#部署应用','#域名解析','#名词解析','#IO',],
+            'data': ['#GIT','#指令','#Mybatis','#语录','#数据库','#Python','#代码质量','#测试','#事务','#效率','#报文','#部署应用','#域名解析','#批处理','#索引','#IO','#名词解析',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
