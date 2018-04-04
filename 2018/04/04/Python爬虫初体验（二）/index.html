@@ -83,15 +83,15 @@
     
     <li data-rel="服务器"> 服务器 </li>
     
-    <li data-rel="生活"> 生活 </li>
-    
     <li data-rel="开发"> 开发 </li>
     
     <li data-rel="Python开发"> Python开发 </li>
     
-    <li data-rel="其他"> 其他 </li>
+    <li data-rel="生活"> 生活 </li>
     
     <li data-rel="数据库"> 数据库 </li>
+    
+    <li data-rel="其他"> 其他 </li>
     
 </ul>
 <div class="left-bottom">
@@ -104,7 +104,7 @@
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="24">
-<input type="hidden" id="yelog_site_word_count" value="14.9k">
+<input type="hidden" id="yelog_site_word_count" value="15.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -146,10 +146,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">语录</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">Mybatis</a>
     </li>
     
@@ -159,6 +155,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">爬虫</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">语录</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -186,7 +186,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">批处理</a>
+        <a href="javascript:" class="color3">索引</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -198,7 +198,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
+        <a href="javascript:" class="color4">批处理</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -206,7 +206,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">索引</a>
+        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <div class="clearfix"></div>
@@ -445,12 +445,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-04-04 12:01:19'>2018-04-04 11:58</time>
+        创建时间:<time class="date" title='更新时间: 2018-04-04 13:57:47'>2018-04-04 11:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:384</span>
+        <span>字数:740</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -469,7 +469,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：扒取百度高清图片"><span class="toc-text">一：扒取百度高清图片</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：扒取百度高清图片"><span class="toc-text">一：扒取百度高清图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二：扒取必应高清图片"><span class="toc-text">二：扒取必应高清图片</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -555,6 +555,82 @@ if __name__ == &#39;__main__&#39;:
     down_pic(list(set(all_pic_urls)), &#39;d:/download/haha%s/&#39; % fanye_count)  # 保存位置也可以修改
 </code></pre>
 <p>运行效果图：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180404115619.png" alt="">  </p>
+<h2 id="二：扒取必应高清图片"><a href="#二：扒取必应高清图片" class="headerlink" title="二：扒取必应高清图片"></a>二：扒取必应高清图片</h2><p>这是<a href="https://blog.csdn.net/csnd_ayo/article/details/73691549" target="_blank" rel="noopener">原作者的博客地址</a>  </p>
+<pre><code class="python"># -*- coding:utf-8 -*-
+
+import urllib.request
+import datetime
+
+# @brief  打开网页
+# url : 网页地址
+# @return 返回网页数据
+def open_url(url):
+    # 根据当前URL创建请求包
+    req = urllib.request.Request(url)
+    # 添加头信息，伪装成浏览器访问
+    req.add_header(&#39;User-Agent&#39;,
+                   &#39;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36&#39;)
+    # 发起请求
+    response = urllib.request.urlopen(req)
+    # 返回请求到的HTML信息
+    return response.read()
+
+# 找图片
+def find_picture_url(http_response):
+    # 查找当前页面所有图片的URL
+    http_response = http_response.decode(&#39;utf-8&#39;)
+    img_addrs = []
+    # 找图片
+    a = http_response.find(&#39;&lt;url&gt;&#39;)
+    # 不带停，如果没找到则退出循环
+    while a != -1:
+        # 以a的位置为起点，找以jpg结尾的图片
+        b = http_response.find(&#39;&lt;/url&gt;&#39;, a, a + 255)
+        # 如果找到就添加到图片列表中
+        if b != -1:
+            img_addrs.append(http_response[a + 5:b])
+        # 否则偏移下标
+        else:
+            b = a + 5
+        # 继续找
+        a = http_response.find(&#39;&lt;url&gt;&#39;, b)
+
+    return img_addrs
+
+# url 拼接
+def url_joint(picture_url):
+    return &quot;http://cn.bing.com/&quot; + picture_url
+
+# @brief 保存图片
+# url : 图片url
+# addr  : 保存的地址
+def save_picture(url, addr):
+    with open(&#39;d:/download/bing/&#39; + addr, &#39;wb&#39;) as f:
+        img = open_url(url_joint(url))
+        if img:
+            f.write(img)
+    print(&quot;图片已保存&quot;)
+    return
+
+i = 0
+while i &lt; 5:
+    i += 1
+    # [1] 打开网页
+    temp_str = &quot;http://cn.bing.com/HPImageArchive.aspx?format=xml&amp;idx=%d&amp;n=100&quot; % (i)
+
+    response = open_url(temp_str)
+    # [2] 找到图片
+    list_picture = find_picture_url(response)
+    local_time = datetime.datetime.now().microsecond
+    j = 0
+
+    # [3] 保存图片
+    for picture_url in list_picture:
+        j += 1
+        local_time_file_name = str(local_time) + str(j) + &quot;.jpg&quot;
+        print(local_time_file_name)
+        save_picture(picture_url, local_time_file_name)
+</code></pre>
 
       
        
@@ -599,7 +675,7 @@ if __name__ == &#39;__main__&#39;:
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GIT','#指令','#语录','#Mybatis','#Python','#爬虫','#数据库','#事务','#代码质量','#测试','#效率','#报文','#批处理','#部署应用','#域名解析','#名词解析','#IO','#索引',],
+            'data': ['#GIT','#指令','#Mybatis','#Python','#爬虫','#语录','#数据库','#事务','#代码质量','#测试','#效率','#报文','#索引','#部署应用','#域名解析','#批处理','#IO','#名词解析',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

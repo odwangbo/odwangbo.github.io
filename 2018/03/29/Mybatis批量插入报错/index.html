@@ -83,15 +83,15 @@
     
     <li data-rel="服务器"> 服务器 </li>
     
-    <li data-rel="生活"> 生活 </li>
-    
     <li data-rel="开发"> 开发 </li>
     
     <li data-rel="Python开发"> Python开发 </li>
     
-    <li data-rel="其他"> 其他 </li>
+    <li data-rel="生活"> 生活 </li>
     
     <li data-rel="数据库"> 数据库 </li>
+    
+    <li data-rel="其他"> 其他 </li>
     
 </ul>
 <div class="left-bottom">
@@ -104,7 +104,7 @@
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="24">
-<input type="hidden" id="yelog_site_word_count" value="14.9k">
+<input type="hidden" id="yelog_site_word_count" value="15.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -146,10 +146,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">语录</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">Mybatis</a>
     </li>
     
@@ -159,6 +155,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">爬虫</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">语录</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -186,7 +186,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">批处理</a>
+        <a href="javascript:" class="color3">索引</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -198,7 +198,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
+        <a href="javascript:" class="color4">批处理</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -206,7 +206,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">索引</a>
+        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <div class="clearfix"></div>
@@ -537,7 +537,7 @@ int batchId = emailBatchLogMapper.insert(emailBatchLog);
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GIT','#指令','#语录','#Mybatis','#Python','#爬虫','#数据库','#事务','#代码质量','#测试','#效率','#报文','#批处理','#部署应用','#域名解析','#名词解析','#IO','#索引',],
+            'data': ['#GIT','#指令','#Mybatis','#Python','#爬虫','#语录','#数据库','#事务','#代码质量','#测试','#效率','#报文','#索引','#部署应用','#域名解析','#批处理','#IO','#名词解析',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
