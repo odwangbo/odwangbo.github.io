@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux常用日志查看命令 | 王博</title>
-  <meta name="keywords" content=" 指令 ">
-  <meta name="description" content="Linux常用日志查看命令 | 王博">
+  <title>Python爬虫初体验（二） | 王博</title>
+  <meta name="keywords" content=" Python , 爬虫 ">
+  <meta name="description" content="Python爬虫初体验（二） | 王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -419,9 +419,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Linux常用日志查看命令" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Python爬虫初体验（二）" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux常用日志查看命令</h1>
+        <h1 class="article-title">Python爬虫初体验（二）</h1>
     
     <div class="article-meta">
         
@@ -429,26 +429,28 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="服务器">服务器</a>
+            <a href="javascript:" data-rel="Python开发">Python开发</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">指令</a>
+            <a href="javascript:" class="color2">Python</a>
+            
+            <a href="javascript:" class="color3">爬虫</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-03-13 15:32:46'>2018-03-12 17:44</time>
+        创建时间:<time class="date" title='更新时间: 2018-04-04 12:01:19'>2018-04-04 11:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:401</span>
+        <span>字数:384</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -467,7 +469,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：根据日志的开始和结束查询"><span class="toc-text">一：根据日志的开始和结束查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二：根据关键字查询"><span class="toc-text">二：根据关键字查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三：循环实时读取日志"><span class="toc-text">三：循环实时读取日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四：根据日期查询"><span class="toc-text">四：根据日期查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五：分页查看"><span class="toc-text">五：分页查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六：保存到本地查看"><span class="toc-text">六：保存到本地查看</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：扒取百度高清图片"><span class="toc-text">一：扒取百度高清图片</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -482,32 +484,77 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一：根据日志的开始和结束查询"><a href="#一：根据日志的开始和结束查询" class="headerlink" title="一：根据日志的开始和结束查询"></a>一：根据日志的开始和结束查询</h2><pre><code class="shell">tail  -n  10  test.log   //查询日志尾部最后10行的日志;
-tail -n +10 test.log     //查询10行之后的所有日志;
-head -n 10  test.log        //查询日志文件中的头10行日志;
-head -n -10  test.log    //查询日志文件除了最后10行的其他所有日志;
-</code></pre>
-<h2 id="二：根据关键字查询"><a href="#二：根据关键字查询" class="headerlink" title="二：根据关键字查询"></a>二：根据关键字查询</h2><pre><code class="shell">cat -n default.log |grep &quot;关键字&quot;
-</code></pre>
-<p>以上的命令可以找出一些相关的日志，找到需要的日志<strong>行号</strong><br>例如所需日志在111行，想要查看关键字前10行和后10行的日志：  </p>
-<pre><code class="shell">cat -n default.log |tail -n +101 |head -n 20
-</code></pre>
-<font color="#7FFF00">tail -n +92表示查询92行之后的日志</font><br><font color="#7FFF00">head -n 20 则表示在前面的查询结果里再查前20条记录</font>   
+        <h2 id="一：扒取百度高清图片"><a href="#一：扒取百度高清图片" class="headerlink" title="一：扒取百度高清图片"></a>一：扒取百度高清图片</h2><p>这是<a href="https://blog.csdn.net/MirrorMan0/article/details/78500572" target="_blank" rel="noopener">原作者的博客地址</a>  </p>
+<pre><code class="python"># coding=utf-8
+&quot;&quot;&quot;
+爬取百度图片的高清原图
+Author          : MirrorMan
+Created         : 2017-11-10
+&quot;&quot;&quot;
+import re
+import sys
+import urllib
+import os
 
-<h2 id="三：循环实时读取日志"><a href="#三：循环实时读取日志" class="headerlink" title="三：循环实时读取日志"></a>三：循环实时读取日志</h2><pre><code class="shell">tail -f default.log
+import requests
+
+
+def get_onepage_urls(onepageurl):
+    if not onepageurl:
+        print(&#39;执行结束&#39;)
+        return [], &#39;&#39;
+    try:
+        html = requests.get(onepageurl).text
+    except Exception as e:
+        print(e)
+        pic_urls = []
+        fanye_url = &#39;&#39;
+        return pic_urls, fanye_url
+    pic_urls = re.findall(&#39;&quot;objURL&quot;:&quot;(.*?)&quot;,&#39;, html, re.S)
+    fanye_urls = re.findall(re.compile(r&#39;&lt;a href=&quot;(.*)&quot; class=&quot;n&quot;&gt;下一页&lt;/a&gt;&#39;), html, flags=0)
+    fanye_url = &#39;http://image.baidu.com&#39; + fanye_urls[0] if fanye_urls else &#39;&#39;
+    return pic_urls, fanye_url
+
+
+def down_pic(pic_urls, localPath):
+    if not os.path.exists(localPath):  # 新建文件夹
+        os.mkdir(localPath)
+    &quot;&quot;&quot;给出图片链接列表, 下载图片&quot;&quot;&quot;
+    for i, pic_url in enumerate(pic_urls):
+        try:
+            pic = requests.get(pic_url, timeout=15)
+            string = str(i + 1) + &#39;.jpg&#39;
+            with open(localPath + &#39;%d.jpg&#39; % i, &#39;wb&#39;)as f:
+                f.write(pic.content)
+                #  with open(string, &#39;wb&#39;) as f:
+                #      f.write(pic.content)
+                print(&#39;成功下载第%s张图片: %s&#39; % (str(i + 1), str(pic_url)))
+        except Exception as e:
+            print(&#39;下载第%s张图片时失败: %s&#39; % (str(i + 1), str(pic_url)))
+            print(e)
+            continue
+
+
+if __name__ == &#39;__main__&#39;:
+    keyword = &#39;新垣结衣1920*1080&#39;  # 关键词, 改为你想输入的词即可泰勒斯威夫特
+    url_init_first = r&#39;http://image.baidu.com/search/flip?tn=baiduimage&amp;ipn=r&amp;ct=201326592&amp;cl=2&amp;lm=-1&amp;st=-1&amp;fm=result&amp;fr=&amp;sf=1&amp;fmq=1497491098685_R&amp;pv=&amp;ic=0&amp;nc=1&amp;z=&amp;se=1&amp;showtab=0&amp;fb=0&amp;width=&amp;height=&amp;face=0&amp;istype=2&amp;ie=utf-8&amp;ctd=1497491098685%5E00_1519X735&amp;word=&#39;
+    url_init = url_init_first + urllib.parse.quote(keyword, safe=&#39;/&#39;)
+    all_pic_urls = []
+    onepage_urls, fanye_url = get_onepage_urls(url_init)
+    all_pic_urls.extend(onepage_urls)
+
+    fanye_count = 1  # 图片所在页数，下载完后调整这里就行
+    while 1:
+        onepage_urls, fanye_url = get_onepage_urls(fanye_url)
+        fanye_count += 1
+        print(&#39;第%s页&#39; % fanye_count)
+        if fanye_url == &#39;&#39; and onepage_urls == []:
+            break
+        all_pic_urls.extend(onepage_urls)
+
+    down_pic(list(set(all_pic_urls)), &#39;d:/download/haha%s/&#39; % fanye_count)  # 保存位置也可以修改
 </code></pre>
-<h2 id="四：根据日期查询"><a href="#四：根据日期查询" class="headerlink" title="四：根据日期查询"></a>四：根据日期查询</h2><p>查询到一个时间段内的日志<br>注意：如果不指定毫秒，默认到.000毫秒<br>即：16:17:20.000 –&gt;&gt; 16:17:36.000<br>1秒=1000毫秒(ms) 1毫秒=1000微秒(μs) 1微秒=1000纳秒(ns) 1纳秒=1000皮秒(ps)  </p>
-<pre><code class="shell">sed -n &#39;/2014-12-17 16:17:20/,/2014-12-17 16:17:36/p&#39;  default.log
-</code></pre>
-<p>查询一秒内的日志<br>(也可以确定日志中是否有改时间点)  </p>
-<pre><code class="shell">grep &#39;2018-03-13 13:56:03&#39; default.log  
-</code></pre>
-<p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180313153014.png" alt=""></p>
-<h2 id="五：分页查看"><a href="#五：分页查看" class="headerlink" title="五：分页查看"></a>五：分页查看</h2><p>使用<strong>more</strong>和<strong>less</strong>命令，可以分页打印，通过空格键翻页<br>less 与 more 相似，但支持向前翻页  </p>
-<pre><code class="shell">cat -n default.log |grep &quot;短信回访补偿&quot; |more
-</code></pre>
-<h2 id="六：保存到本地查看"><a href="#六：保存到本地查看" class="headerlink" title="六：保存到本地查看"></a>六：保存到本地查看</h2><pre><code class="shell">cat -n default.log |grep &quot;短信回访补偿&quot; &gt;xxx.txt
-</code></pre>
+<p>运行效果图：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180404115619.png" alt="">  </p>
 
       
        
