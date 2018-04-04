@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mybatis批量插入报错 | 王博</title>
-  <meta name="keywords" content=" Mybatis ">
-  <meta name="description" content="Mybatis批量插入报错 | 王博">
+  <title>Python爬虫初体验（一） | 王博</title>
+  <meta name="keywords" content=" Python , 爬虫 ">
+  <meta name="description" content="Python爬虫初体验（一） | 王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -411,9 +411,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Mybatis批量插入报错" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Python爬虫初体验（一）" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Mybatis批量插入报错</h1>
+        <h1 class="article-title">Python爬虫初体验（一）</h1>
     
     <div class="article-meta">
         
@@ -421,26 +421,28 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="开发">开发</a>
+            <a href="javascript:" data-rel="Python开发">Python开发</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">Mybatis</a>
+            <a href="javascript:" class="color2">Python</a>
+            
+            <a href="javascript:" class="color3">爬虫</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-03-29 17:23:23'>2018-03-29 17:06</time>
+        创建时间:<time class="date" title='更新时间: 2018-04-04 11:23:24'>2018-04-04 11:16</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:133</span>
+        <span>字数:1,100</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -459,7 +461,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题再现"><span class="toc-text">问题再现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题解决"><span class="toc-text">问题解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题延展"><span class="toc-text">问题延展</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一：体验别人的–简单型"><span class="toc-text">一：体验别人的–简单型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二：体验别人的–稍复杂"><span class="toc-text">二：体验别人的–稍复杂</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -474,17 +476,297 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="问题再现"><a href="#问题再现" class="headerlink" title="问题再现"></a>问题再现</h2><p>在开发时遇到如下问题：<br>使用Mybatis 在 insert 之后想获取自增的主键 id，但是总是返回1。<br>并且在mapper.xml文件中<font color="#8470FF"> useGeneratedKeys=”true” keyProperty=”id” </font>是加上的。<br><img src="http://p4qtgamvn.bkt.clouddn.com/Image1.png" alt=""></p>
-<pre><code class="java">//把邮件发送记录落地到数据库中
-Date date = new Date();
-EmailBatchLog emailBatchLog = new EmailBatchLog();
-emailBatchLog.setUseEmail(emailAccountInUse);
-emailBatchLog.setSendContent(msg);
-emailBatchLog.setCreateTime(date);
-int batchId = emailBatchLogMapper.insert(emailBatchLog);
+        <p><strong>先从体验别人的代码学起，下面两个例子都是自己运行过，没有问题的示例。</strong></p>
+<h2 id="一：体验别人的–简单型"><a href="#一：体验别人的–简单型" class="headerlink" title="一：体验别人的–简单型"></a>一：体验别人的–简单型</h2><p>这是<a href="https://www.cnblogs.com/dearvee/p/6558571.html" target="_blank" rel="noopener">原作者的博客地址</a>  </p>
+<pre><code class="python">import requests
+import json
+import urllib
+
+def getSogouImag(category,length,path):
+    n = length
+    cate = category
+    imgs = requests.get(&#39;http://pic.sogou.com/pics/channel/getAllRecomPicByTag.jsp?category=&#39;+cate+&#39;&amp;tag=%E5%85%A8%E9%83%A8&amp;start=0&amp;len=&#39;+str(n))
+    jd = json.loads(imgs.text)
+    jd = jd[&#39;all_items&#39;]
+    imgs_url = []
+    for j in jd:
+        imgs_url.append(j[&#39;bthumbUrl&#39;])
+    m = 0
+    for img_url in imgs_url:
+            print(&#39;***** &#39;+str(m)+&#39;.jpg *****&#39;+&#39;   Downloading...&#39;)
+            urllib.request.urlretrieve(img_url,path+str(m)+&#39;.jpg&#39;)
+            m = m + 1
+    print(&#39;Download complete!&#39;)
+
+getSogouImag(&#39;壁纸&#39;,200,&#39;d:/download/壁纸/&#39;)
 </code></pre>
-<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p><strong>1是返回的插入成功的行数；自增id直接映射到你的对象里了，直接输出 xxx.getId()就可以了</strong><br><img src="http://p4qtgamvn.bkt.clouddn.com/Image.png" alt=""><br><img src="http://p4qtgamvn.bkt.clouddn.com/Image2.png" alt=""></p>
-<h2 id="问题延展"><a href="#问题延展" class="headerlink" title="问题延展"></a>问题延展</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/Image3.png" alt=""><br><img src="http://p4qtgamvn.bkt.clouddn.com/Image4.png" alt=""></p>
+<h2 id="二：体验别人的–稍复杂"><a href="#二：体验别人的–稍复杂" class="headerlink" title="二：体验别人的–稍复杂"></a>二：体验别人的–稍复杂</h2><p>这是<a href="https://blog.csdn.net/lanzhihui_10086/article/details/79679115" target="_blank" rel="noopener">原作者的博客地址</a>  </p>
+<pre><code class="python"># -*- encoding=UTF-8 -*-
+import urllib.request, socket, re, sys, os
+from urllib.request import urlopen
+import time
+from tkinter import *
+import webbrowser
+from bs4 import BeautifulSoup
+import requests
+import json
+import urllib
+
+##############################常量区##############################
+sougou_url = &quot;http://pic.sogou.com/&quot;
+###URL
+download_pics_path = &quot;D:/download/bz2018/&quot;
+download_pics_num = 10
+download_success = &quot;&quot;
+sougou_pics_tag = [&quot;pic_url&quot;, &quot;thumbUrl&quot;, &quot;bthumbUrl&quot;, &quot;ori_pic_url&quot;]
+sougou_url_pics_start = &quot;http://pic.sogou.com/pics/channel/getAllRecomPicByTag.jsp?category=&quot;
+sougou_url_pics_mid = &quot;&amp;tag=%E5%85%A8%E9%83%A8&amp;start=0&amp;len=&quot;
+sougou_url_pics_start_other = &quot;http://pic.sogou.com/pics?query=&quot;
+sougou_url_pics_mid_other = &quot;&amp;did=1&amp;mode=1&amp;start=0&amp;len=&quot;
+sougou_url_pics_stop_other = &quot;&amp;reqType=ajax&quot;
+###title
+title_key_start = &quot;a class=\&quot;nav-tab\&quot; href=\&quot;/pics/&quot;
+title_key_stop = &quot;&lt;&quot;
+###tkinter
+window_name = &quot;搜狗图片下载器&quot;
+window_size = &quot;500x500&quot;
+frm_bg = &quot;white&quot;
+real_columnspan = 4
+label_type_str = &quot;---------------------------------------------图片类型---------------------------------------------&quot;
+##############################常量区##############################
+
+real_url_arr = []  ###组成url集合
+
+
+##############################函数区##############################
+###获取网页上标题,返回标题数组
+def get_title(url):
+    html = urlopen(url)
+    sougou_html = BeautifulSoup(html.read())
+    title_key = []
+    for ihtml in sougou_html:
+        data1 = str(ihtml).split(title_key_start)
+        if len(data1) &gt; 1:
+            for jhtml in data1:
+                data2 = jhtml.split(title_key_stop)[0]
+                data3 = data2.split(&quot;\&quot;&gt;&quot;)
+                if len(data3) == 2:
+                    title_key.append(data3[1])
+    return title_key
+
+
+###获取网页图片并下载,返回下载失败个数
+def get_pics(url, path):
+    # 检测当前路径的有效性
+    if not os.path.isdir(path):
+        os.mkdir(path)
+    pics_str = requests.get(url)
+    pics_dict = json.loads(pics_str.text)
+    pics_dict_items = pics_dict[&#39;all_items&#39;]
+    i_item = 0
+    fail_count = 0
+    for item in pics_dict_items:
+        fail_flag = 0
+        for itag in sougou_pics_tag:
+            try:
+                pic_url = item[itag]
+                pic_title = item[&#39;title&#39;]
+                if pic_title == &quot;&quot;:
+                    pic_title = str(i_item)
+                    i_item = i_item + 1
+                if pic_url != &quot;&quot;:
+                    urllib.request.urlretrieve(pic_url, path + pic_title + &#39;.jpg&#39;)
+                    print(pic_title + &quot;: download complete!&quot;)
+                    fail_flag = 1
+                    break
+            except:
+                print(&quot;download fail!&quot;)
+                continue
+        if fail_flag != 1:
+            fail_count = fail_count + 1
+    return fail_count
+
+
+def get_pics_other(url, path):
+    pics_str = requests.get(url)
+    pics_dict = json.loads(pics_str.text)
+    pics_dict_items = pics_dict[&#39;items&#39;]
+    i_item = 0
+    fail_count = 0
+    for item in pics_dict_items:
+        fail_flag = 0
+        for itag in sougou_pics_tag:
+            try:
+                pic_url = item[itag]
+                pic_title = item[&#39;title&#39;]
+                pic_title = pic_title + str(i_item)
+                i_item = i_item + 1
+                if pic_url != &quot;&quot;:
+                    urllib.request.urlretrieve(pic_url, path + pic_title + &#39;.jpg&#39;)
+                    print(pic_title + &quot;: download complete!&quot;)
+                    fail_flag = 1
+                    break
+            except:
+                print(&quot;download fail!&quot;)
+                continue
+        if fail_flag != 1:
+            fail_count = fail_count + 1
+    return fail_count
+
+
+def url_get_othertype():
+    global real_url_arr
+    if PhotoType.get() != &quot;&quot;:
+        real_url_arr.append(PhotoType.get())
+        real_url_arr = list(set(real_url_arr))
+
+
+def url_get_phototype(all_type):
+    global real_url_arr
+    real_url_arr = []
+    url_get_othertype()
+    if &quot;其他&quot; in all_type:
+        all_type.remove(&quot;其他&quot;)
+    for i in range(len(all_type)):
+        if CheckType[i].get() == 1:
+            real_url_arr.append(typeBtn[all_type[i]][&#39;text&#39;])
+    real_url_arr = list(set(real_url_arr))
+
+
+def other_type():
+    if OtherType.get() == 1:
+        type[&quot;state&quot;] = &quot;normal&quot;
+    else:
+        type[&quot;state&quot;] = &quot;disabled&quot;
+        PhotoType.set(&quot;&quot;)
+
+
+def get_full_url(all_type):
+    global download_pics_num
+    down_result[&quot;text&quot;] = &quot;&quot;
+    url_get_phototype(all_type)
+    if download_num_str.get() != &quot;&quot;:
+        download_pics_num = int((download_num_str.get()))
+    sum = len(real_url_arr) * download_pics_num
+    down_result[&quot;text&quot;] = &quot;准备下载: &quot; + str(sum) + &quot;张照片&quot;
+    fail_num = 0
+    for iurl in real_url_arr:
+        if iurl in photo_type:
+            tmp_url = sougou_url_pics_start + iurl + sougou_url_pics_mid + str(download_pics_num)
+            fail_num = fail_num + get_pics(tmp_url, download_pics_path)
+        else:
+            tmp_url = sougou_url_pics_start_other + iurl + sougou_url_pics_mid_other + str(
+                download_pics_num) + sougou_url_pics_stop_other
+            time.sleep(1)
+            fail_num = fail_num + get_pics_other(tmp_url, download_pics_path)
+    down_result[&quot;text&quot;] = &quot;成功下载: &quot; + str(sum - fail_num) + &quot;张照片&quot;
+
+
+###tkinter label占一行
+def write_line(row, text=&quot;&quot;, column=0, columnspan=real_columnspan, bg=frm_bg):
+    label = Label(frm, text=text, bg=bg)
+    label.grid(row=row, column=column, columnspan=columnspan)
+    return label
+
+
+###调用网页
+def callback(url=sougou_url):
+    webbrowser.open_new(url)
+
+
+##############################函数区##############################
+
+##############################UI部分##########################################
+root = Tk()  # 给窗体
+root.title(window_name)  # 设置窗体名字
+root.geometry(window_size)
+root.resizable(width=False, height=False)  ###固定窗体大小
+
+frm = Frame(root, bg=frm_bg)  # 新建框架
+frm.pack(expand=YES, fill=BOTH)  # 放置框架
+
+###控制行的参数
+real_row = 0
+###空一行
+write_line(real_row)
+real_row = real_row + 1
+###进入官网
+Button(frm, text=&quot;点击进入搜狗图片官网&quot;, command=callback).grid(row=real_row, column=0, columnspan=real_columnspan, sticky=N)
+real_row = real_row + 1
+###空一行
+write_line(real_row)
+real_row = real_row + 1
+###图片类型
+write_line(real_row, label_type_str)
+real_row = real_row + 1
+###空一行
+write_line(real_row)
+real_row = real_row + 1
+
+###checkbutton
+photo_type = get_title(sougou_url)
+photo_type.append(&quot;其他&quot;)
+typeBtn = {}
+CheckType = []
+real_column = 0
+for itype in photo_type:
+    if itype == &quot;其他&quot;:
+        OtherType = IntVar()
+        PhotoType = StringVar()
+        type = Entry(frm, textvariable=PhotoType, width=9, state=&#39;disabled&#39;)  # 添加输入框
+        Checkbutton(frm, text=&quot;其他&quot;, variable=OtherType, onvalue=1, offvalue=2, command=other_type).grid(row=real_row,
+                                                                                                        column=1)
+        type.grid(row=real_row, column=2, columnspan=4, sticky=W, padx=40, ipadx=60)  # 放置输入框位置
+    else:
+        CheckType.append(IntVar())
+        typeBtn[itype] = Checkbutton(frm, text=itype, variable=CheckType[-1],
+                                     command=lambda: url_get_phototype(photo_type))
+        typeBtn[itype].grid(row=real_row, column=real_column)
+    real_column = real_column + 1
+    if real_column == 4:
+        real_column = 0
+        real_row = real_row + 1
+real_row = real_row + 1
+
+###空一行
+write_line(real_row)
+real_row = real_row + 1
+
+###下载个数
+lab1 = Label(frm, text=&quot;下载个数:&quot;)  # 添加Label
+lab1.grid(row=real_row, column=0)
+download_num_str = StringVar()
+download_num = Entry(frm, width=10, textvariable=download_num_str)  # 添加Entry
+download_num.grid(row=real_row, column=1, sticky=W)
+real_row = real_row + 1
+
+###空一行
+write_line(real_row)
+real_row = real_row + 1
+
+###get
+Button(frm, text=&quot;获取照片&quot;, command=lambda: get_full_url(photo_type)).grid(row=real_row, column=0, columnspan=4, sticky=N)
+real_row = real_row + 1
+
+###空一行
+write_line(real_row)
+real_row = real_row + 1
+
+###结果
+down_result = write_line(real_row)
+real_row = real_row + 1
+
+###空一行
+write_line(real_row)
+real_row = real_row + 1
+
+Button(frm, text=&quot;退出程序&quot;, command=root.quit).grid(row=real_row, column=0, columnspan=4, sticky=N)
+real_row = real_row + 1
+
+mainloop()
+##############################UI部分##########################################
+
+</code></pre>
 
       
        
