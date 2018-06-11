@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>单元测试jmockit详细使用 | 王博</title>
-  <meta name="keywords" content=" 代码质量 , 测试 ">
-  <meta name="description" content="单元测试jmockit详细使用 | 王博">
+  <title>王博</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -451,38 +451,22 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-单元测试jmockit详细使用" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">单元测试jmockit详细使用</h1>
+        <article id="post-使用java处理excel文件" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            
-            <a href="javascript:" data-rel="开发">开发</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color5">代码质量</a>
-            
-            <a href="javascript:" class="color3">测试</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-03-21 09:47:42'>2018-03-20 19:18</time>
+        创建时间:<time class="date" title='更新时间: 2018-06-11 10:43:45'>2018-06-11 10:43</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:936</span>
+        <span>字数:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -501,7 +485,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前提"><span class="toc-text">前提</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模拟静态方法"><span class="toc-text">模拟静态方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模拟持久业务层的方法"><span class="toc-text">模拟持久业务层的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模拟异常分支"><span class="toc-text">模拟异常分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常"><span class="toc-text">异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#界面查看"><span class="toc-text">界面查看</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -516,105 +500,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>测试类的作用是编写测试方法，<strong>一个方法覆盖一条程序可能的运行路径</strong>。<br>测试结果如何可以查看测试代码<strong>分支覆盖率</strong>。<br>在一个测试方法中，不用为了形式一定要mock一个方法，只要能测试走通一条路径就可以。<br>什么方法必须需要进行模拟：<br>涉及访问数据库的，涉及访问网络的，涉及访问文件的等等。<br>（把真实环境下耗费大量资源及时间的方法进行模拟）<br>JMockit程序结构如下<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320203705.png" alt="三段式"><br>一般使用两段式，更加简单<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320203708.png" alt="两段式"><br>还是那句话，不要死板。只要重现方法过程，模拟方法运行就可以，不必拘泥形式。<br>这是<a href="http://jmockit.cn/index.htm" target="_blank" rel="noopener">讲解JMockit的一个中文网站</a>  </p>
-<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>在程序中引入jmockit相关jar包。<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320203655.png" alt=""><br>在写测试类的时候可以先创建一个引入Spring的<strong>applicationContext</strong>的母类，测试子类继承之。  </p>
-<pre><code class="java">package com.xinmei.etrust.unittest;
-
-import org.junit.Before;
-import org.junit.runner.RunWith;
-import org.springframework.context.ApplicationContext;
-import com.xinmei.general.tools.SpringContextUtils;
-import mockit.Injectable;
-import mockit.integration.junit4.JMockit;
-
-/**
- * @Description: 单元测试基础类
- */
-@RunWith(JMockit.class)
-public class UnitTestBase {
-    @Injectable
-    protected ApplicationContext applicationContext;
-
-    @Before
-    public void initSpringContext(){
-        new SpringContextUtils().setApplicationContext(applicationContext);
-    }
-}
-</code></pre>
-<h2 id="模拟静态方法"><a href="#模拟静态方法" class="headerlink" title="模拟静态方法"></a>模拟静态方法</h2><p>如何模拟一个静态方法，例如工具类中的一个static方法。<br>分为两种情况。<br>一：测试类是为了测试这个工具类的。    </p>
-<pre><code class="java">public abstract class PolicyVisitUtil {
-    public static String getPolicyVisitStatusByMobileVisitStatus(String mobileVisitStatus){
-        String policyVisitStatus = EnumPolicyVisitStatus.Awaiting.getCode();
-        switch(mobileVisitStatus){
-            case &quot;01&quot; ://电话回访成功
-                policyVisitStatus = EnumPolicyVisitStatus.Completed.getCode();
-                break ;
-            default:
-                break ;
-        }
-        return policyVisitStatus;
-    }
-}
-</code></pre>
-<p>测试类如下  </p>
-<pre><code class="java">import mockit.Mock;
-import mockit.MockUp;
-import mockit.Tested;
-import org.junit.Test;
-import static org.assertj.core.api.Assertions.assertThat;
-public class TestPolicyVisitUtil extends UnitTestBase {
-    @Test
-    public void testgetPolicyVisitStatusByMobileVisitStatus(){
-        String  mobileVisitStatus = &quot;01&quot;;
-        String policyVisitStatusByMobileVisitStatus = PolicyVisitUtil.getPolicyVisitStatusByMobileVisitStatus(mobileVisitStatus);
-        assertThat(policyVisitStatusByMobileVisitStatus).isEqualTo(EnumPolicyVisitStatus.Completed.getCode());
-    }
-
-    @Test
-    public void testgetPolicyVisitStatusByMobileVisitStatus1(){
-        String  mobileVisitStatus = &quot;02&quot;;
-        String policyVisitStatusByMobileVisitStatus = PolicyVisitUtil.getPolicyVisitStatusByMobileVisitStatus(mobileVisitStatus);
-        assertThat(policyVisitStatusByMobileVisitStatus).isEqualTo(EnumPolicyVisitStatus.Awaiting.getCode());
-    }
-}
-</code></pre>
-<p>当然你也可以这样  </p>
-<pre><code class="java">    @Test
-    public void testgetPolicyVisitStatusByMobileVisitStatus2(){
-        String  mobileVisitStatus = &quot;02&quot;;
-        PolicyVisitUtil.getPolicyVisitStatusByMobileVisitStatus(mobileVisitStatus);
-    }
-</code></pre>
-<p><strong>这样只是为了完成分支覆盖率，而并没有起到单测的检测代码是否有逻辑错误和是否有隐藏bug的作用。</strong><br><strong>但是一些特殊情况，例如方法的返回值是void的情况，就可以这样使用。还是那句话，不要拘泥于形式。</strong>    </p>
-<p>二：在其他类中调用这个工具类的static方法，需要进行模拟。<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320204340.png" alt=""><br>测试类如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320204344.png" alt=""></p>
-<h2 id="模拟持久业务层的方法"><a href="#模拟持久业务层的方法" class="headerlink" title="模拟持久业务层的方法"></a>模拟持久业务层的方法</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320205735.png" alt=""><br>测试类如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320205739.png" alt=""></p>
-<h2 id="模拟异常分支"><a href="#模拟异常分支" class="headerlink" title="模拟异常分支"></a>模拟异常分支</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320211625.png" alt=""><br>测试这么写<br>首先在类前引入如下代码：    </p>
-<pre><code class="java">@Rule
-public ExpectedException expectedEx = ExpectedException.none();
-</code></pre>
-<p>其次，在会发生异常方法被调用前添加如下代码<br>而且期待的异常类要和实际发生的异常相同    </p>
-<pre><code class="java">expectedEx.expect(BizException.class);
-</code></pre>
-<p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320212707.png" alt=""></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>如果这个需要测试的方法中调用了其他方法，而被调用的方法又调用了其他诸如工具类方法或者必须需要模拟的方法。<br>我们就需要持续进行模拟，直至测试方法的测试通路上没有任何需要模拟的方法。<br><img src="http://p4qtgamvn.bkt.clouddn.com/mock%E5%88%B0%E5%BA%95.png" alt=""></p>
-<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>一：<strong>Caused by: Missing invocations</strong><br>原因：<br>这个模拟没有被调用。<br>测试方法逻辑设计不合理，在这个模拟之前方法提前结束。<br>解决方法：<br>1.重新设计测试方法逻辑。<br>2.删掉这个没有用到的模拟。<br>二：<strong>java.lang.IllegalArgumentException</strong><br>原因：<br>向方法传递了一个不合法或不正确的参数。<br>解决方法：<br>重新设计参数。    </p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><pre><code class="java">//导入的相关测试类
-import org.junit.Test;
-
-import mockit.Expectations;
-import mockit.Injectable;
-import mockit.MockUp;
-import mockit.Mock;
-import mockit.Tested;
-
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
-
-import static org.assertj.core.api.Assertions.assertThat;
-</code></pre>
-<h2 id="界面查看"><a href="#界面查看" class="headerlink" title="界面查看"></a>界面查看</h2><p>查看单测集成系统数据，阿里云的云效平台很好用<br>界面如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320214221.png" alt=""></p>
-<p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320214226.png" alt=""></p>
-
+        
       
        
     </div>
