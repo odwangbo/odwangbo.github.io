@@ -81,13 +81,13 @@
     
     <li data-rel="服务器"> 服务器 </li>
     
-    <li data-rel="GIT"> GIT </li>
-    
     <li data-rel="开发"> 开发 </li>
     
-    <li data-rel="Python开发"> Python开发 </li>
+    <li data-rel="GIT"> GIT </li>
     
     <li data-rel="生活"> 生活 </li>
+    
+    <li data-rel="Python开发"> Python开发 </li>
     
     <li data-rel="数据库"> 数据库 </li>
     
@@ -104,7 +104,7 @@
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="27">
-<input type="hidden" id="yelog_site_word_count" value="15.7k">
+<input type="hidden" id="yelog_site_word_count" value="17.0k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -142,6 +142,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">GIT</a>
     </li>
     
@@ -154,11 +158,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Python</a>
+        <a href="javascript:" class="color4">数据库</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">爬虫</a>
+        <a href="javascript:" class="color1">Excel</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">工具类</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">事务</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -166,7 +178,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Mybatis</a>
+        <a href="javascript:" class="color2">Python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">爬虫</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -178,15 +194,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">文件</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">事务</a>
+        <a href="javascript:" class="color3">公司</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -194,7 +202,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">公司</a>
+        <a href="javascript:" class="color3">索引</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">报文</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -210,19 +226,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">报文</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">索引</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">IO</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <div class="clearfix"></div>
@@ -233,9 +237,9 @@
         
         <a  class="开发 "
            href="/2018/06/11/使用java处理excel文件/"
-           data-tag="SpringBoot,文件"
+           data-tag="Excel,工具类"
            data-author="" >
-            <span class="post-title" title="使用java处理excel文件">使用java处理excel文件</span>
+            <span class="post-title" title="使用Java处理Excel文件">使用Java处理Excel文件</span>
             <span class="post-date" title="2018-06-11 10:43:45">2018/06/11</span>
         </a>
         
@@ -635,7 +639,7 @@ return JobResult.FAIL;
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#指令','#GIT','#SpringBoot','#注解','#Python','#爬虫','#语录','#Mybatis','#代码质量','#测试','#文件','#数据库','#事务','#效率','#公司','#批处理','#部署应用','#域名解析','#报文','#索引','#IO','#名词解析',],
+            'data': ['#指令','#Mybatis','#GIT','#SpringBoot','#注解','#数据库','#Excel','#工具类','#事务','#语录','#Python','#爬虫','#代码质量','#测试','#公司','#效率','#索引','#报文','#名词解析','#批处理','#部署应用','#域名解析','#IO',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
