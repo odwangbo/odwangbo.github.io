@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>GIT解决冲突 | 王博</title>
-  <meta name="keywords" content=" GIT , 指令 ">
-  <meta name="description" content="GIT解决冲突 | 王博">
+  <title>MyBatis的sql返回类型为List | 王博</title>
+  <meta name="keywords" content=" Mybatis ">
+  <meta name="description" content="MyBatis的sql返回类型为List | 王博">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介王博，毕业于聊城大学，目前从事Java及相关工作。喜欢研究新型技术和未来发展方向。   最近在北京一家公司开发商业软件，在研习阅读方法，知识管理，时间管理等方法，在坚持健身，坚持读国外名著。   联系 手机 : 17862515760   QQ : 2993829505   微信 : 17862515760   邮箱 : 17862515760@163.com">
 <meta property="og:type" content="website">
@@ -479,9 +479,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-GIT解决冲突" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-MyBatis的sql返回类型为List" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">GIT解决冲突</h1>
+        <h1 class="article-title">MyBatis的sql返回类型为List</h1>
     
     <div class="article-meta">
         
@@ -489,28 +489,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="GIT">GIT</a>
+            <a href="javascript:" data-rel="开发">开发</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">GIT</a>
-            
-            <a href="javascript:" class="color3">指令</a>
+            <a href="javascript:" class="color3">Mybatis</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-03-13 14:19:39'>2018-03-12 17:45</time>
+        创建时间:<time class="date" title='更新时间: 2018-06-14 16:57:16'>2018-06-13 20:43</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:69</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -544,7 +542,18 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>如果DAO层的类方法的返回值为List<string>,则Mybatis的xml文件中resultType=”java.lang.String”<br>不能使用resultMap，也不能resultType==”java.util.List”。</string></p>
+<p>DAO层代码如下：    </p>
+<pre><code class="java">List&lt;String&gt; selectEcifIdByModifiedTime();
+</code></pre>
+<p>MyBatis文件中mapper文件写法如下：  </p>
+<pre><code class="xml">&lt;select id=&quot;selectEcifIdByModifiedTime&quot; resultType=&quot;java.lang.String&quot;&gt;
+    select ECIF_ID from
+    t_policy_surplus_contribution
+    where MODIFIED_TIME IS null
+&lt;/select&gt;
+</code></pre>
+
       
        
     </div>
