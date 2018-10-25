@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>Maven常用命令</title>
+      <link href="/2018/07/12/Maven%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>/2018/07/12/Maven%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>可以使用cmd操作maven，也可以使用IDE集成使用。后者更方便，看输出日志也更合适。<br><img src="http://p4qtgamvn.bkt.clouddn.com/maven%E5%91%BD%E4%BB%A4%E7%BB%88%E7%AB%AF%E5%92%8Cide%E5%B7%A5%E5%85%B7.png" alt="Maven命令终端和IDE工具"><br><img src="http://p4qtgamvn.bkt.clouddn.com/cmd%E4%BD%BF%E7%94%A8maven%E5%91%BD%E4%BB%A4.png" alt="cmd使用Maven命令"></p><h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><p>这是一篇讲述<a href="https://www.cnblogs.com/wkrbky/p/6352188.html" target="_blank" rel="noopener">Maven命令的博文</a><br>这是一篇讲述<a href="https://blog.csdn.net/rosekin/article/details/46474911" target="_blank" rel="noopener">Maven编译的博文</a></p><h3 id="mvn-clean"><a href="#mvn-clean" class="headerlink" title="mvn clean"></a>mvn clean</h3><p>清除产生的项目。</p><h3 id="mvn-package"><a href="#mvn-package" class="headerlink" title="mvn package"></a>mvn package</h3><p>打包到本项目，一般是在项目target目录下。如果a项目依赖于b项目，打包b项目时，只会打包到b项目下target下，编译a项目时就会报错。  </p><h3 id="mvn-install"><a href="#mvn-install" class="headerlink" title="mvn install"></a>mvn install</h3><p>打包到本地仓库，如果没有设置过maven本地仓库，一般在用户/.m2目录下。如果a项目依赖于b项目，那么install b时，会在本地仓库同时生成pom文件和jar文件。</p><h3 id="mvn-deploy"><a href="#mvn-deploy" class="headerlink" title="mvn deploy"></a>mvn deploy</h3><p>打包上传到远程仓库，如：私服nexus等，需要配置pom文件。<br>（如果私服里有该项目，相当于更新项目）</p><h3 id="mvn-eclipse-eclipse"><a href="#mvn-eclipse-eclipse" class="headerlink" title="mvn eclipse:eclipse"></a>mvn eclipse:eclipse</h3><p>生成eclipse项目。</p><h3 id="mvn-idea-idea"><a href="#mvn-idea-idea" class="headerlink" title="mvn idea:idea"></a>mvn idea:idea</h3><p>生成idea项目。</p><h3 id="mvn-dependency-tree"><a href="#mvn-dependency-tree" class="headerlink" title="mvn dependency:tree"></a>mvn dependency:tree</h3><p>打印整个依赖树。</p><h3 id="复合命令"><a href="#复合命令" class="headerlink" title="复合命令"></a>复合命令</h3><ol><li>mvn clean compile</li><li>mvn clean test</li><li>mvn clean package</li><li>mvn clean install</li><li>等等<br>顺序：行test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。</li></ol><h2 id="Maven相关官方网址"><a href="#Maven相关官方网址" class="headerlink" title="Maven相关官方网址"></a>Maven相关官方网址</h2><p><a href="http://repo2.maven.org/maven2/" target="_blank" rel="noopener">Maven库</a><br><a href="http://mvnrepository.com/" target="_blank" rel="noopener">Maven依赖查询</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Maven </tag>
+            
+            <tag> 工程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>创建工程</title>
+      <link href="/2018/07/12/%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B/"/>
+      <url>/2018/07/12/%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="groupId和artifactId"><a href="#groupId和artifactId" class="headerlink" title="groupId和artifactId"></a>groupId和artifactId</h2><p>在创建工程（spring工程，maveng工程或其他java工程）的时候，会经常需要我们填写<strong>groupId</strong>和<strong>artifactId</strong>这两个字段。如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/groupId%E5%92%8CartifactId.png" alt=""><br>groupid和artifactId被统称为“坐标”是为了保证项目唯一性而提出的，如果你要把你项目弄到maven本地仓库去，你想要找到你的项目就必须根据这两个id去查找。   </p><p><strong>groupId一般分为多个段，这里我只说两段，第一段为域，第二段为公司名称。</strong><br>(域又分为org、com、cn等等许多，其中org为非营利组织，com为商业组织。)<br><strong>artigactId实际对应项目的名称，就是项目根目录的名称。</strong></p><p>举个apache公司的tomcat项目例子：这个项目的groupId是org.apache，它的域是org（因为tomcat是非营利项目），公司名称是apache，artigactId是tomcat。<br>再举一个实际项目示例：<br><img src="http://p4qtgamvn.bkt.clouddn.com/artifactId.png" alt=""></p><p>还有一种说法是：</p><ol><li>GroupID是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构。  </li><li>ArtifactID就是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。<br>但是这种说法的问题在于第一个GroupID在实际中并不会对应JAVA的包的结构。所以并不正确。  </li></ol><p>##</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Maven </tag>
+            
+            <tag> 工程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>用户登录</title>
+      <link href="/2018/07/09/%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/"/>
+      <url>/2018/07/09/%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一：业务结合代码说明"><a href="#一：业务结合代码说明" class="headerlink" title="一：业务结合代码说明"></a>一：业务结合代码说明</h2><ol><li><p>先判断前端所传模型是否有空数据</p><pre><code class="java">if (null != loginUserDO &amp;&amp; null != loginUserDO.getLoginName() &amp;&amp; !&quot;&quot;.equals(loginUserDO.getLoginName().trim())             &amp;&amp; null != loginUserDO.getLoginPassword() &amp;&amp; !&quot;&quot;.equals(loginUserDO.getLoginPassword().trim())) {/*do something*/}return getResult(null, &quot;登录信息不能为空&quot;);</code></pre></li><li><p>去数据库中找到应用户名的数据</p><pre><code class="java">try { user = ibsUserDAO.getUserInfoByLoginUserNO(loginUserDO.getLoginName()); logger.info(&quot;登录返回的实体&quot; + JSON.toJSONString(user));} catch (Exception e) { logger.info(&quot;没有此用户&quot;); return getResult(null, &quot;登录信息错误&quot;);}if (user == null) { logger.info(&quot;没有此用户&quot;); return getResult(null, &quot;登录信息错误&quot;);} else {/*do something*/}</code></pre></li><li><p>判断用户是否被锁定过<br>（数据库登录日志表里一个字段记录被锁定时刻的时间）</p><pre><code class="java">loginLogDO = loginLogDAO.selectByUserId(user.getId());        if (null != loginLogDO &amp;&amp; null != loginLogDO.getLockTime()) { logger.info(&quot;锁定信息为【&quot;+JSON.toJSONString(loginLogDO)+&quot;】&quot;); // 判断用户是否被锁定过,通过锁定时间是否为null确定是否被锁定过 // 被锁定过用户 logger.info(&quot;被锁定过&quot;); logger.info(&quot;锁定时间【&quot; + loginLogDO.getLockTime() + &quot;】&quot;); if (loginLogDO.getLockTime().after(new Date())) {     logger.info(&quot;还在锁定范围内&quot;);     int hour =    DateUtils.getHour(loginLogDO.getLockTime());     int minute =DateUtils.getMinute(loginLogDO.getLockTime());     return getResult(null, &quot;您的账号因输错密码被锁定10分钟，&quot;+hour+&quot;:&quot;+minute+&quot;后自动解锁，请稍后再试&quot;); } else {     logger.info(&quot;锁定时间已过，清除锁定时间和密码错误次数&quot;);     loginLogDO.setLockCount(0);     loginLogDO.setLockTime(null);     loginLogDAO.updateByUserId(loginLogDO); }}</code></pre><p>登录日志表：（注意：有一个锁定记录LOCK_TIME和一个锁定次数LOCK_COUNT字段）</p><pre><code class="sql">CREATE TABLE `t_login_log` (`ID` int(11) NOT NULL AUTO_INCREMENT COMMENT &#39;登录记录ID&#39;,`USER_ID` int(11) NOT NULL COMMENT &#39;用户ID&#39;,`USER_NAME` varchar(20) NOT NULL COMMENT &#39;用户号&#39;,`LOCK_TIME` datetime DEFAULT NULL COMMENT &#39;锁定时间&#39;,`LOCK_COUNT` int(11) DEFAULT NULL COMMENT &#39;密码错误次数&#39;,`CREATED_TIME` datetime DEFAULT NULL COMMENT &#39;创建时间&#39;,`MODIFIED_TIME` datetime DEFAULT NULL COMMENT &#39;修改时间&#39;,`CREATED_USER` varchar(20) DEFAULT NULL COMMENT &#39;创建者&#39;,`MODIFIED_USER` varchar(20) DEFAULT NULL COMMENT &#39;修改者&#39;,`UN_ENV_CODE` varchar(20) DEFAULT NULL COMMENT &#39;环境编码&#39;,`UN_BIZ_DATA_TYPE` varchar(20) DEFAULT NULL COMMENT &#39;业务数据类型&#39;,PRIMARY KEY (`ID`),KEY `fk_T_LOGIN_LOG_T_IBS_USER1_idx` (`USER_ID`),CONSTRAINT `fk_T_LOGIN_LOG_T_IBS_USER1` FOREIGN KEY (`USER_ID`) REFERENCES `t_ibs_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8mb4 COMMENT=&#39;登录记录表&#39;;</code></pre></li><li><p>校验密码是否为空<br>（校验数据库取出来的字段，防止后面的代码空指针）</p><pre><code class="java">// 没被锁定的if (null != user.getPassword() &amp;&amp; !&quot;&quot;.equals(user.getPassword())     &amp;&amp; null != loginUserDO.getLoginPassword()) {/*do something*/} else { // 密码为空 return getResult(null, &quot;密码不能为空&quot;);}</code></pre></li><li><p>校验密码是否正确<br>（密码正确直接登录，封装信息给前端）<br>（密码错误进行锁定，封装信息给前端）</p><pre><code class="java">if (!user.getPassword().equals(loginUserDO.getLoginPassword())) { //密码不正确 /*do something*/}  else { // 密码正确 logger.info(&quot;登录信息输入正确，清除锁定记录&quot;); loginLogDO.setLockCount(0); loginLogDO.setLockTime(null); loginLogDO.setModifiedTime(new Date()); loginLogDAO.updateByUserId(loginLogDO); // 使用Token工具类得到token，生成的策略是利用用户的姓名，到期时间，和私钥 // 我这里使用的时Key key // =MacProvider.generateKey(SignatureAlgorithm.HS512); // HS512签名算法，必须保存生成的这个key到硬盘上，不然下次会出错,因为是hash算法，所以会变 // 这个私钥可以理解为一把锁孔，可以依据这个锁孔来生成钥匙也就是token，但要进入这个门必须要匹配这个锁孔 // logger.info(&quot;获取到的key值是【&quot; + JSON.toJSONString(LoginConstant.key) + &quot;】&quot;); String jwtString = TokenUtil.getJWTString(user.getLoginUserNo(), expiry, LoginConstant.key); token.setAuthToken(jwtString); IbsUserVO ibsUserVO = getUserInfoWithOtherById(user.getId(),from); logger.info(&quot;登录获取的用户信息【&quot; + JSON.toJSONString(ibsUserVO) + &quot;】&quot;); token.setIbsUserVO(ibsUserVO); //异步记录登录信息 String ip=AppContext.getRestIP(); logger.info(&quot;登录用户的ip是【&quot;+ip+&quot;】&quot;); ThreadPoolUtils.execute(new AddLoginInfo(from, loginUserDO.getLoginInfoDO(), user.getId(), loginInfoDAO, ip)); return getResult(token, &quot;登录成功&quot;);}</code></pre></li><li><p>密码不正确，进行锁定操作<br><code>`</code>java<br>// 密码错误<br>logger.info(“密码错误”);<br>// 密码错误次数入库，当密码次数达到三次则锁定十分钟<br>// 锁定次数<br>int lockCount = 1;<br>if (null != loginLogDO.getLockCount()) {<br> lockCount = loginLogDO.getLockCount() + 1;<br>}</p></li></ol><p>if (lockCount &gt;= 3) {<br>    logger.info(“密码错误次数大于3，锁定十分钟”);<br>    loginLogDO.setLockCount(lockCount);<br>    logger.info(“锁定十分钟，到期时间为：【” + DateUtils.addMinute(new Date(), 10) + “】”);<br>    loginLogDO.setLockTime(DateUtils.addMinute(new Date(), 10));<br>    loginLogDO.setModifiedTime(new Date());</p><pre><code>loginLogDAO.updateByUserId(loginLogDO);return getResult(null, &quot;登录信息错误,账号已被锁定,请十分钟后再试&quot;);</code></pre><p>} else {<br>    int otherCount = 3 - lockCount;<br>    loginLogDO.setLockCount(lockCount);</p><pre><code>if (null == loginLogDO.getUserId()) {    loginLogDO.setUserName(user.getLoginUserNo());    loginLogDO.setUserId(user.getId());    loginLogDO.setModifiedTime(new Date());    // 用户id为空证明用户没有登陆过、需要插入新信息    loginLogDAO.insert(loginLogDO);} else {    loginLogDO.setModifiedTime(new Date());    // 用户登录过，没有被锁定，只是修改登录错误次数就好    loginLogDAO.updateByUserId(loginLogDO);}logger.info(&quot;密码错误，剩余次数为【&quot; + otherCount + &quot;】次&quot;);return getResult(null, &quot;登录信息错误，还有&quot; + otherCount + &quot;次机会&quot;);</code></pre><p>}<br><code>`</code></p><h2 id="二：拓展"><a href="#二：拓展" class="headerlink" title="二：拓展"></a>二：拓展</h2><h3 id="手机号身份证号加密"><a href="#手机号身份证号加密" class="headerlink" title="手机号身份证号加密"></a>手机号身份证号加密</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 业务 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 公司 </tag>
+            
+            <tag> 业务流程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Python常用包安装指令及说明</title>
+      <link href="/2018/07/02/Python%E5%B8%B8%E7%94%A8%E5%8C%85%E5%AE%89%E8%A3%85%E6%8C%87%E4%BB%A4%E5%8F%8A%E8%AF%B4%E6%98%8E/"/>
+      <url>/2018/07/02/Python%E5%B8%B8%E7%94%A8%E5%8C%85%E5%AE%89%E8%A3%85%E6%8C%87%E4%BB%A4%E5%8F%8A%E8%AF%B4%E6%98%8E/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Python开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 指令 </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>数据脱敏</title>
+      <link href="/2018/06/28/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F/"/>
+      <url>/2018/06/28/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F/</url>
+      
+        <content type="html"><![CDATA[<h2 id="数据脱敏的意义"><a href="#数据脱敏的意义" class="headerlink" title="数据脱敏的意义"></a>数据脱敏的意义</h2><p>数据脱敏是指对某些敏感信息通过脱敏规则进行数据的变形，实现敏感隐私数据的可靠保护。<br>在涉及客户安全数据或者一些商业性敏感数据的情况下，在不违反系统规则条件下，<br>对真实数据进行改造并提供测试使用，如身份证号、手机号、卡号、客户号等个人信息都需要进行数据脱敏,数据库安全技术之一。  </p><p>一般企业中会存在ecif（客户信息管理系统），而数据脱敏是ecif必须要使用的技术。  </p><h2 id="在程序层脱敏"><a href="#在程序层脱敏" class="headerlink" title="在程序层脱敏"></a>在程序层脱敏</h2><pre><code class="java">//需要脱敏的字符位数private static final int SIZE = 6;//脱敏后被代替的字符展示private static final String SYMBOL = &quot;*&quot;;public static void main(String[] args) {    String dataBefor = &quot;wangbozhenhaoa&quot;;    System.out.println(&quot;数据脱敏前：&quot; + dataBefor);    String dataAfter = toConceal(dataBefor);    System.out.println(&quot;数据脱敏后：&quot; + dataAfter);}public static String toConceal(String value) {    if (null == value || &quot;&quot;.equals(value)) {        return value;    }    int len = value.length();    int pamaone = len / 2;    int pamatwo = pamaone - 1;    int pamathree = len % 2;    StringBuilder stringBuilder = new StringBuilder();    //根据字符长度对应的脱敏规则    if (len &lt;= 2) {        if (pamathree == 1) {            return SYMBOL;        }        stringBuilder.append(SYMBOL);        stringBuilder.append(value.charAt(len - 1));    } else {        if (pamatwo &lt;= 0) {            stringBuilder.append(value.substring(0, 1));            stringBuilder.append(SYMBOL);            stringBuilder.append(value.substring(len - 1, len));        } else if (pamatwo &gt;= SIZE / 2 &amp;&amp; SIZE + 1 != len) {            int pamafive = (len - SIZE) / 2;            stringBuilder.append(value.substring(0, pamafive));            for (int i = 0; i &lt; SIZE; i++) {                stringBuilder.append(SYMBOL);            }            if ((pamathree == 0 &amp;&amp; SIZE / 2 == 0) || (pamathree != 0 &amp;&amp; SIZE % 2 != 0)) {                stringBuilder.append(value.substring(len - pamafive, len));            } else {                stringBuilder.append(value.substring(len - (pamafive + 1), len));            }        } else {            int pamafour = len - 2;            stringBuilder.append(value.substring(0, 1));            for (int i = 0; i &lt; pamafour; i++) {                stringBuilder.append(SYMBOL);            }            stringBuilder.append(value.substring(len - 1, len));        }    }    return stringBuilder.toString();}</code></pre><h2 id="在数据库层脱敏"><a href="#在数据库层脱敏" class="headerlink" title="在数据库层脱敏"></a>在数据库层脱敏</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据处理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据 </tag>
+            
+            <tag> 脱敏 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>数据库关联查询和子查询</title>
+      <link href="/2018/06/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E5%92%8C%E5%AD%90%E6%9F%A5%E8%AF%A2/"/>
+      <url>/2018/06/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E5%92%8C%E5%AD%90%E6%9F%A5%E8%AF%A2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h2><h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><h2 id="使用日期"><a href="#使用日期" class="headerlink" title="使用日期"></a>使用日期</h2><pre><code class="sql">SELECT * from t_visit_log WHERE CREATED_TIME between &#39;2018-06-24 00:00:00&#39; and &#39;2018-06-26 00:00:00&#39;;</code></pre><p>或者：</p><pre><code class="sql">SELECT * from t_visit_log WHERE CREATED_TIME &gt; &#39;2018-06-24 00:00:00&#39;;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> 查询 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Linux常用操作命令</title>
+      <link href="/2018/06/25/Linux%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/"/>
+      <url>/2018/06/25/Linux%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="查看端口进程号"><a href="#查看端口进程号" class="headerlink" title="查看端口进程号"></a>查看端口进程号</h2><pre><code class="shell">netstat -tunlp|grep 端口号</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 指令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>相关专业名词解析（二）</title>
+      <link href="/2018/06/25/%E7%9B%B8%E5%85%B3%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+      <url>/2018/06/25/%E7%9B%B8%E5%85%B3%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="rpc调用"><a href="#rpc调用" class="headerlink" title="rpc调用"></a>rpc调用</h2><h2 id="rest调用"><a href="#rest调用" class="headerlink" title="rest调用"></a>rest调用</h2><h2 id="DMS消息"><a href="#DMS消息" class="headerlink" title="DMS消息"></a>DMS消息</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 名词解析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Java工程pom文件引入jar包</title>
+      <link href="/2018/06/25/Java%E5%B7%A5%E7%A8%8Bpom%E6%96%87%E4%BB%B6%E5%BC%95%E5%85%A5jar%E5%8C%85/"/>
+      <url>/2018/06/25/Java%E5%B7%A5%E7%A8%8Bpom%E6%96%87%E4%BB%B6%E5%BC%95%E5%85%A5jar%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<p>最近在使用Maven的时候发现一个怪异的现象：<br>在项目A中使用通过rpc调用项目B中的（facade）服务时，<br>理论上需要引入项目B的facade的jar包。如下：  </p><pre><code class="java">&lt;dependency&gt;    &lt;groupId&gt;com.trust.ums&lt;/groupId&gt;    &lt;artifactId&gt;ums-facade&lt;/artifactId&gt;    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;&lt;!--$NO-MVN-MAN-VER$ --&gt;&lt;/dependency&gt;</code></pre><pre><code class="java">&lt;sofa:reference id=&quot;umsMessageManagerFacade&quot;  interface=&quot;com.trust.ums.facade.UmsMessageManagerFacade&quot; &gt;    &lt;sofa:binding.tr&gt;        &lt;sofa:global-attrs timeout=&quot;50000&quot; /&gt;    &lt;/sofa:binding.tr&gt;&lt;/sofa:reference&gt;</code></pre><p>但是奇怪的是搜遍程序内所有的所有文件也没有引入该jar包。  </p><p>答案：项目A中引入了项目B的facade的jar包，项目B中的facade层引入了项目C的jar包。  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Maven </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>http常见状态码</title>
+      <link href="/2018/06/20/http%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+      <url>/2018/06/20/http%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<p>这里只说一些自己在开发中常遇到的http通信的码值以及出现的原因。      </p><h2 id="2开头-–-请求成功"><a href="#2开头-–-请求成功" class="headerlink" title="2开头 – 请求成功"></a>2开头 – 请求成功</h2><p><font color="#0099ff"><strong>表示成功处理了请求的状态代码。</strong></font>   </p><ol><li>200 : 最希望看到的，没有问题的请求。  </li></ol><h2 id="3开头-–-请求被重定向"><a href="#3开头-–-请求被重定向" class="headerlink" title="3开头 – 请求被重定向"></a>3开头 – 请求被重定向</h2><p><font color="#0099ff"><strong>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</strong></font>  </p><ol><li>暂时没有遇到过这种情况。  </li></ol><h2 id="4开头-–-请求错误（客户端错误）"><a href="#4开头-–-请求错误（客户端错误）" class="headerlink" title="4开头 – 请求错误（客户端错误）"></a>4开头 – 请求错误（客户端错误）</h2><p><font color="#0099ff"><strong>这些状态代码表示请求可能出错，妨碍了服务器的处理。</strong></font>   </p><ol><li>401 ： 访问需要登录，一般是在postman中填写authtoken。  </li><li>403 ： 没有权限。  </li><li>404 ： 找不到该请求的处理。  </li></ol><h2 id="5开头-–-请求错误（服务端错误）"><a href="#5开头-–-请求错误（服务端错误）" class="headerlink" title="5开头 – 请求错误（服务端错误）"></a>5开头 – 请求错误（服务端错误）</h2><p><font color="#0099ff"><strong>这些状态代码表示服务器在尝试处理请求时发生内部错误。</strong></font>     </p><p><font color="#0099ff"><strong>这些错误可能是服务器本身的错误，而不是请求出错。</strong></font>   </p><ol><li>500 ： 服务器内部错误。（程序内部写的有bug）    </li><li>504 ： 网关超时。（接口中处理的数据量太大，在限定时间内无法及时返回结果）  </li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> http </tag>
+            
+            <tag> 码值 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>switch的小误区</title>
+      <link href="/2018/06/19/switch%E7%9A%84%E5%B0%8F%E8%AF%AF%E5%8C%BA/"/>
+      <url>/2018/06/19/switch%E7%9A%84%E5%B0%8F%E8%AF%AF%E5%8C%BA/</url>
+      
+        <content type="html"><![CDATA[<p>最近使用switch的时候因为粗心产生了一个小bug，<br>发现了之前没有注意到的一个知识点吧。  </p><p><strong>switch分支不写break</strong><br>可以不有，那有几个case就会执行几个。<br>举个例子：switch(k),case1:case2:case3假如有这3个case，<br>如果没有break，当k=1时，这三个都会执行，<br>当每个都有break时，k=1时，case2, case3就不会执行。  </p><p><strong>关于switch中if中break的位置</strong><br><strong>如果是case 2这种情况，条件判断会走case3 的if</strong>  </p><pre><code class="java">int num = 2;String value = &quot;&quot;;switch(num){    case 1:        value = &quot;aaaa&quot;;        break;    case 2:        if (10 &gt; 9) {            value = &quot;bbbb&quot;;        } else {            value = &quot;cccc&quot;;            break;        }    case 3:        if (8 &gt; 7) {            value = &quot;dddd&quot;;        } else {            value = &quot;eeee&quot;;        }        break;    default:        value = &quot;ffff&quot;;        break;}</code></pre><p><strong>结果：value = “dddd”</strong>  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>初步接触电商支付模板-支付宝</title>
+      <link href="/2018/06/19/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6%E6%94%AF%E4%BB%98%E6%A8%A1%E5%9D%97/"/>
+      <url>/2018/06/19/%E5%88%9D%E6%AD%A5%E6%8E%A5%E8%A7%A6%E6%94%AF%E4%BB%98%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="支付宝支付网关支付接口服务"><a href="#支付宝支付网关支付接口服务" class="headerlink" title="支付宝支付网关支付接口服务"></a>支付宝支付网关支付接口服务</h1><p>现在支付模块使用最频繁的三个方向基本上就是：支付宝，微信，银联。<br>它们各自都有自己对应的api接口文档。  </p><p>感触第一点就是报文比较严格（麻烦），<br>需要根据api接口设定严格的报文字段。  </p><h2 id="调用支付宝网关支付接口"><a href="#调用支付宝网关支付接口" class="headerlink" title="调用支付宝网关支付接口"></a>调用支付宝网关支付接口</h2><h2 id="调用支付宝网关获取支付结果接口"><a href="#调用支付宝网关获取支付结果接口" class="headerlink" title="调用支付宝网关获取支付结果接口"></a>调用支付宝网关获取支付结果接口</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 支付 </tag>
+            
+            <tag> 接口 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>写代码对比大手的感受</title>
+      <link href="/2018/06/15/%E5%86%99%E4%BB%A3%E7%A0%81%E5%AF%B9%E6%AF%94%E5%A4%A7%E6%89%8B%E7%9A%84%E6%84%9F%E5%8F%97/"/>
+      <url>/2018/06/15/%E5%86%99%E4%BB%A3%E7%A0%81%E5%AF%B9%E6%AF%94%E5%A4%A7%E6%89%8B%E7%9A%84%E6%84%9F%E5%8F%97/</url>
+      
+        <content type="html"><![CDATA[<p>对比大手，我最直观的感受就是思考太少。<br>大手不仅能从业务方面思考，也能从一个光角度小细节方面思考。  </p><hr><p>思考这里会不会出现问题，思考那里会不会出现问题。<br>可能由于某些原因，公司可能不想让你知道太多的业务流程或者你无法知道太多的业务流程，<br>这样一来，业务方面的逻辑没有考虑到也无可厚非。  </p><hr><p>但是，作为程序员，一定要尽可能的做猜想，思考各种可能的发生。</p><hr><p>写代码数量不是重要的，重要的是质量。<br>如果不注重质量，可能写的越多bug越多，公司的利益反而适得其反，个人的成长也适得其反。  </p><hr><p>写一句代码尽可能思考一切可能，<br>一开始觉得想得多心会很累，但形成习惯，也就顺其自然，轻松了。  </p><hr><p>公司另一个大佬经常对小弟说的一句话：“一定要多思考”。<br>平常写代码并没有非常复杂，但一定要细心。  </p><hr><p>比如写一个给会员发短信的简单需求：<br>你要思考分布式锁防重复点击，<br>你要思考分布式锁的时间设置问题，<br>你要思考跨系统获取用户信息的时间，延迟，<br>你要思考返回值会不会为空，拿空值去get属性的时候肯定会报错，<br>你要思考发短信会不会失败，<br>你要思考发短信失败有没有try…catch，如果没有一条短信出问题接下来的短信就发不出，  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 感受 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>MyBatis的sql返回类型为List</title>
+      <link href="/2018/06/13/MyBatis%E7%9A%84sql%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B%E4%B8%BAList/"/>
+      <url>/2018/06/13/MyBatis%E7%9A%84sql%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B%E4%B8%BAList/</url>
+      
+        <content type="html"><![CDATA[<p>如果DAO层的类方法的返回值为List<string>,则Mybatis的xml文件中resultType=”java.lang.String”<br>不能使用resultMap，也不能resultType==”java.util.List”。</string></p><p>DAO层代码如下：    </p><pre><code class="java">List&lt;String&gt; selectEcifIdByModifiedTime();</code></pre><p>MyBatis文件中mapper文件写法如下：  </p><pre><code class="xml">&lt;select id=&quot;selectEcifIdByModifiedTime&quot; resultType=&quot;java.lang.String&quot;&gt;    select ECIF_ID from    t_policy_surplus_contribution    where MODIFIED_TIME IS null&lt;/select&gt;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>SpringBoot工程启动后postman接口调不通</title>
+      <link href="/2018/06/13/SpringBoot%E5%B7%A5%E7%A8%8B%E5%90%AF%E5%8A%A8%E4%B9%8B%E5%90%8Epostman%E6%8E%A5%E5%8F%A3%E8%B0%83%E4%B8%8D%E9%80%9A/"/>
+      <url>/2018/06/13/SpringBoot%E5%B7%A5%E7%A8%8B%E5%90%AF%E5%8A%A8%E4%B9%8B%E5%90%8Epostman%E6%8E%A5%E5%8F%A3%E8%B0%83%E4%B8%8D%E9%80%9A/</url>
+      
+        <content type="html"><![CDATA[<h2 id="原因（本地工程）"><a href="#原因（本地工程）" class="headerlink" title="原因（本地工程）"></a>原因（本地工程）</h2><ol><li>本地启动了两个Spring的工程，需要被调用接口的工程所使用的端口被另一个工程所占用了。      </li><li>Rest层接口没有注册成bean,即没有使用@Service或者@Compent注解，也没有在xml文件中配置。<br>　　注意，这种没有注册成bean的错误，项目启动和运行的时候不会报错，属于隐藏较好的bug。  </li></ol><h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><ol><li>看看有没有其他工程占用了接口。    </li><li>看看工程中被调用接口的方法所在的类有没有在Spring中注册。  </li><li>看看其他接口能不能被调通。（缩小问题的范围）  </li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>使用Java处理Excel文件</title>
+      <link href="/2018/06/11/%E4%BD%BF%E7%94%A8java%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/"/>
+      <url>/2018/06/11/%E4%BD%BF%E7%94%A8java%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<p>Java中有两种处理Microsoft-Excel的API，分别是：jxl和poi。<br>jxl只能处理较低版本的Excel，如Excel2003；poi则没有版本限制，可以处理Excel2007和Excel2003。<br>Excel2003版文件后缀名为xls，Excel2007版文件后缀名为xlsx。<br>jxl相对来说比较轻量级，基本功能都相对应的方法；poi则功能全面，相对来说逻辑稍显复杂。  </p><h2 id="Maven中引入各自的jar包"><a href="#Maven中引入各自的jar包" class="headerlink" title="Maven中引入各自的jar包"></a>Maven中引入各自的jar包</h2><pre><code class="xml">&lt;dependency&gt;    &lt;groupId&gt;net.sourceforge.jexcelapi&lt;/groupId&gt;    &lt;artifactId&gt;jxl&lt;/artifactId&gt;    &lt;version&gt;2.6.10&lt;/version&gt;&lt;/dependency&gt;#1.poi提供microsoft office旧版本支持,eg .xls Excel#2.poi-ooxml提供microsoft office新版本支持,eg .xlsx Excel&lt;dependency&gt;    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;    &lt;artifactId&gt;poi&lt;/artifactId&gt;    &lt;version&gt;3.10-FINAL&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;    &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;    &lt;version&gt;3.10-FINAL&lt;/version&gt;&lt;/dependency&gt;</code></pre><h2 id="jxl处理Excel"><a href="#jxl处理Excel" class="headerlink" title="jxl处理Excel"></a>jxl处理Excel</h2><h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><p>示例代码如下：  </p><pre><code class="java">File file = new File(&quot;C:\\aa.xlskkk&quot;);//拿到文件后缀，可以通过不同的后缀选择不同的处理方式String fileName = file.getName();String suffix = fileName.substring(fileName.lastIndexOf(&quot;.&quot;) + 1);// 创建输入流，读取ExcelInputStream is = new FileInputStream(file.getAbsolutePath());// jxl提供的Workbook类Workbook wb = Workbook.getWorkbook(is);// Excel的页签数量int sheet_size = wb.getNumberOfSheets();for (int index = 0; index &lt; sheet_size; index++) {    // 每个页签创建一个Sheet对象    Sheet sheet = wb.getSheet(index);    // sheet.getRows()返回该页的总行数    for (int i = 0; i &lt; sheet.getRows(); i++) {        // sheet.getColumns()返回该页的总列数        for (int j = 0; j &lt; sheet.getColumns(); j++) {            String cellinfo = sheet.getCell(j, i).getContents();            System.out.print(cellinfo + &quot;       &quot;);        }        System.out.println();    }}</code></pre><h3 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h3><h2 id="poi处理Excel"><a href="#poi处理Excel" class="headerlink" title="poi处理Excel"></a>poi处理Excel</h2><h3 id="读取Excel2003版文件"><a href="#读取Excel2003版文件" class="headerlink" title="读取Excel2003版文件"></a>读取Excel2003版文件</h3><p>示例代码如下：  </p><pre><code class="java">InputStream is = new FileInputStream(&quot;C:\\aa.xls&quot;);org.apache.poi.ss.usermodel.Workbook wb = null;wb = WorkbookFactory.create(is);//得到第一个sheetorg.apache.poi.ss.usermodel.Sheet sheet = wb.getSheetAt(0);//得到Excel的行数int totalRows = sheet.getPhysicalNumberOfRows();//得到Excel的列数int totalCells = 0;if (totalRows &gt;= 1 &amp;&amp; sheet.getRow(0) != null) {    totalCells = sheet.getRow(0).getPhysicalNumberOfCells();}List&lt;List&lt;String&gt;&gt; dataLst = new ArrayList&lt;List&lt;String&gt;&gt;();//循环Excel的行for (int r = 0; r &lt; totalRows; r++) {    Row row = sheet.getRow(r);    if (row == null)        continue;    List&lt;String&gt; rowLst = new ArrayList&lt;String&gt;();    //循环Excel的列    for (int c = 0; c &lt; totalCells; c++) {        Cell cell = row.getCell(c);        String cellValue = &quot;&quot;;        if (null != cell) {            //下面两句代码没起作用            //HSSFDataFormatter hSSFDataFormatter = new HSSFDataFormatter();            //cellValue = hSSFDataFormatter.formatCellValue(cell);            switch (cell.getCellType()) {                case Cell.CELL_TYPE_NUMERIC: // 数字                    if (HSSFDateUtil.isCellDateFormatted(cell)){                        Date dateCellValue = cell.getDateCellValue();                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm&quot;);                        cellValue = simpleDateFormat.format(dateCellValue);                    } else {                        cellValue = cell.getNumericCellValue() + &quot;&quot;;                    }                    break;                case Cell.CELL_TYPE_STRING: // 字符串                    cellValue = cell.getStringCellValue();                    break;                case Cell.CELL_TYPE_BOOLEAN: // Boolean                    cellValue = cell.getBooleanCellValue() + &quot;&quot;;                    break;                case Cell.CELL_TYPE_FORMULA: // 公式                    cellValue = cell.getCellFormula() + &quot;&quot;;                    break;                case Cell.CELL_TYPE_BLANK: // 空值                    cellValue = &quot;&quot;;                    break;                case Cell.CELL_TYPE_ERROR: // 故障                    cellValue = &quot;非法字符&quot;;                    break;                default:                    cellValue = &quot;未知类型&quot;;                    break;            }        }        rowLst.add(cellValue);    }    /** 保存第r行的第c列 */    dataLst.add(rowLst);}for (List&lt;String&gt; strings : dataLst) {    for (String string : strings) {        System.out.print(string);    }    System.out.println(&quot;&quot;);}</code></pre><h3 id="读取Excel2007版文件"><a href="#读取Excel2007版文件" class="headerlink" title="读取Excel2007版文件"></a>读取Excel2007版文件</h3><p>示例代码如下：  </p><pre><code class="java">XSSFWorkbook workbook = new XSSFWorkbook(&quot;C:\\AD132100.xlsx&quot;);/*for (int numSheets = 0; numSheets &lt; workbook.getNumberOfSheets(); numSheets++) {    if (null != workbook.getSheetAt(numSheets)) {    }} *///这里只处理第一个sheetXSSFSheet aSheet = workbook.getSheetAt(0);// 获得一个sheetList&lt;List&lt;String&gt;&gt; dataLst = new ArrayList&lt;List&lt;String&gt;&gt;();for (int rowNumOfSheet = 0; rowNumOfSheet &lt;= aSheet.getLastRowNum(); rowNumOfSheet++) {    if (null != aSheet.getRow(rowNumOfSheet)) {        XSSFRow aRow = aSheet.getRow(rowNumOfSheet); // 获得一个行        List&lt;String&gt; rowLst = new ArrayList&lt;String&gt;();        for (short cellNumOfRow = 0; cellNumOfRow &lt;= aRow.getLastCellNum(); cellNumOfRow++) {            if (null != aRow.getCell(cellNumOfRow)) {                XSSFCell aCell = aRow.getCell(cellNumOfRow);// 获得列值                int cellType = aCell.getCellType();                String cellValue = &quot;&quot;;                switch (cellType) {                    case XSSFCell.CELL_TYPE_NUMERIC: //数字类型                        if (org.apache.poi.ss.usermodel.DateUtil.isCellDateFormatted(aCell)) {                            Date d = aCell.getDateCellValue();                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm&quot;);                            cellValue = String.valueOf(simpleDateFormat.format(d));                        } else {                            cellValue = String.valueOf((int) aCell.getNumericCellValue());                        }                        break;                    case XSSFCell.CELL_TYPE_FORMULA: //公式类型                        try {                            cellValue = aCell.getStringCellValue();                        } catch (IllegalStateException e) {                            cellValue = String.valueOf(aCell.getNumericCellValue());                        }                        break;                    case XSSFCell.CELL_TYPE_STRING: //字符串类型                        cellValue = aCell.getStringCellValue();                        break;                    case XSSFCell.CELL_TYPE_BOOLEAN: //boolean类型                        cellValue = aCell.getBooleanCellValue() + &quot;&quot;;                        break;                    case XSSFCell.CELL_TYPE_BLANK: //空值                        cellValue = &quot;&quot;;                        break;                    case XSSFCell.CELL_TYPE_ERROR: //故障                        cellValue = &quot;非法字符&quot;;                        break;                    default:                        cellValue = &quot;未知类型&quot;;                        break;                }                rowLst.add(cellValue);            }        }        dataLst.add(rowLst);    }}for (List&lt;String&gt; list : dataLst) {    for (String s : list) {        System.out.print(s + &quot;   &quot;);    }    System.out.println();}</code></pre><h3 id="写入文件-1"><a href="#写入文件-1" class="headerlink" title="写入文件"></a>写入文件</h3><h2 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h2><h3 id="poi处理含有公式的单元格的值"><a href="#poi处理含有公式的单元格的值" class="headerlink" title="poi处理含有公式的单元格的值"></a>poi处理含有公式的单元格的值</h3><p>问题：当电子表格的值是用公式计算写入的，直接读会得到一个公式。<br>解决：在程序里对单元格的值多一步判断。根据不同的类型做不同的处理。  </p><pre><code class="java">public static String getCellValue(Cell cell) {      int cellType = cell.getCellType();      String cellValue = &quot;&quot;;      switch (cellType) {      case HSSFCell.CELL_TYPE_NUMERIC:          cellValue = String.valueOf(cell.getNumericCellValue());          break;      case HSSFCell.CELL_TYPE_FORMULA:          try {              cellValue = cell.getStringCellValue();          } catch (IllegalStateException e) {              cellValue = String.valueOf(cell.getNumericCellValue());          }          break;      default:          cellValue = cell.getStringCellValue();      }      return cellValue.trim();  }  </code></pre><h3 id="poi处理Excel中的日期类型"><a href="#poi处理Excel中的日期类型" class="headerlink" title="poi处理Excel中的日期类型"></a>poi处理Excel中的日期类型</h3><p>问题：当电子表格中的数据是日期类型时，直接读会得到一个long型数。<br>解决：在程序里对单元格的值多一步判断。先判断单元格的类型是否则NUMERIC类型，<br>　　　然后再判断单元格是否为日期格式，<br>　　　如果是的话，创建一个日期格式，再将单元格的内容以这个日期格式显示出来。<br>　　　如果单元格不是日期格式，那么则直接得到NUMERIC的值就行了。  </p><pre><code class="java">if (HSSFCell.CELL_TYPE_NUMERIC == cell.getCellType()) {    if (HSSFDateUtil.isCellDateFormatted(cell)) {        Date d = cell.getDateCellValue();        DateFormat formater = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);    }}</code></pre><h2 id="其他要点"><a href="#其他要点" class="headerlink" title="其他要点"></a>其他要点</h2><p>2003版电子表格处理包HSSF有HSSFDateUtil，2007版电子表格处理包XSSF没有类似的DateUtil<br>HSSFDateUtil.isCellDateFormatted(cell) 方法可以判断单元格是否为日期格式。  </p><h2 id="高阶处理"><a href="#高阶处理" class="headerlink" title="高阶处理"></a>高阶处理</h2><p>之前是把Excel分页分行分列逐个单元格读出内容，或者立刻处理，或者存入list集合。<br><strong>现在可以把每一行的数据封装成一个Java对象，对象的属性根据电子表格第一行的列说明而定。</strong><br><strong>然后把每一行的数据映射到每一个对象，最后形成一个对象集合。</strong><br>GitHub有很多他人开源的工具类。  </p><h2 id="他人博客链接"><a href="#他人博客链接" class="headerlink" title="他人博客链接"></a>他人博客链接</h2><p>一篇关于<a href="https://blog.csdn.net/a214919447/article/details/54601237" target="_blank" rel="noopener">Java读取、写入、处理Excel文件中的数据</a>的博客。  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Excel </tag>
+            
+            <tag> 工具类 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>SpringBoot常用注解</title>
+      <link href="/2018/05/10/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
+      <url>/2018/05/10/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+            <tag> 注解 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>接入调度平台快速开始</title>
+      <link href="/2018/04/11/%E6%8E%A5%E5%85%A5%E8%B0%83%E5%BA%A6%E5%B9%B3%E5%8F%B0%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/"/>
+      <url>/2018/04/11/%E6%8E%A5%E5%85%A5%E8%B0%83%E5%BA%A6%E5%B9%B3%E5%8F%B0%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="wheeljack调度平台快速开始"><a href="#wheeljack调度平台快速开始" class="headerlink" title="wheeljack调度平台快速开始"></a>wheeljack调度平台快速开始</h1><p>注意点：<br>1.任务要实现幂等，重跑也不会有问题；<br>2.跑批表要有标识处理状态；</p><h2 id="spring-boot模式"><a href="#spring-boot模式" class="headerlink" title="spring-boot模式"></a>spring-boot模式</h2><h3 id="引入maven依赖"><a href="#引入maven依赖" class="headerlink" title="引入maven依赖"></a>引入maven依赖</h3><pre><code class="xml">&lt;dependency&gt;&lt;groupId&gt;com.xinmei.wheeljack&lt;/groupId&gt;&lt;artifactId&gt;wheeljack-client&lt;/artifactId&gt;&lt;version&gt;2.1.4-SNAPSHOT&lt;/version&gt;&lt;/dependency&gt;</code></pre><h3 id="application-properties添加配置"><a href="#application-properties添加配置" class="headerlink" title="application.properties添加配置"></a>application.properties添加配置</h3><pre><code class="java">#调度平台配置wheeljack.app-name=myapp //应用名wheeljack.app-secret=12345 //应用密码wheeljack.zk-namespace=wlj //zookeeper namespace wheeljack.zk-servers=10.253.101.154:2181 //prd zookeeper 地址wheeljack.zk-servers=10.139.34.193:2181 //pre zookeeper 地址wheeljack.zk-servers=10.139.49.205:2181 //cloud1 zookeeper 地址wheeljack.zk-servers=10.253.119.47:2181 //cloud2 zookeeper 地址</code></pre><h3 id="控制台地址"><a href="#控制台地址" class="headerlink" title="控制台地址"></a>控制台地址</h3><pre><code class="xml">http://10.253.161.145:8080 prd admin/123456  http://10.253.124.32:8080 pre admin/123456  http://10.253.119.32:8080 cloud1 admin/123456  http://10.253.118.173:8080 cloud2 admin/123456  </code></pre><h3 id="流程引擎地址"><a href="#流程引擎地址" class="headerlink" title="流程引擎地址"></a>流程引擎地址</h3><pre><code class="xml">http://10.253.161.134:8080/activiti-explorer/ prd kermit/kermit  http://10.253.161.72:8080/activiti-explorer/ pre kermit/kermit  http://10.253.161.35:8080/activiti-explorer/ cloud1 kermit/kermit  http://10.253.117.36:8080/activiti-explorer/ cloud2 kermit/kermit  </code></pre><h3 id="调度类改造"><a href="#调度类改造" class="headerlink" title="调度类改造"></a>调度类改造</h3><pre><code class="java">@Componentpublic class WheeljackTest implements DefaultJob {@Overridepublic JobResult execute(JobContext context) {//注意try-catch 异常 try {//do somethingSystem.err.println(&quot;总分片数：&quot;+context.getTotalShardCount()+&quot;分片项&quot; + context.getShardItem() + &quot;分片参数&quot; + context.getShardParam() + &quot;数据日期&quot; + context.getDataEndTime());return JobResult.SUCCESS;} catch (Exception e) {return JobResult.FAIL;}}}</code></pre><h2 id="spring模式"><a href="#spring模式" class="headerlink" title="spring模式"></a>spring模式</h2><h3 id="引入maven依赖-1"><a href="#引入maven依赖-1" class="headerlink" title="引入maven依赖"></a>引入maven依赖</h3><pre><code class="xml">&lt;dependency&gt;&lt;groupId&gt;com.xinmei.wheeljack&lt;/groupId&gt;&lt;artifactId&gt;wheeljack-client-spring&lt;/artifactId&gt;&lt;version&gt;2.1.4-SNAPSHOT&lt;/version&gt;&lt;/dependency&gt;</code></pre><h3 id="在Spring上下文配置SpringAntaresClient"><a href="#在Spring上下文配置SpringAntaresClient" class="headerlink" title="在Spring上下文配置SpringAntaresClient"></a>在Spring上下文配置SpringAntaresClient</h3><pre><code class="xml">&lt;bean class=&quot;com.xinmei.wheeljack.client.core.SpringAntaresClient&quot;&gt;&lt;constructor-arg index=&quot;0&quot; value=&quot;test_app&quot; /&gt;//应用名&lt;constructor-arg index=&quot;1&quot; value=&quot;123456&quot; /&gt;//密码&lt;constructor-arg index=&quot;2&quot; value=&quot;localhost:2181&quot; /&gt;//zookeeper 地址&lt;/bean&gt;&lt;!-- The jobs --&gt;&lt;bean class=&quot;com.xinmei.businessCheck.common.impl.WheeljackTest&quot; /&gt;</code></pre><h3 id="调度类改造-1"><a href="#调度类改造-1" class="headerlink" title="调度类改造"></a>调度类改造</h3><pre><code class="java">public class WheeljackTest implements DefaultJob {    @Override    public JobResult execute(JobContext context) {        //注意try-catch 异常         try {            //do something            System.err.println(&quot;总分片数：&quot;+context.getTotalShardCount()+&quot;分片项&quot; + context.getShardItem() + &quot;分片参数&quot; + context.getShardParam() + &quot;数据日期&quot; + context.getDataEndTime());            return JobResult.SUCCESS;        } catch (Exception e) {            return JobResult.FAIL;        }    }}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 公司 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Python爬虫初体验（二）</title>
+      <link href="/2018/04/04/Python%E7%88%AC%E8%99%AB%E5%88%9D%E4%BD%93%E9%AA%8C%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+      <url>/2018/04/04/Python%E7%88%AC%E8%99%AB%E5%88%9D%E4%BD%93%E9%AA%8C%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一：扒取百度高清图片"><a href="#一：扒取百度高清图片" class="headerlink" title="一：扒取百度高清图片"></a>一：扒取百度高清图片</h2><p>这是<a href="https://blog.csdn.net/MirrorMan0/article/details/78500572" target="_blank" rel="noopener">原作者的博客地址</a>  </p><pre><code class="python"># coding=utf-8&quot;&quot;&quot;爬取百度图片的高清原图Author          : MirrorManCreated         : 2017-11-10&quot;&quot;&quot;import reimport sysimport urllibimport osimport requestsdef get_onepage_urls(onepageurl):    if not onepageurl:        print(&#39;执行结束&#39;)        return [], &#39;&#39;    try:        html = requests.get(onepageurl).text    except Exception as e:        print(e)        pic_urls = []        fanye_url = &#39;&#39;        return pic_urls, fanye_url    pic_urls = re.findall(&#39;&quot;objURL&quot;:&quot;(.*?)&quot;,&#39;, html, re.S)    fanye_urls = re.findall(re.compile(r&#39;&lt;a href=&quot;(.*)&quot; class=&quot;n&quot;&gt;下一页&lt;/a&gt;&#39;), html, flags=0)    fanye_url = &#39;http://image.baidu.com&#39; + fanye_urls[0] if fanye_urls else &#39;&#39;    return pic_urls, fanye_urldef down_pic(pic_urls, localPath):    if not os.path.exists(localPath):  # 新建文件夹        os.mkdir(localPath)    &quot;&quot;&quot;给出图片链接列表, 下载图片&quot;&quot;&quot;    for i, pic_url in enumerate(pic_urls):        try:            pic = requests.get(pic_url, timeout=15)            string = str(i + 1) + &#39;.jpg&#39;            with open(localPath + &#39;%d.jpg&#39; % i, &#39;wb&#39;)as f:                f.write(pic.content)                #  with open(string, &#39;wb&#39;) as f:                #      f.write(pic.content)                print(&#39;成功下载第%s张图片: %s&#39; % (str(i + 1), str(pic_url)))        except Exception as e:            print(&#39;下载第%s张图片时失败: %s&#39; % (str(i + 1), str(pic_url)))            print(e)            continueif __name__ == &#39;__main__&#39;:    keyword = &#39;新垣结衣1920*1080&#39;  # 关键词, 改为你想输入的词即可泰勒斯威夫特    url_init_first = r&#39;http://image.baidu.com/search/flip?tn=baiduimage&amp;ipn=r&amp;ct=201326592&amp;cl=2&amp;lm=-1&amp;st=-1&amp;fm=result&amp;fr=&amp;sf=1&amp;fmq=1497491098685_R&amp;pv=&amp;ic=0&amp;nc=1&amp;z=&amp;se=1&amp;showtab=0&amp;fb=0&amp;width=&amp;height=&amp;face=0&amp;istype=2&amp;ie=utf-8&amp;ctd=1497491098685%5E00_1519X735&amp;word=&#39;    url_init = url_init_first + urllib.parse.quote(keyword, safe=&#39;/&#39;)    all_pic_urls = []    onepage_urls, fanye_url = get_onepage_urls(url_init)    all_pic_urls.extend(onepage_urls)    fanye_count = 1  # 图片所在页数，下载完后调整这里就行    while 1:        onepage_urls, fanye_url = get_onepage_urls(fanye_url)        fanye_count += 1        print(&#39;第%s页&#39; % fanye_count)        if fanye_url == &#39;&#39; and onepage_urls == []:            break        all_pic_urls.extend(onepage_urls)    down_pic(list(set(all_pic_urls)), &#39;d:/download/haha%s/&#39; % fanye_count)  # 保存位置也可以修改</code></pre><p>运行效果图：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180404115619.png" alt="">  </p><h2 id="二：扒取必应高清图片"><a href="#二：扒取必应高清图片" class="headerlink" title="二：扒取必应高清图片"></a>二：扒取必应高清图片</h2><p>这是<a href="https://blog.csdn.net/csnd_ayo/article/details/73691549" target="_blank" rel="noopener">原作者的博客地址</a>  </p><pre><code class="python"># -*- coding:utf-8 -*-import urllib.requestimport datetime# @brief  打开网页# url : 网页地址# @return 返回网页数据def open_url(url):    # 根据当前URL创建请求包    req = urllib.request.Request(url)    # 添加头信息，伪装成浏览器访问    req.add_header(&#39;User-Agent&#39;,                   &#39;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36&#39;)    # 发起请求    response = urllib.request.urlopen(req)    # 返回请求到的HTML信息    return response.read()# 找图片def find_picture_url(http_response):    # 查找当前页面所有图片的URL    http_response = http_response.decode(&#39;utf-8&#39;)    img_addrs = []    # 找图片    a = http_response.find(&#39;&lt;url&gt;&#39;)    # 不带停，如果没找到则退出循环    while a != -1:        # 以a的位置为起点，找以jpg结尾的图片        b = http_response.find(&#39;&lt;/url&gt;&#39;, a, a + 255)        # 如果找到就添加到图片列表中        if b != -1:            img_addrs.append(http_response[a + 5:b])        # 否则偏移下标        else:            b = a + 5        # 继续找        a = http_response.find(&#39;&lt;url&gt;&#39;, b)    return img_addrs# url 拼接def url_joint(picture_url):    return &quot;http://cn.bing.com/&quot; + picture_url# @brief 保存图片# url : 图片url# addr  : 保存的地址def save_picture(url, addr):    with open(&#39;d:/download/bing/&#39; + addr, &#39;wb&#39;) as f:        img = open_url(url_joint(url))        if img:            f.write(img)    print(&quot;图片已保存&quot;)    returni = 0while i &lt; 5:    i += 1    # [1] 打开网页    temp_str = &quot;http://cn.bing.com/HPImageArchive.aspx?format=xml&amp;idx=%d&amp;n=100&quot; % (i)    response = open_url(temp_str)    # [2] 找到图片    list_picture = find_picture_url(response)    local_time = datetime.datetime.now().microsecond    j = 0    # [3] 保存图片    for picture_url in list_picture:        j += 1        local_time_file_name = str(local_time) + str(j) + &quot;.jpg&quot;        print(local_time_file_name)        save_picture(picture_url, local_time_file_name)</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Python爬虫初体验（一）</title>
+      <link href="/2018/04/04/Python%E7%88%AC%E8%99%AB%E5%88%9D%E4%BD%93%E9%AA%8C%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>/2018/04/04/Python%E7%88%AC%E8%99%AB%E5%88%9D%E4%BD%93%E9%AA%8C%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<p><strong>先从体验别人的代码学起，下面两个例子都是自己运行过，没有问题的示例。</strong></p><h2 id="一：体验别人的–简单型"><a href="#一：体验别人的–简单型" class="headerlink" title="一：体验别人的–简单型"></a>一：体验别人的–简单型</h2><p>这是<a href="https://www.cnblogs.com/dearvee/p/6558571.html" target="_blank" rel="noopener">原作者的博客地址</a>  </p><pre><code class="python">import requestsimport jsonimport urllibdef getSogouImag(category,length,path):    n = length    cate = category    imgs = requests.get(&#39;http://pic.sogou.com/pics/channel/getAllRecomPicByTag.jsp?category=&#39;+cate+&#39;&amp;tag=%E5%85%A8%E9%83%A8&amp;start=0&amp;len=&#39;+str(n))    jd = json.loads(imgs.text)    jd = jd[&#39;all_items&#39;]    imgs_url = []    for j in jd:        imgs_url.append(j[&#39;bthumbUrl&#39;])    m = 0    for img_url in imgs_url:            print(&#39;***** &#39;+str(m)+&#39;.jpg *****&#39;+&#39;   Downloading...&#39;)            urllib.request.urlretrieve(img_url,path+str(m)+&#39;.jpg&#39;)            m = m + 1    print(&#39;Download complete!&#39;)getSogouImag(&#39;壁纸&#39;,200,&#39;d:/download/壁纸/&#39;)</code></pre><h2 id="二：体验别人的–稍复杂"><a href="#二：体验别人的–稍复杂" class="headerlink" title="二：体验别人的–稍复杂"></a>二：体验别人的–稍复杂</h2><p>这是<a href="https://blog.csdn.net/lanzhihui_10086/article/details/79679115" target="_blank" rel="noopener">原作者的博客地址</a>  </p><pre><code class="python"># -*- encoding=UTF-8 -*-import urllib.request, socket, re, sys, osfrom urllib.request import urlopenimport timefrom tkinter import *import webbrowserfrom bs4 import BeautifulSoupimport requestsimport jsonimport urllib##############################常量区##############################sougou_url = &quot;http://pic.sogou.com/&quot;###URLdownload_pics_path = &quot;D:/download/bz2018/&quot;download_pics_num = 10download_success = &quot;&quot;sougou_pics_tag = [&quot;pic_url&quot;, &quot;thumbUrl&quot;, &quot;bthumbUrl&quot;, &quot;ori_pic_url&quot;]sougou_url_pics_start = &quot;http://pic.sogou.com/pics/channel/getAllRecomPicByTag.jsp?category=&quot;sougou_url_pics_mid = &quot;&amp;tag=%E5%85%A8%E9%83%A8&amp;start=0&amp;len=&quot;sougou_url_pics_start_other = &quot;http://pic.sogou.com/pics?query=&quot;sougou_url_pics_mid_other = &quot;&amp;did=1&amp;mode=1&amp;start=0&amp;len=&quot;sougou_url_pics_stop_other = &quot;&amp;reqType=ajax&quot;###titletitle_key_start = &quot;a class=\&quot;nav-tab\&quot; href=\&quot;/pics/&quot;title_key_stop = &quot;&lt;&quot;###tkinterwindow_name = &quot;搜狗图片下载器&quot;window_size = &quot;500x500&quot;frm_bg = &quot;white&quot;real_columnspan = 4label_type_str = &quot;---------------------------------------------图片类型---------------------------------------------&quot;##############################常量区##############################real_url_arr = []  ###组成url集合##############################函数区#################################获取网页上标题,返回标题数组def get_title(url):    html = urlopen(url)    sougou_html = BeautifulSoup(html.read())    title_key = []    for ihtml in sougou_html:        data1 = str(ihtml).split(title_key_start)        if len(data1) &gt; 1:            for jhtml in data1:                data2 = jhtml.split(title_key_stop)[0]                data3 = data2.split(&quot;\&quot;&gt;&quot;)                if len(data3) == 2:                    title_key.append(data3[1])    return title_key###获取网页图片并下载,返回下载失败个数def get_pics(url, path):    # 检测当前路径的有效性    if not os.path.isdir(path):        os.mkdir(path)    pics_str = requests.get(url)    pics_dict = json.loads(pics_str.text)    pics_dict_items = pics_dict[&#39;all_items&#39;]    i_item = 0    fail_count = 0    for item in pics_dict_items:        fail_flag = 0        for itag in sougou_pics_tag:            try:                pic_url = item[itag]                pic_title = item[&#39;title&#39;]                if pic_title == &quot;&quot;:                    pic_title = str(i_item)                    i_item = i_item + 1                if pic_url != &quot;&quot;:                    urllib.request.urlretrieve(pic_url, path + pic_title + &#39;.jpg&#39;)                    print(pic_title + &quot;: download complete!&quot;)                    fail_flag = 1                    break            except:                print(&quot;download fail!&quot;)                continue        if fail_flag != 1:            fail_count = fail_count + 1    return fail_countdef get_pics_other(url, path):    pics_str = requests.get(url)    pics_dict = json.loads(pics_str.text)    pics_dict_items = pics_dict[&#39;items&#39;]    i_item = 0    fail_count = 0    for item in pics_dict_items:        fail_flag = 0        for itag in sougou_pics_tag:            try:                pic_url = item[itag]                pic_title = item[&#39;title&#39;]                pic_title = pic_title + str(i_item)                i_item = i_item + 1                if pic_url != &quot;&quot;:                    urllib.request.urlretrieve(pic_url, path + pic_title + &#39;.jpg&#39;)                    print(pic_title + &quot;: download complete!&quot;)                    fail_flag = 1                    break            except:                print(&quot;download fail!&quot;)                continue        if fail_flag != 1:            fail_count = fail_count + 1    return fail_countdef url_get_othertype():    global real_url_arr    if PhotoType.get() != &quot;&quot;:        real_url_arr.append(PhotoType.get())        real_url_arr = list(set(real_url_arr))def url_get_phototype(all_type):    global real_url_arr    real_url_arr = []    url_get_othertype()    if &quot;其他&quot; in all_type:        all_type.remove(&quot;其他&quot;)    for i in range(len(all_type)):        if CheckType[i].get() == 1:            real_url_arr.append(typeBtn[all_type[i]][&#39;text&#39;])    real_url_arr = list(set(real_url_arr))def other_type():    if OtherType.get() == 1:        type[&quot;state&quot;] = &quot;normal&quot;    else:        type[&quot;state&quot;] = &quot;disabled&quot;        PhotoType.set(&quot;&quot;)def get_full_url(all_type):    global download_pics_num    down_result[&quot;text&quot;] = &quot;&quot;    url_get_phototype(all_type)    if download_num_str.get() != &quot;&quot;:        download_pics_num = int((download_num_str.get()))    sum = len(real_url_arr) * download_pics_num    down_result[&quot;text&quot;] = &quot;准备下载: &quot; + str(sum) + &quot;张照片&quot;    fail_num = 0    for iurl in real_url_arr:        if iurl in photo_type:            tmp_url = sougou_url_pics_start + iurl + sougou_url_pics_mid + str(download_pics_num)            fail_num = fail_num + get_pics(tmp_url, download_pics_path)        else:            tmp_url = sougou_url_pics_start_other + iurl + sougou_url_pics_mid_other + str(                download_pics_num) + sougou_url_pics_stop_other            time.sleep(1)            fail_num = fail_num + get_pics_other(tmp_url, download_pics_path)    down_result[&quot;text&quot;] = &quot;成功下载: &quot; + str(sum - fail_num) + &quot;张照片&quot;###tkinter label占一行def write_line(row, text=&quot;&quot;, column=0, columnspan=real_columnspan, bg=frm_bg):    label = Label(frm, text=text, bg=bg)    label.grid(row=row, column=column, columnspan=columnspan)    return label###调用网页def callback(url=sougou_url):    webbrowser.open_new(url)##############################函数区############################################################UI部分##########################################root = Tk()  # 给窗体root.title(window_name)  # 设置窗体名字root.geometry(window_size)root.resizable(width=False, height=False)  ###固定窗体大小frm = Frame(root, bg=frm_bg)  # 新建框架frm.pack(expand=YES, fill=BOTH)  # 放置框架###控制行的参数real_row = 0###空一行write_line(real_row)real_row = real_row + 1###进入官网Button(frm, text=&quot;点击进入搜狗图片官网&quot;, command=callback).grid(row=real_row, column=0, columnspan=real_columnspan, sticky=N)real_row = real_row + 1###空一行write_line(real_row)real_row = real_row + 1###图片类型write_line(real_row, label_type_str)real_row = real_row + 1###空一行write_line(real_row)real_row = real_row + 1###checkbuttonphoto_type = get_title(sougou_url)photo_type.append(&quot;其他&quot;)typeBtn = {}CheckType = []real_column = 0for itype in photo_type:    if itype == &quot;其他&quot;:        OtherType = IntVar()        PhotoType = StringVar()        type = Entry(frm, textvariable=PhotoType, width=9, state=&#39;disabled&#39;)  # 添加输入框        Checkbutton(frm, text=&quot;其他&quot;, variable=OtherType, onvalue=1, offvalue=2, command=other_type).grid(row=real_row,                                                                                                        column=1)        type.grid(row=real_row, column=2, columnspan=4, sticky=W, padx=40, ipadx=60)  # 放置输入框位置    else:        CheckType.append(IntVar())        typeBtn[itype] = Checkbutton(frm, text=itype, variable=CheckType[-1],                                     command=lambda: url_get_phototype(photo_type))        typeBtn[itype].grid(row=real_row, column=real_column)    real_column = real_column + 1    if real_column == 4:        real_column = 0        real_row = real_row + 1real_row = real_row + 1###空一行write_line(real_row)real_row = real_row + 1###下载个数lab1 = Label(frm, text=&quot;下载个数:&quot;)  # 添加Labellab1.grid(row=real_row, column=0)download_num_str = StringVar()download_num = Entry(frm, width=10, textvariable=download_num_str)  # 添加Entrydownload_num.grid(row=real_row, column=1, sticky=W)real_row = real_row + 1###空一行write_line(real_row)real_row = real_row + 1###getButton(frm, text=&quot;获取照片&quot;, command=lambda: get_full_url(photo_type)).grid(row=real_row, column=0, columnspan=4, sticky=N)real_row = real_row + 1###空一行write_line(real_row)real_row = real_row + 1###结果down_result = write_line(real_row)real_row = real_row + 1###空一行write_line(real_row)real_row = real_row + 1Button(frm, text=&quot;退出程序&quot;, command=root.quit).grid(row=real_row, column=0, columnspan=4, sticky=N)real_row = real_row + 1mainloop()##############################UI部分##########################################</code></pre><p>运行效果图：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180404115615.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>初学Python遇到的坑（一）</title>
+      <link href="/2018/04/03/%E5%88%9D%E5%AD%A6Python%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>/2018/04/03/%E5%88%9D%E5%AD%A6Python%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一：安装包失败"><a href="#一：安装包失败" class="headerlink" title="一：安装包失败"></a>一：安装包失败</h2><p>提示信息：<font color="#8470FF"><strong>modulenotfounderror: no module named ‘matplotlib._path’</strong></font>       </p><ol><li>使用<strong>pip install matplotlib</strong>安装此包，（如果已经安装，会提示如下信息）<br> &lt;显示已经安装成功和安装的位置&gt;<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180403193448.png" alt=""><br>这是另一篇<a href="https://blog.csdn.net/zhaluo0051/article/details/78239417" target="_blank" rel="noopener">有关python安装模块的博客</a>  </li><li>如果此命令执行失败，则系统会用红色字体显示异常信息，抛出异常。<br>可能的原因是：网络问题。<br>解决方法：使用国内的镜像源来加速。<br>例如：原本的原本执行的命令是： <pre><code class="bash">pip install selenium==3.3  </code></pre>改为：  <pre><code class="bash">pip install selenium==3.3 -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com</code></pre><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180403195026.png" alt=""><br>这是另一篇<a href="https://www.cnblogs.com/botoo/p/7410316.html" target="_blank" rel="noopener">通过镜像源安装python模块的博客</a>    </li></ol><h2 id="二：使用IDE更新python包"><a href="#二：使用IDE更新python包" class="headerlink" title="二：使用IDE更新python包"></a>二：使用IDE更新python包</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180403200456.png" alt="">  </p><h2 id="三：代码格式错误"><a href="#三：代码格式错误" class="headerlink" title="三：代码格式错误"></a>三：代码格式错误</h2><p>提示信息：<font color="#8470FF"><strong>IndentationError:expected an indented block</strong></font><br>在编译时会出现这样的错说明此处需要缩进，你只要在出现错误的那一行，按空格或Tab（但不能混用）键缩进就行。<br>该缩进的地方就要缩进，不缩进反而会出错，例如：  </p><pre><code class="python">if xxxxxx：（空格）xxxxx#或者def xxxxxx：（空格）xxxxx#还有for xxxxxx：（空格）xxxxx</code></pre><p>一句话:<font color="#8B008B"><strong>有冒号的下一行往往要缩进，该缩进就缩进</strong></font>   </p><h2 id="四：python新版本语法修改"><a href="#四：python新版本语法修改" class="headerlink" title="四：python新版本语法修改"></a>四：python新版本语法修改</h2><p>原来版本的代码，如果用新的python解释器就会报错：    </p><pre><code class="python">try:    ...except Exception,e:    ...</code></pre><p>现在版本的代码：  </p><pre><code class="python">try:    ...except Exception as e:    ...</code></pre><h2 id="五：Pycharm软件中原来的快捷键不能用"><a href="#五：Pycharm软件中原来的快捷键不能用" class="headerlink" title="五：Pycharm软件中原来的快捷键不能用"></a>五：Pycharm软件中原来的快捷键不能用</h2><p>原因：Tools里面开启了Vim Emulator<br><img src="http://p4qtgamvn.bkt.clouddn.com/pycharm%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%8D%E8%83%BD%E7%94%A8.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Mybatis insert返回值不正确</title>
+      <link href="/2018/03/29/Mybatis%20insert%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E6%AD%A3%E7%A1%AE/"/>
+      <url>/2018/03/29/Mybatis%20insert%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E6%AD%A3%E7%A1%AE/</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题再现"><a href="#问题再现" class="headerlink" title="问题再现"></a>问题再现</h2><p>在开发使用Mybatis批量插入出现异常，找不到对应id。如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/Image7.png" alt=""><br><img src="http://p4qtgamvn.bkt.clouddn.com/Image6.png" alt=""></p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/Image5.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Mybatis批量插入报错</title>
+      <link href="/2018/03/29/Mybatis%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E6%8A%A5%E9%94%99/"/>
+      <url>/2018/03/29/Mybatis%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E6%8A%A5%E9%94%99/</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题再现"><a href="#问题再现" class="headerlink" title="问题再现"></a>问题再现</h2><p>在开发时遇到如下问题：<br>使用Mybatis 在 insert 之后想获取自增的主键 id，但是总是返回1。<br>并且在mapper.xml文件中<font color="#8470FF"> useGeneratedKeys=”true” keyProperty=”id” </font>是加上的。<br><img src="http://p4qtgamvn.bkt.clouddn.com/Image1.png" alt=""></p><pre><code class="java">//把邮件发送记录落地到数据库中Date date = new Date();EmailBatchLog emailBatchLog = new EmailBatchLog();emailBatchLog.setUseEmail(emailAccountInUse);emailBatchLog.setSendContent(msg);emailBatchLog.setCreateTime(date);int batchId = emailBatchLogMapper.insert(emailBatchLog);</code></pre><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p><strong>1是返回的插入成功的行数；自增id直接映射到你的对象里了，直接输出 xxx.getId()就可以了</strong><br><img src="http://p4qtgamvn.bkt.clouddn.com/Image.png" alt=""><br><img src="http://p4qtgamvn.bkt.clouddn.com/Image2.png" alt=""></p><h2 id="问题延展"><a href="#问题延展" class="headerlink" title="问题延展"></a>问题延展</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/Image3.png" alt=""><br><img src="http://p4qtgamvn.bkt.clouddn.com/Image4.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>关于Java事务失效</title>
+      <link href="/2018/03/29/%E5%85%B3%E4%BA%8EJava%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88/"/>
+      <url>/2018/03/29/%E5%85%B3%E4%BA%8EJava%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88/</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题再现"><a href="#问题再现" class="headerlink" title="问题再现"></a>问题再现</h2><p>这种写法事务不起作用，失效了。会出现事务一的数据插入成功，数据二的数据插入不成功。    </p><pre><code class="java">public class SendMessageImpl implements SendMessage {    @Override    public String sendEmailMessage(){        try {            batchId = sendEmail_before(receivers, msg);        } catch(Exception e) {            }        return xxx;    }    @Transactional(rollbackFor={RuntimeException.class, Exception.class})    public Integer sendEmail_before(List&lt;String&gt; receivers,String msg) throws Exception{        &lt;事务一 （数据库插入）&gt;        &lt;事务二 （数据库插入）&gt; （在事务二执行时抛出了异常）        throw new Exception(&quot;aaa&quot;);        return 1;    }}</code></pre><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>把事务的方法拆出来放到下一层的service方法中，这样抛出的异常就能被会滚了，即事务一和事务二都不会执行成功。  </p><pre><code class="java">public class SendMessageImpl implements SendMessage {    @Resource    private SendEmailMessage sendEmailMessage;    @Override    public String sendEmailMessage(){        try {            batchId = sendEmailMessage.sendEmail_before(receivers, msg);        } catch(Exception e) {            }        return xxx;    }</code></pre><pre><code class="java">public interface SendEmailMessage {    public Integer sendEmail_before(List&lt;String&gt; receivers, String msg) throws Exception;}</code></pre><pre><code class="java">@Servicepublic class SendEmailMessageImpl implements SendEmailMessage {    @Override    @Transactional(rollbackFor={RuntimeException.class, Exception.class})    public Integer sendEmail_before(List&lt;String&gt; receivers,String msg) throws Exception{        &lt;事务一 （数据库插入）&gt;        &lt;事务二 （数据库插入）&gt; （在事务二执行时抛出了异常）        throw new Exception(&quot;aaa&quot;);        return 1;    }}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> 事务 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>常用编程软件快捷键</title>
+      <link href="/2018/03/28/%E5%B8%B8%E7%94%A8%E7%BC%96%E7%A8%8B%E8%BD%AF%E4%BB%B6%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+      <url>/2018/03/28/%E5%B8%B8%E7%94%A8%E7%BC%96%E7%A8%8B%E8%BD%AF%E4%BB%B6%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一，Navicat"><a href="#一，Navicat" class="headerlink" title="一，Navicat"></a>一，Navicat</h2><p>选中当前一行sql并执行<br>[End]<br>[Shift] + [Home]<br>[Ctrl] + [R] (或者[Ctrl] + [Shift] + [R])  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 效率 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>NLP12条精髓</title>
+      <link href="/2018/03/21/NLP12%E6%9D%A1%E7%B2%BE%E9%AB%93/"/>
+      <url>/2018/03/21/NLP12%E6%9D%A1%E7%B2%BE%E9%AB%93/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、没有两个人是一样的"><a href="#一、没有两个人是一样的" class="headerlink" title="一、没有两个人是一样的"></a>一、没有两个人是一样的</h2><p><font color="#8470FF"><strong>No two persons are the same.</strong></font>    </p><ol><li>没有两个人的人生经验会完全一样，所以没有两个人的信念、价值观和规条系统会是一样。</li><li>因此没有两个人对同一件事的看法能够绝对一致。</li><li>因此没有两个人对同一件事的反应会是一样。</li><li>因此没有两个人的态度和行为模式会完全一样。</li><li>因此发生在一个人身上的事，不能假定发生在另一个人身上也会有一样的结果。</li><li>人与人之间的不同，建造了这个世界的奇妙可贵。</li><li>尊重别人的不同之处，别人才会尊重自己独特的地方。</li><li>每一个人的信念、价值观和规条系统都是在不断演变中，所以没有一个人在两分钟是一样的。</li><li>两人的信念、价值观和规条不一样，不一定会使两个人不能沟通或者不能发展出良好关系。</li><li>给别人空间也就是尊重别人的信念、价值观和规条，才能有良好的沟通和关系。</li><li>同样地，自己与别人的看法不同，也是正常的事。</li><li>当尊重别人的信念、价值观和规条的同时，我们也有权利要求别人尊重自己的信念，价值观和规条。</li></ol><h2 id="二、一个人不能控制另外一个人"><a href="#二、一个人不能控制另外一个人" class="headerlink" title="二、一个人不能控制另外一个人"></a>二、一个人不能控制另外一个人</h2><p><font color="#8470FF"><strong>One person cannot change another person.</strong></font>  </p><ol><li>一个人不能改变另外一个人，一个人只能改变自己。</li><li>每个人的信念、价值观、规条系统只对本人有效，不应强求别人接受。</li><li>改变自己，别人才会有可能改变。</li><li>一个人不能推动另外一个人。每个人都只可以自己推动自己。</li><li>找出对方的价值观，创造、增大或转移对方在乎的价值，对方便会产生推动自己的行为。</li><li>因此一个人不能“教导”另外一个人。一个人只能引导另外一个人去学习。</li><li>因此一个人不能希望另外一人放弃自己的一套信念、价值观和规条系统，而去接受另外的一套。</li><li>好的动机只给一个人去做某一件事的原因，但是不能给他控制别人，或使事情恰如他所愿发生的权利。</li><li>不强迫别人跟随自己的一套信念、价值观和规条，别人便不会抗拒。</li><li>同样地，我们只能自己推动自己。</li></ol><h2 id="三、有效果比有道理更重要"><a href="#三、有效果比有道理更重要" class="headerlink" title="三、有效果比有道理更重要"></a>三、有效果比有道理更重要</h2><p><font color="#8470FF"><strong>Usefulness is more important.</strong></font>  </p><ol><li>光说做法有道理或者正确而不顾是否效果，是在自欺欺人。</li><li>在三赢（我好、人好、世界好）的原则基础上追求效果，比坚持什么是对的更有意义。</li><li>说道理往往是把焦点放在过去的事情上；注重效果则容易把注意力放在未来。</li><li>效果是原定计划的意义基础，亦是所有行动的指标。</li><li>有道理是由理性方面的标准来决定的。因为没有两个人的信念、价值观和规条是一样，所以，没有两个人的“道理”是一样的。</li><li>故此，坚持道理，只不过是坚持一套不能放在另一个人身上的信念、价值观和规条。</li><li>真正推动一个人的力量是在感性的一边，要有效果就要加上理性方面的认同。故此，有效果需要一个人的理性和感性上的共鸣。</li><li>没有效果的道理，是背弃了信念和价值的规条，应该加以检讨。</li><li>有效和有道理往往可以并存，但必先由相信有这个可能的信念开始。</li><li>只追求有道理但无效果的人生，难以有成功和快乐的体验。</li></ol><h2 id="四、只有由感官经验塑造出来的世界，没有绝对的真实世界"><a href="#四、只有由感官经验塑造出来的世界，没有绝对的真实世界" class="headerlink" title="四、只有由感官经验塑造出来的世界，没有绝对的真实世界"></a>四、只有由感官经验塑造出来的世界，没有绝对的真实世界</h2><p><font color="#8470FF"><strong>The map is not territory.</strong></font>  </p><ol><li>每个人运用自己的感官器官把资料摄入（摄入过程），由感官运用是主观地有选择性的，因为不能，亦不需要把所有资料捕捉。</li><li>摄入的资料经由我们的信念、价值观和规条过滤而决定其意义，亦因此能储存在脑中（编码过程）。我们的信念、价值观和规条是主观的形成的，故此，过滤出来的意义也是主观的。</li><li>我们每一个人的世界，都是用上述的方式一点一滴地塑造出来的亦因此是主观的。</li><li>我们只能用这种方式建立对这个世界的认知，没有其他方法。</li><li>因此没有绝对的真实，或者相对的真实。</li><li>因此每个人的世界是在他的脑里。我们是凭脑里对世界的认知去处理每一件事。</li><li>因此，改变一个人脑里的世界，这个人对世界中事物的态度便会改变。</li><li>因此，每个人都是用自制的地图在这个世界里生活。</li><li>改变主观经验在脑里的结构模式，事情对我们的影响便会改变，我们对事情的感受亦会改变。因此，我们无须改变外面的世界（我们无法知道它是怎样变的）。改变我们自己（脑里的世界），我们的人生便会有所改变。</li><li>事情从来都不会给我们压力，压力是来自我们对事情的反应。</li><li>情绪也从来不是来自某人的言行，或环境里出现的转变，而是来自我们对这些的态度，亦即是我们的信念、价值观和规条系统。</li></ol><h2 id="五、沟通的意义在于对方的回应"><a href="#五、沟通的意义在于对方的回应" class="headerlink" title="五、沟通的意义在于对方的回应"></a>五、沟通的意义在于对方的回应</h2><p><font color="#8470FF"><strong>The meaning of communication is the response one gets.</strong></font>  </p><ol><li>沟通没有对与错，只有“有效果”或者“没有效果”之分。</li><li>自己说得多“对”没有意义，对方收到你想表达的讯息才是沟通意义。</li><li>因此自己说什么不重要，对方听到什么才重要。</li><li>话有很多方法说出来，使听者完全收到讲者意图传达的讯息，便是正确的方法。</li><li>沟通的效果，来自声调和身体语言的比文字更大。</li><li>沟通讯息的送出与接受在潜意识层面的比意识层面的大得多。</li><li>没有两个人对同样的讯息有完全同样的反应。</li><li>说话的效果由讲者控制，但由听者决定。</li><li>改变说的方法，才有机会改变听的效果。</li><li>沟通成功的先决条件是和谐气氛。</li><li>抗拒是对讲者不够灵活的说明。</li></ol><h2 id="六、重复旧的做法，只会得到旧的结果"><a href="#六、重复旧的做法，只会得到旧的结果" class="headerlink" title="六、重复旧的做法，只会得到旧的结果"></a>六、重复旧的做法，只会得到旧的结果</h2><p><font color="#8470FF"><strong>Repeating the same behavior will repeat the same result.</strong></font>  </p><ol><li>做法有不同，结果才会有不同。</li><li>如果你的事没有结果，改变你的做法。任何新的做法，都比旧的多一分成功机会。</li><li>想明天比昨天更好，必须用与昨天不同的做法。</li><li>改变自己，别人才有可能改变。</li><li>世界上本来便是每样事物都在不停地改变中，不肯改变的便面临淘汰或失败的威胁。</li><li>因此只有不断的改变做法，才能保持与其他事物关系有理想状态。</li><li>“做法”是规条，目的是取得价值，实现信念。维持最有效果的规条，就是灵活地不断修正做法，才能保证取得价值，实现信念。</li><li>改变是所有进步的起点。</li></ol><h2 id="七、凡事必有至少三个解决方法"><a href="#七、凡事必有至少三个解决方法" class="headerlink" title="七、凡事必有至少三个解决方法"></a>七、凡事必有至少三个解决方法</h2><p><font color="#8470FF"><strong>There are at least three solutions to every situation.</strong></font>  </p><ol><li>对事情只有一个方法的人，必陷入困境，因为别无选择。</li><li>对事情有两个方法的人也陷困境，因为他制造了左右两难、进退维谷的局面给自己。</li><li>有第三个方法的人，通常会找到第四、五个方法，甚至更多的方法。</li><li>有选择就是有能力。所以，有选择总比没有选择好。</li><li>至今不成功，只是说至今用过的方法都得不到想要的效果。</li><li>没有办法，只是说已知的办法都行不通。</li><li>世界上尚有很多我们过去没有想过，或者尚未认识的方法。</li><li>只有相信尚有未知的有效方法，才会有机会找到它和使事情改变。</li><li>不论什么事情，我们总有选择的权利，而且不只是一个。</li><li>“没有办法”使事情划上句号，“总有办法”使事情有突破的可能。</li><li>“没有办法”对你没有好处，应停止想它；“总有办法”对你有好处，故应把它留在脑中。</li><li>为何不使自己成为第一个找出办法的人？</li></ol><h2 id="八、每一个人都选择给自己最佳利益的行为"><a href="#八、每一个人都选择给自己最佳利益的行为" class="headerlink" title="八、每一个人都选择给自己最佳利益的行为"></a>八、每一个人都选择给自己最佳利益的行为</h2><p><font color="#8470FF"><strong>Every one chooses the best behavior at the moment.</strong></font>  </p><ol><li>每一个人做任何事都是为满足自己的一些深层需要。</li><li>每一个人的行为，对他的潜意识来说，都是当时环境里最符合自己利益的做法。</li><li>因此，每个行为的背后，都必定有正面的动机。</li><li>了解和接受其正面动机，才容易引导一个人改变他的行为。</li><li>动机不会错，只是行为不能达到效果。（满足背后正面动机的效果）</li><li>接受一个人的动机，他便会觉得我们接受他这个人。</li><li>动机往往是在潜意识的层面，不能意识地说出来。</li><li>找出行为背后的动机，最易的方法是问企图经由该行为得到的价值是什么。</li><li>任何行为在某些环境中都会有其效用。</li><li>因此，没有不对的行为，只有在当时环境中没有效果的行为。</li></ol><h2 id="九、每个人都已经具备使自己成功快乐的资源"><a href="#九、每个人都已经具备使自己成功快乐的资源" class="headerlink" title="九、每个人都已经具备使自己成功快乐的资源"></a>九、每个人都已经具备使自己成功快乐的资源</h2><p><font color="#8470FF"><strong>Every one already possesses all the resources needed.</strong></font>  </p><ol><li>每一个人都有过成功快乐的经验，也即是说有使自己成功快乐的能力。</li><li>人类只用了大脑能力的极少部分，提升大脑的运用，很多新的突破便会出现。</li><li>运用大脑的能力，已有大量的技巧发展出来，人类比以前更易把效果提升。</li><li>每一个人都可以凭改变思想去改变自己的情绪和行为，进而改变自己的人生。</li><li>每天里遇到的事情，都有能给我们成功快乐的因素，取舍全由个人决定。</li><li>所有事情或经验里面，正面和负面的意义同时存在，把事情或经验转为绊脚石抑或踏脚石，由自己决定。</li><li>成功快乐的人所拥有的思想和行为能力，都是经过一个过程而培养出来的。在开始的时候，他们与其他人所具备的条件一样。</li><li>有能力替自己制造出困扰的人，也有能力替自己消除困扰。</li><li>情绪、压力、困扰都不是源自外界的人事物，而是由自己内里的信念、价值观和规条系统产生出来的。</li><li>自己不信有能力或有可能，是使自己得不到渴求的成功快乐的最有效的保证。</li></ol><h2 id="十、在任何一个系统里，最灵活的部分便是最能影响大局的部分"><a href="#十、在任何一个系统里，最灵活的部分便是最能影响大局的部分" class="headerlink" title="十、在任何一个系统里，最灵活的部分便是最能影响大局的部分"></a>十、在任何一个系统里，最灵活的部分便是最能影响大局的部分</h2><p><font color="#8470FF"><strong>In any system,the most flexible person has the control.</strong></font>  </p><ol><li>灵活便是有一个以上的选择；选择便是能力。因此最灵活的人便是最有能力的人。</li><li>灵活来自减少行使自己的一套信念、价值观和规条，而多凭观察而运用环境所提供的其他条件。</li><li>灵活是使事情更快有效果的重要因素。因此，亦是人生成功快乐的重要因素。</li><li>灵活亦是自信的表现。自信越不足，坚持某个模式的态度会越强硬。</li><li>容许不同的意见和可能性，便是灵活。</li><li>在一个群体中，固执使人紧张，灵活使人放松。</li><li>灵活不代表放弃自己的立场，而是容许找出双赢的可能性（更进一步而三赢）。</li><li>在沟通中，明白不代表接受；接受不代表投降（放弃立场）。</li><li>“流水”是学习灵活的最好老师。</li><li>灵活是用自己的步伐去作出转变；而固执则是在被迫的情况下作出转变。</li></ol><h2 id="十一、没有挫败，只有回应讯息"><a href="#十一、没有挫败，只有回应讯息" class="headerlink" title="十一、没有挫败，只有回应讯息"></a>十一、没有挫败，只有回应讯息</h2><p><font color="#8470FF"><strong>There is no failure,only feedback.</strong></font>  </p><ol><li>“挫败”只是指出过去的做法得不到期望的效果，是给我们需要改变的信号。</li><li>“挫败”只是在事情划上句号时才能用上，欲想事情解决，即让事情仍会继续下去，这二字便不适用。</li><li>“挫败”是指过去的事；“怎样改变做法”是指向未来。</li><li>挫败是过去的经验；而经验是让我们提升自我的踏脚石，因为经验是能力的基础，而能力是自信的基础。</li><li>每次“挫败”，都只不过是学习过程里修正行动的其中一步。</li><li>人生里所有的学习，都是经由不断地修正而达致完善。</li><li>想要成功，首先要相信有成功的可能。</li><li>把每次的“挫败”带来的教训掌握了，每次便都变成了学习。</li><li>自信不足的人，潜意识总是在找“不用干下去”的藉口，“挫败”二字便很容易冒出来。</li></ol><h2 id="十二、动机和情绪总不会错，只是行为没有效果而已"><a href="#十二、动机和情绪总不会错，只是行为没有效果而已" class="headerlink" title="十二、动机和情绪总不会错，只是行为没有效果而已"></a>十二、动机和情绪总不会错，只是行为没有效果而已</h2><p><font color="#8470FF"><strong>Intentions and emotions are never wrong,only the behavior has not been effective.</strong></font>  </p><ol><li>动机在潜意识里。总是正面的。潜意识从来不会伤害自己，只是误会地以为某行为可以满足该动机，而又不知有其他做法的可能。</li><li>情绪总是给我们一份推动力。情绪是使我们在该事情之中有所学习。学到了，情绪便会消失。</li><li>我们可以接受一个人的动机和情绪，同时不接受他的行为。</li><li>接受动机和情绪，便是接受那个人。那个人也会感觉出你对他的接受，因而更肯让你去引导他作出改变。</li><li>任何一次行为不等于一个人。</li><li>行为不能接受，是因为没有效果；找出更好的做法，是两人的共同目标，能使两人有更好的沟通和关系。</li><li>找出更好的做法的方法之一是追查动机背后的价值观。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 语录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>读取本地文件和url网络文件</title>
+      <link href="/2018/03/21/%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%92%8Curl%E7%BD%91%E7%BB%9C%E6%96%87%E4%BB%B6/"/>
+      <url>/2018/03/21/%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%92%8Curl%E7%BD%91%E7%BB%9C%E6%96%87%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>url：统一资源定位符是对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。<br>互联网上的每个文件都有一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。<br><strong>网络url和本地地址在Java程序中有区别</strong>。  </p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>开发时遇到的一个问题<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180321113354.png" alt=""></p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p><strong>两种文件读取使用的Java类是不同的</strong>  </p><pre><code class="java">import java.io.*;import java.net.URL;public class XXX {    public static void main(String[] args){        try {            //读取本地文件            File file=new File(&quot;C:\\Users\\xinmei\\.gitconfig&quot;);            InputStream inputStream = new FileInputStream(file);            //读取网络文件            URL url = new URL(&quot;http://p4qtgamvn.bkt.clouddn.com/43934322a3b5ea2c546467916a7d6833.jpg&quot;);            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));            String s;            while ((s = reader.readLine()) != null) {                //System.out.println(s);            }            reader.close();        }catch (Exception e){            e.printStackTrace();        }    }}</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>读取网络文件并保存到本地一个例子  </p><pre><code class="java">import java.io.File;  import java.io.FileOutputStream;  import java.io.InputStream;  import java.net.HttpURLConnection;  import java.net.URL;  public class ImageRequest {      public static void main(String[] args) throws Exception {          //new一个URL对象          URL url = new URL(&quot;http://img.hexun.com/2011-06-21/130726386.jpg&quot;);          //打开链接          HttpURLConnection conn = (HttpURLConnection)url.openConnection();          //设置请求方式为&quot;GET&quot;          conn.setRequestMethod(&quot;GET&quot;);          //超时响应时间为5秒          conn.setConnectTimeout(5 * 1000);          //通过输入流获取图片数据          InputStream inStream = conn.getInputStream();          //得到图片的二进制数据，以二进制封装得到数据，具有通用性          byte[] data = readInputStream(inStream);          //new一个文件对象用来保存图片，默认保存当前工程根目录          File imageFile = new File(&quot;BeautyGirl.jpg&quot;);          //创建输出流          FileOutputStream outStream = new FileOutputStream(imageFile);          //写入数据          outStream.write(data);          //关闭输出流          outStream.close();      }      public static byte[] readInputStream(InputStream inStream) throws Exception{          ByteArrayOutputStream outStream = new ByteArrayOutputStream();          //创建一个Buffer字符串          byte[] buffer = new byte[1024];          //每次读取的字符串长度，如果为-1，代表全部读取完毕          int len = 0;          //使用一个输入流从buffer里把数据读取出来          while( (len=inStream.read(buffer)) != -1 ){              //用输出流往buffer里写入数据，中间参数代表从哪个位置开始读，len代表读取的长度              outStream.write(buffer, 0, len);          }          //关闭输入流          inStream.close();          //把outStream里的数据写入内存          return outStream.toByteArray();      }  }  </code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>单元测试jmockit详细使用</title>
+      <link href="/2018/03/20/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95jmockit%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8/"/>
+      <url>/2018/03/20/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95jmockit%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>测试类的作用是编写测试方法，<strong>一个方法覆盖一条程序可能的运行路径</strong>。<br>测试结果如何可以查看测试代码<strong>分支覆盖率</strong>。<br>在一个测试方法中，不用为了形式一定要mock一个方法，只要能测试走通一条路径就可以。<br>什么方法必须需要进行模拟：<br>涉及访问数据库的，涉及访问网络的，涉及访问文件的等等。<br>（把真实环境下耗费大量资源及时间的方法进行模拟）<br>JMockit程序结构如下<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320203705.png" alt="三段式"><br>一般使用两段式，更加简单<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320203708.png" alt="两段式"><br>还是那句话，不要死板。只要重现方法过程，模拟方法运行就可以，不必拘泥形式。<br>这是<a href="http://jmockit.cn/index.htm" target="_blank" rel="noopener">讲解JMockit的一个中文网站</a>  </p><h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>在程序中引入jmockit相关jar包。<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320203655.png" alt=""><br>在写测试类的时候可以先创建一个引入Spring的<strong>applicationContext</strong>的母类，测试子类继承之。  </p><pre><code class="java">package com.xinmei.etrust.unittest;import org.junit.Before;import org.junit.runner.RunWith;import org.springframework.context.ApplicationContext;import com.xinmei.general.tools.SpringContextUtils;import mockit.Injectable;import mockit.integration.junit4.JMockit;/** * @Description: 单元测试基础类 */@RunWith(JMockit.class)public class UnitTestBase {    @Injectable    protected ApplicationContext applicationContext;    @Before    public void initSpringContext(){        new SpringContextUtils().setApplicationContext(applicationContext);    }}</code></pre><h2 id="模拟静态方法"><a href="#模拟静态方法" class="headerlink" title="模拟静态方法"></a>模拟静态方法</h2><p>如何模拟一个静态方法，例如工具类中的一个static方法。<br>分为两种情况。<br>一：测试类是为了测试这个工具类的。    </p><pre><code class="java">public abstract class PolicyVisitUtil {    public static String getPolicyVisitStatusByMobileVisitStatus(String mobileVisitStatus){        String policyVisitStatus = EnumPolicyVisitStatus.Awaiting.getCode();        switch(mobileVisitStatus){            case &quot;01&quot; ://电话回访成功                policyVisitStatus = EnumPolicyVisitStatus.Completed.getCode();                break ;            default:                break ;        }        return policyVisitStatus;    }}</code></pre><p>测试类如下  </p><pre><code class="java">import mockit.Mock;import mockit.MockUp;import mockit.Tested;import org.junit.Test;import static org.assertj.core.api.Assertions.assertThat;public class TestPolicyVisitUtil extends UnitTestBase {    @Test    public void testgetPolicyVisitStatusByMobileVisitStatus(){        String  mobileVisitStatus = &quot;01&quot;;        String policyVisitStatusByMobileVisitStatus = PolicyVisitUtil.getPolicyVisitStatusByMobileVisitStatus(mobileVisitStatus);        assertThat(policyVisitStatusByMobileVisitStatus).isEqualTo(EnumPolicyVisitStatus.Completed.getCode());    }    @Test    public void testgetPolicyVisitStatusByMobileVisitStatus1(){        String  mobileVisitStatus = &quot;02&quot;;        String policyVisitStatusByMobileVisitStatus = PolicyVisitUtil.getPolicyVisitStatusByMobileVisitStatus(mobileVisitStatus);        assertThat(policyVisitStatusByMobileVisitStatus).isEqualTo(EnumPolicyVisitStatus.Awaiting.getCode());    }}</code></pre><p>当然你也可以这样  </p><pre><code class="java">    @Test    public void testgetPolicyVisitStatusByMobileVisitStatus2(){        String  mobileVisitStatus = &quot;02&quot;;        PolicyVisitUtil.getPolicyVisitStatusByMobileVisitStatus(mobileVisitStatus);    }</code></pre><p><strong>这样只是为了完成分支覆盖率，而并没有起到单测的检测代码是否有逻辑错误和是否有隐藏bug的作用。</strong><br><strong>但是一些特殊情况，例如方法的返回值是void的情况，就可以这样使用。还是那句话，不要拘泥于形式。</strong>    </p><p>二：在其他类中调用这个工具类的static方法，需要进行模拟。<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320204340.png" alt=""><br>测试类如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320204344.png" alt=""></p><h2 id="模拟持久业务层的方法"><a href="#模拟持久业务层的方法" class="headerlink" title="模拟持久业务层的方法"></a>模拟持久业务层的方法</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320205735.png" alt=""><br>测试类如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320205739.png" alt=""></p><h2 id="模拟异常分支"><a href="#模拟异常分支" class="headerlink" title="模拟异常分支"></a>模拟异常分支</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320211625.png" alt=""><br>测试这么写<br>首先在类前引入如下代码：    </p><pre><code class="java">@Rulepublic ExpectedException expectedEx = ExpectedException.none();</code></pre><p>其次，在会发生异常方法被调用前添加如下代码<br>而且期待的异常类要和实际发生的异常相同    </p><pre><code class="java">expectedEx.expect(BizException.class);</code></pre><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320212707.png" alt=""></p><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>如果这个需要测试的方法中调用了其他方法，而被调用的方法又调用了其他诸如工具类方法或者必须需要模拟的方法。<br>我们就需要持续进行模拟，直至测试方法的测试通路上没有任何需要模拟的方法。<br><img src="http://p4qtgamvn.bkt.clouddn.com/mock%E5%88%B0%E5%BA%95.png" alt=""></p><h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>一：<strong>Caused by: Missing invocations</strong><br>原因：<br>这个模拟没有被调用。<br>测试方法逻辑设计不合理，在这个模拟之前方法提前结束。<br>解决方法：<br>1.重新设计测试方法逻辑。<br>2.删掉这个没有用到的模拟。<br>二：<strong>java.lang.IllegalArgumentException</strong><br>原因：<br>向方法传递了一个不合法或不正确的参数。<br>解决方法：<br>重新设计参数。    </p><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><pre><code class="java">//导入的相关测试类import org.junit.Test;import mockit.Expectations;import mockit.Injectable;import mockit.MockUp;import mockit.Mock;import mockit.Tested;import org.junit.Rule;import org.junit.rules.ExpectedException;import static org.assertj.core.api.Assertions.assertThat;</code></pre><h2 id="界面查看"><a href="#界面查看" class="headerlink" title="界面查看"></a>界面查看</h2><p>查看单测集成系统数据，阿里云的云效平台很好用<br>界面如下：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320214221.png" alt=""></p><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180320214226.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 代码质量 </tag>
+            
+            <tag> 测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>为什么要写单元测试</title>
+      <link href="/2018/03/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20/"/>
+      <url>/2018/03/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20/</url>
+      
+        <content type="html"><![CDATA[<p>客观来说，单元测试和使用版本控制系统（GIT,SVN）是一样重要的。<br>为什么单元测试如此重要，但你却感受不到。<br>首先要知道，代码的终极目标有两个，第一个是实现需求，第二个是提高代码质量和可维护性。<br>单元测试是为了提高代码质量和可维护性，是实现代码的第二个目标的一种方法。<br>（注：代码的可维护性是指增加一个新功能，或改变现有功能的成本，成本越低，可维护性即越高。）    </p><p><img src="http://p4qtgamvn.bkt.clouddn.com/timg.jpg" alt=""></p><h2 id="场景1：Hello-World"><a href="#场景1：Hello-World" class="headerlink" title="场景1：Hello World"></a>场景1：Hello World</h2><p>任何一个伟大的程序员都是从最简单的代码开始写起的，假设你的第一个程序是Hello World，任何一个语言实现这个程序都只需要不到5行代码。  </p><p><font color="#9ACD32">这个程序需要单元测试吗？</font><br>我们看看这个程序是否实现了软件的两个目标：<br>1.需求很简单，输出Hello World，这个程序完全满足需求。<br>2.只有5行代码的“软件”无论是代码质量，还是可维护性，都相当高，你想要把Hello改成Hi真的很轻松。<br>既然我们已经实现了代码的目标，要不要使用单元测试是无所谓的，同样这么简单的代码也没人会使用GIT或SVN。<br><strong>代码量：5行</strong>    </p><h2 id="场景2：简单计算器"><a href="#场景2：简单计算器" class="headerlink" title="场景2：简单计算器"></a>场景2：简单计算器</h2><p>接下来你写了一个相对更复杂的程序，一个简单计算器。<br>这个程序实现了数字的加减乘除，整个程序共写了大概50行代码。  </p><p><font color="#9ACD32">这个程序需要单元测试吗？</font><br>1.需求是对数字进行加减乘除，这个程序满足了需求。<br>2.你的代码风格很好（你已经了解到代码风格很重要），你使用了缩进，良好的变量命名，逻辑也清晰，代码的质量和可维护性仍然相当高，如果你想增加一个“求x的平方”功能，你轻而易举就可以做到。<br>这个时候让你去写单元测试，你仍然会觉得那纯粹是浪费时间。<br><strong>代码量：50行</strong>    </p><h2 id="场景3：图书管理系统"><a href="#场景3：图书管理系统" class="headerlink" title="场景3：图书管理系统"></a>场景3：图书管理系统</h2><p>你想要做一个真正的实用系统，给学校开发一个图书管理系统。<br>你相信这个系统的代码量比起计算器会很多（可能会有1000行）。<br>你从书上看到有这样一些方法可以简化你的开发工作：<br>1.工具库（类似你家里的工具箱），使用工具库带来的好处是非常明显的，假如你要实现“返回一个数字数组中的最大值”，你只需要使用某个工具库的Max()函数，只需要1行代码，而不是10行代码自己实现。<br>2.MVC框架，虽然比起工具库更复杂，需要花更多时间学习，但MVC框架带来的好处也非常明显，轻而易举调用数据库（Model），实现简单的UI界面（View），实现了类似“书名为空的书不允许添加到数据库”的一些逻辑（Controller）。<br>你最终很好的实现了这个系统，基于MVC模型，你的代码被很好的分割成了很多小的独立的模块：4个Controller，2个Model，4个View。并且在工具库的帮助下，代码量得到了缩减，每个模块大概只有50行代码（等同于一个简单计算器的代码量）。    </p><p><font color="#9ACD32">这个系统需要单元测试吗？</font><br>1.你实现了对图书的添加、删除、修改、借阅，你很好的满足了需求（校长表扬了你）。<br>2.得益于框架与库的使用，你的代码被很好的模块化了，每个模块都像一个“简单计算器”那样简单，增加新功能，或修改现有功能似乎也没有什么大麻烦，虽然会出现一些小bug，但很快就修复了，代码质量和可维护性都比较高。<br>既然你又实现了代码的目标——“完成需求，高代码质量和可维护性”，那好像也没“单元测试”什么事，毕竟写它要浪费额外的功夫，而且也没感觉到有多少好处。<br><strong>代码量：500行</strong>     </p><h2 id="场景4：大型库存管理系统"><a href="#场景4：大型库存管理系统" class="headerlink" title="场景4：大型库存管理系统"></a>场景4：大型库存管理系统</h2><p>你被一家IT公司雇佣了，你通过了面试，进入了一个即将开启的项目——为一家大的电商公司做一个库存管理系统。<br>项目初期一切都很顺利，技术上和你做过的图书管理系统差不多。<br>首先你了解了客户的需求，然后根据他们的需求，使用你已经掌握的MVC框架和一些库，实现了他们的需求。<br>你写了30个Controller， 50个Model，50个View，每个模块的代码都达到了大概150行，总代码达到了惊人的20000行！<br>你觉得自己很了不起，能hold住这么多代码，这完全是得益于你的高智商，以及工作努力。客户很满意，老板也很满意，你的自我感觉也很不错。<br>并且你发现了比单元测试更好的东西，面向对象编程（OOP），或函数式编程（FP），无论是哪一种，你发现你可以把一个模块里的150行堆砌在一起的代码再提取成1个对象的15种方法，或者15个独立的函数（具体怎么提取，你得看相关的书籍），OOP或FP像MVC模型一样，成功的把你的代码分割成了更小的组成部分，每个方法或函数里代码都只有10行左右，你几乎回到了“Hello World”时代。  </p><p><font color="#9ACD32">你需要单元测试吗？（你能保证你的系统没有BUG吗？）</font><br>这个复杂系统是由1950个函数和方法组成，如果想要确定系统整体没有BUG，就等同于确定组成这个系统的1950个函数和方法没有BUG。<br>而单元测试就是做这个事情的，显而易见，如果你写了单元测试，并且每个函数都通过了，你就可以骄傲的说：这个系统没有BUG!（当然这是代码的角度，而非功能和产品的角度）<br><strong>代码量：20000行</strong>  </p><p><img src="http://p4qtgamvn.bkt.clouddn.com/timg%20%281%29.jpg" alt=""></p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>虽然，从绝对的角度说，单元测试很重要，但是，从相对的角度来讲，小的代码量，简单固定的需求，个人开发，一锤子买卖等等都会让单元测试显得不那么重要，并且你一直开发的很舒服，这就是为什么有的人感受不到单元测试的重要性（这种情况下的确也许不用写单元测试）。<br><strong>记住，单元测试的威力更多不是体现在新代码的编写上，而是对已有代码的更改。</strong><br>但程序员的智慧是有限的，系统的复杂度却是无限的，随着更大挑战的到来，当系统的复杂度超过了你的逻辑，记忆能力，你必须依靠别的工具来帮助你减少问题。<br>如果你现在在做一个较大的项目，这个项目的需求很多，所以你一直在开发，你遇到了这样的痛苦状况：<br><strong>1.客户总能在使用中找出BUG，</strong><br><strong>2.每次代码的改动，都会导致一些意想不到的BUG出现。这个时候，单元测试可以挽救你。</strong>    </p><h2 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h2><p><font color="#8470FF">即使我看了单元测试的书，也一头雾水，不知道怎么测试我的系统：</font><br>这种情况可能是你代码本身导致的，<br>首先你要写具有“可测性”的代码，这意味着你不能写面向过程的，流水式的，几百行逻辑堆一起的代码（也叫意大利面代码，就像一盘意大利面一样搅在一起的代码。）<br>你要学一些模块化技巧，面向对象和函数式编程理念，还有很多其它具体方法，比如能用本地变量，就不要用全局变量等等，让你的代码具有可测性，这些知识的学习应该放在单元测试之前。  </p><p><font color="#8470FF">单元测试代码比功能代码也多，这样成本很高：</font><br>事实上单元测试代码都是异常简单的一些“断言”代码，断言就是判断一个函数或对象的一个方法所产生的结果是否等于你期望的那个结果，这样的代码看起来很多，但事实上书写的成本很低。<br>（因为我们开发软件的大部分时间用在了思考上，而不是敲代码上，单元测试的代码逻辑很简单，不需要太多思考）。  </p><p><font color="#8470FF">不是有UI界面吗，点来点去就可以测试了啊：</font><br>你完全可以这样做，直到你觉得这么枯燥的事情真的应该交给电脑去做，或者功能越来越多，你只点击你认为影响到的功能，但总会有那些你认为不会影响到的功能也被影响了，你又懒得全部点一遍，单元测试是在你每次改完代码后自动执行，获得反馈只要几秒，并且会把所有功能跑一遍。  </p><p><font color="#8470FF">我们项目有专职测试人员啊，写单元测试的必要还大吗：</font><br>单元测试是检查代码粒度的bug（一般是以函数和对象的方法为粒度），你可以依赖测试人员，但如果你不想在修改自己一个月前写的代码时自己把自己弄到吐血（或者把别人弄到吐血），<br>最好在当初就写好测试代码，这个工作的责任完全属于程序员。外国已经有很多资深程序员论证了，不论你的单元测试代码质量有多高，覆盖面有多全，单单是你去做这一件事，就可以很大程度的提高你的功能代码的质量，以及大幅减少BUG的存在。  </p><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>这是另一篇讲解的 <a href="https://www.cnblogs.com/mq0036/p/4100084.html" target="_blank" rel="noopener">单元测试的意义</a>     </p><ul><li>能够协助程序员尽快找到BUG的具体位置    </li><li>能够让程序员对自己的程序更有自信    </li><li>能够让程序员在提交项目之前就将代码变的更加健壮    </li><li>能够协助程序员更好的进行开发    </li><li>能够向其他程序员展现你的程序该如何调用    </li><li>能够让项目主管更了解系统的当前状况    </li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 代码质量 </tag>
+            
+            <tag> 测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>resultMap和resultType</title>
+      <link href="/2018/03/14/resultMap%E5%92%8CresultType/"/>
+      <url>/2018/03/14/resultMap%E5%92%8CresultType/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>insert和insertSelective</title>
+      <link href="/2018/03/14/insert%E5%92%8CinsertSelective/"/>
+      <url>/2018/03/14/insert%E5%92%8CinsertSelective/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一：代码"><a href="#一：代码" class="headerlink" title="一：代码"></a>一：代码</h2><pre><code class="java">@Test  public void testInsert() {      User record=new User();      record.setName(&quot;sansan&quot;);      //使用所有的属性作为字段使用      this.newUserMapper.insert(record);  }  </code></pre><pre><code class="SQL">INSERT INTO tb_user (AGE,USER_NAME,ID,NAME,BIRTHDAY,SEX,PASSWORD,UPDATED,CREATED) VALUES ( ?,?,?,?,?,?,?,?,? ) </code></pre><pre><code class="java">@Test  public void testInsertSelective() {      User record=new User();      record.setName(&quot;test_insertSelective&quot;);      //插入数据，使用不为null的属性作为字段使用      this.newUserMapper.insertSelective(record);  }</code></pre><pre><code class="SQL">INSERT INTO tb_user ( ID,NAME ) VALUES ( ?,? ) </code></pre><h2 id="二：对比"><a href="#二：对比" class="headerlink" title="二：对比"></a>二：对比</h2><p>对于insert:<br>插入一条数据<br>支持Oracle序列,UUID,类似Mysql的INDENTITY自动增长(自动回写)<br>优先使用传入的参数值,参数值空时,才会使用序列、UUID,自动增长<br>int insert(T record);  </p><p>对于InsertSelective<br>插入一条数据,只插入不为null的字段,不会影响有默认值的字段<br>支持Oracle序列,UUID,类似Mysql的INDENTITY自动增长(自动回写)<br>优先使用传入的参数值,参数值空时,才会使用序列、UUID,自动增长<br>int insertSelective(T record);  </p><h2 id="三：总结"><a href="#三：总结" class="headerlink" title="三：总结"></a>三：总结</h2><p>insertSelective对应的sql语句加入了NULL校验，即只会插入数据不为null的字段值。<br>insert则会插入所有字段，会插入null。</p><h2 id="四：拓展"><a href="#四：拓展" class="headerlink" title="四：拓展"></a>四：拓展</h2><p>在SQL SERVER中NULL跟’’是完全不一样的,NULL表示未知,没有类型可言,而’’是有类型的,表示一个空的字符串.<br>所以有not null约束的列是可以插入’’的. 而且有时候做判断的时候可能某个列既有NULL值又有’’值,这时候就经常用 where isnull(列名,’’)=’’进行判断;<br>然而在ORACLE中,’’是等同于NULL值进行处理的,这时候有not null约束的列就肯定不能插入’’了.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>报文接收</title>
+      <link href="/2018/03/14/%E6%8A%A5%E6%96%87%E6%8E%A5%E6%94%B6/"/>
+      <url>/2018/03/14/%E6%8A%A5%E6%96%87%E6%8E%A5%E6%94%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一：模拟访问测试"><a href="#一：模拟访问测试" class="headerlink" title="一：模拟访问测试"></a>一：模拟访问测试</h2><p><strong>使用Postman</strong><br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180314145608.png" alt=""></p><h2 id="二：业务需求"><a href="#二：业务需求" class="headerlink" title="二：业务需求"></a>二：业务需求</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E9%80%9A%E7%94%A8%E6%8A%A5%E6%96%87%E8%A6%81%E6%B1%82.png" alt="报文通用要求"></p><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E8%AF%A6%E7%BB%86%E4%B8%9A%E5%8A%A1%E9%9C%80%E6%B1%82.png" alt="业务具体需求"></p><h2 id="三：Java程序"><a href="#三：Java程序" class="headerlink" title="三：Java程序"></a>三：Java程序</h2><p><strong>注意：JSON中请求参数名称要和Java程序对象名称严格对应</strong>，这样Java类才能和Json无缝交流   </p><p>下面的Java代码不写package的位置以及引入(import)的包名<br>因为jar包一般使用的公司的maven仓库，package的位置也没有写的必要  </p><p>报文就对应Java中一个封装好的对象，一层一层拨开，大对象里面有小对象，大括号里面有子大括号  </p><p>请求报文对应的最外层对象    </p><pre><code class="java">public class IYunBaoPolicyRequest {    /**     * 请求头     */    private IYunBaoPolicyResHead reqHead;    /**     * 请求题     */    private IYunBaoRequestBody reqBody;    /**     * 请求签名     */    private IYunBaoPolicySignature signature;    //类属性的get set方法省略}</code></pre><p>响应报文对应的最外层对象  </p><pre><code class="java">public class IYunBaoPolicyResponse&lt;T&gt;{    /**     * 返回请求头     */    private IYunBaoPolicyResHead resHead;    /**     * 返回报文体     */    private T resBody;    /**     * 签名     */    private IYunBaoPolicySignature signature;    //类属性的get set方法省略}</code></pre><p>请求报文内部的报文<strong>体</strong>对象    </p><pre><code class="java">public class IYunBaoRequestBody {    private String policyCode; //保单号    private List&lt;QuestionnaireModel&gt; questions; //问题合集    //类属性的get set方法省略}</code></pre><p>上面QuestionnaireModel问卷调查传输模型  </p><pre><code class="java">public class QuestionnaireModel {    /**     * 问题码值     */    private String questionCode;    /**     * 问题类型     */    private String answerType;    /**     * 问题答案（如果问题为判断题  1--是 0 否 ），填空题为用户填写的内容，其他题型为对应的答案码值     */    private String answer;    /**     * 问题题号     */    private String worksheetSequence;    /**     * 是否必填     */    private String isRequiredInd;    //属性的get set方法省略}</code></pre><p>响应报文内部的报文<strong>头</strong>对象  </p><pre><code class="java">public class IYunBaoPolicyResHead {    /**     * 请求唯一标识     */    private String clientRequestId;    /**     * 请求时间     */    private String clientRequestTime;    /**     * 业务渠道     */    private String businessChannel;    /**     * 幂等订单号码     */    private String idemOrderNo;    /**     * 签名类型     */    private String signType;    /**     * 交易码     */    private String transCode;    /**     * 版本号     */    private String version;    //类属性的get set方法省略}</code></pre><p>响应报文内部的报文<strong>体</strong>对象  </p><pre><code class="java">public class IYBaoPolicyResponseBody {    /**     * 业务失败         */    public static final Integer FAIL_RESULT = 0;    /**     * 业务成功     */    public static final Integer SUCCESS_RESULT = 1;    /**     * 业务异常     */    public static final Integer EORROR_RESULT = -1;    /**     * 成功     */    public static final String SUCCESS_CODE = &quot;000&quot;;    /**     * 请求参数异常     */    public static final String REQUEST_PARAMETER_ERROR = &quot;100&quot;;    /**     * 回访以保存     */    public static final String REQUEST_HAVED_SAVED = &quot;101&quot;;    /**     * 业务异常     */    public static final String BIZ_ERROR = &quot;201&quot;;    public static IYBaoPolicyResponseBody createErrorRequest(String message) {        return new IYBaoPolicyResponseBody(EORROR_RESULT, BIZ_ERROR, message);    }    public static IYBaoPolicyResponseBody createBizExceptionResponse(String message,String errorCode) {        return new IYBaoPolicyResponseBody(FAIL_RESULT, errorCode, message);    }    public static IYBaoPolicyResponseBody createSuccess() {        return new IYBaoPolicyResponseBody(SUCCESS_RESULT, SUCCESS_CODE, &quot;成功&quot;);    }    public IYBaoPolicyResponseBody() {    }    public IYBaoPolicyResponseBody(Integer result, String errorCode, String errorMessage) {        this.result = result;        this.errorCode = errorCode;        this.errormessage = errorMessage;    }     //返回值    private Integer result;    //错误码    private String errorCode;    //错误信息    private String errormessage;    //类属性的get set方法省略}</code></pre><p>请求和响应通用的签名对象  </p><pre><code class="java">public class IYunBaoPolicySignature {    /**     * 签名算法表标识     */    private String sign;    //类属性的get set方法省略}</code></pre><hr><pre><code class="java">@Path(URLConstants.REST_API_PEFFIX + &quot;/policy&quot;)@Consumes(RestETRUSTConstants.DEFAULT_CONTENT_TYPE)@Produces(RestETRUSTConstants.DEFAULT_CONTENT_TYPE)@PermitAllpublic interface PolicyOnlineVisitRestFacade {    @POST    @Path(&quot;/questionnaire/answer&quot;)    @BizDesc(desc = &quot;保存online回访答案&quot;, author = &quot;王博&quot;)    public IYunBaoPolicyResponse saveAnswer(IYunBaoPolicyRequest request);}</code></pre><pre><code class="java">@Controllerpublic class PolicyOnlineVisitRestFacadeImpl implements PolicyOnlineVisitRestFacade {    private static final Logger logger = LoggerFactory.getLogger(PolicyOnlineVisitRestFacadeImpl.class);    @Autowired    private PolicyOnlineVisitFacade policyOnlineVisitFacade;    @Override    public IYunBaoPolicyResponse&lt;IYBaoPolicyResponseBody&gt; saveAnswer(IYunBaoPolicyRequest request) {        logger.info(&quot;[i云保][Online问卷回访答案保存]request:{}&quot;, JSON.toJSONString(request));        try {            IYBaoPolicyResponseBody respBody = policyOnlineVisitFacade.saveAnswer(request.getReqBody());            return new IYunBaoPolicyResponse&lt;IYBaoPolicyResponseBody&gt;(request.getReqHead(),respBody,null);        } catch (Exception e) {            logger.error(&quot;[i云保][Online问卷回访答案保存]出现异常，请及时解决！&quot;,e);            return new IYunBaoPolicyResponse&lt;IYBaoPolicyResponseBody&gt;(request.getReqHead(),IYBaoPolicyResponseBody.createErrorRequest(&quot;系统异常&quot;),null);        }    }}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 报文 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>刺客信条 (Assassin’s Creed) 语录</title>
+      <link href="/2018/03/14/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E8%AF%AD%E5%BD%95/"/>
+      <url>/2018/03/14/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%E8%AF%AD%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<p>当我还年轻时，<br>我身怀自由，<br>但我并未看出它的存在，<br>我有大把的时间，<br>可我不懂得珍惜，<br>我拥有爱，但是从未真实地感受过它，<br>我花了好几十年才明白这三者的真正意义，<br>但现在，在我生命中的黄昏，<br>这些认知逐渐转变成了幸福，爱，自由，时间，<br>曾经随意丢弃的这些，原来正是驱使我前行的动力，<br>而在这三者中，爱尤其宝贵，以此献给你和我们的孩子，<br>以及我们的兄弟姐妹，还有这个赋予我们生命与好奇的广袤世界。  </p><p><img src="http://p4qtgamvn.bkt.clouddn.com/u=1429820493,4190725838&amp;fm=173&amp;s=0FF2418443530BD47054B5050300E0C9&amp;w=640&amp;h=334&amp;img.JPEG" alt=""></p><p>When I was a young man,<br>I had liberty ,but did not see it<br>I had time, but did not know it,<br>And I had love,but did not feel it<br>Many decades would pass before I understood its meaning of all three.<br>And now, in the twilight of my life ,<br>this understanding has passed into contentment.<br>Love liberty and time,<br>once so disposable<br>are the fuel that drive me forward,<br>and love was the especially mia caro,<br>for you,our chindren,our brothers and sisters,<br>and this vast and wonderful world that gave us life<br>and keeps us guessing.<br>Endless affection,mio sofia.<br>Forever yours Ezio Auditore  </p><p><img src="http://p4qtgamvn.bkt.clouddn.com/u=2435948113,425524843&amp;fm=173&amp;s=FAA3716CB2239B550E607D080200A08A&amp;w=640&amp;h=372&amp;img.JPEG" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 语录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>GIT解决冲突</title>
+      <link href="/2018/03/12/GIT%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81/"/>
+      <url>/2018/03/12/GIT%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> GIT </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GIT </tag>
+            
+            <tag> 指令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Linux常用日志查看命令</title>
+      <link href="/2018/03/12/Linux%E5%B8%B8%E7%94%A8%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4/"/>
+      <url>/2018/03/12/Linux%E5%B8%B8%E7%94%A8%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一：根据日志的开始和结束查询"><a href="#一：根据日志的开始和结束查询" class="headerlink" title="一：根据日志的开始和结束查询"></a>一：根据日志的开始和结束查询</h2><pre><code class="shell">tail  -n  10  test.log   //查询日志尾部最后10行的日志;tail -n +10 test.log     //查询10行之后的所有日志;head -n 10  test.log        //查询日志文件中的头10行日志;head -n -10  test.log    //查询日志文件除了最后10行的其他所有日志;</code></pre><h2 id="二：根据关键字查询"><a href="#二：根据关键字查询" class="headerlink" title="二：根据关键字查询"></a>二：根据关键字查询</h2><pre><code class="shell">cat -n default.log |grep &quot;关键字&quot;</code></pre><p>以上的命令可以找出一些相关的日志，找到需要的日志<strong>行号</strong><br>例如所需日志在111行，想要查看关键字前10行和后10行的日志：  </p><pre><code class="shell">cat -n default.log |tail -n +101 |head -n 20</code></pre><font color="#7FFF00">tail -n +92表示查询92行之后的日志</font><br><font color="#7FFF00">head -n 20 则表示在前面的查询结果里再查前20条记录</font>   <h2 id="三：循环实时读取日志"><a href="#三：循环实时读取日志" class="headerlink" title="三：循环实时读取日志"></a>三：循环实时读取日志</h2><pre><code class="shell">tail -f default.log</code></pre><h2 id="四：根据日期查询"><a href="#四：根据日期查询" class="headerlink" title="四：根据日期查询"></a>四：根据日期查询</h2><p>查询到一个时间段内的日志<br>注意：如果不指定毫秒，默认到.000毫秒<br>即：16:17:20.000 –&gt;&gt; 16:17:36.000<br>1秒=1000毫秒(ms) 1毫秒=1000微秒(μs) 1微秒=1000纳秒(ns) 1纳秒=1000皮秒(ps)  </p><pre><code class="shell">sed -n &#39;/2014-12-17 16:17:20/,/2014-12-17 16:17:36/p&#39;  default.log</code></pre><p>查询一秒内的日志<br>(也可以确定日志中是否有改时间点)  </p><pre><code class="shell">grep &#39;2018-03-13 13:56:03&#39; default.log  </code></pre><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180313153014.png" alt=""></p><h2 id="五：分页查看"><a href="#五：分页查看" class="headerlink" title="五：分页查看"></a>五：分页查看</h2><p>使用<strong>more</strong>和<strong>less</strong>命令，可以分页打印，通过空格键翻页<br>less 与 more 相似，但支持向前翻页  </p><pre><code class="shell">cat -n default.log |grep &quot;短信回访补偿&quot; |more</code></pre><h2 id="六：保存到本地查看"><a href="#六：保存到本地查看" class="headerlink" title="六：保存到本地查看"></a>六：保存到本地查看</h2><pre><code class="shell">cat -n default.log |grep &quot;短信回访补偿&quot; &gt;xxx.txt</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 指令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>GIT常用指令</title>
+      <link href="/2018/03/06/GIT%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"/>
+      <url>/2018/03/06/GIT%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、新建代码库"><a href="#一、新建代码库" class="headerlink" title="一、新建代码库"></a>一、新建代码库</h2><p>在当前目录新建一个Git代码库   </p><pre><code class="bash">$ git init     </code></pre><p>新建一个目录，将其初始化为Git代码库  </p><pre><code class="bash">$ git init [project-name]       </code></pre><p>下载一个项目和它的整个代码历史   </p><pre><code class="bash">$ git clone [url]  </code></pre><h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><p>Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。<br>显示当前的Git配置</p><pre><code class="bash">$ git config –list   </code></pre><p>编辑Git配置文件</p><pre><code class="bash">$ git config -e [–global]   </code></pre><p>设置提交代码时的用户信息  </p><pre><code class="bash">$ git config [–global] user.name &quot;[name]&quot;$ git config [–global] user.email &quot;[email address]&quot;</code></pre><h2 id="三、增加-删除文件"><a href="#三、增加-删除文件" class="headerlink" title="三、增加/删除文件"></a>三、增加/删除文件</h2><p>添加指定文件到暂存区  </p><pre><code class="bash">$ git add [file1] [file2] ...   </code></pre><p>添加指定目录到暂存区，包括子目录  </p><pre><code class="bash">$ git add [dir]   </code></pre><p>添加当前目录的所有文件到暂存区  </p><pre><code class="bash">$ git add .   </code></pre><p>删除工作区文件，并且将这次删除放入暂存区  </p><pre><code class="bash">$ git rm [file1] [file2] ...  </code></pre><h2 id="四、代码提交"><a href="#四、代码提交" class="headerlink" title="四、代码提交"></a>四、代码提交</h2><p>提交暂存区到仓库区  </p><pre><code class="bash">$ git commit -m [&#39;备注&#39;]</code></pre><p>提交暂存区的指定文件到仓库区  </p><pre><code class="bash">$ git commit [file1] [file2] ... -m [&#39;备注&#39;] </code></pre><p>提交工作区自上次commit之后的变化，直接到仓库区  </p><pre><code class="bash">$ git commit -a </code></pre><p>提交时显示所有diff信息  </p><pre><code class="bash">$ git commit -v </code></pre><p>使用一次新的commit，替代上一次提交<br>如果代码没有任何新变化，则用来改写上一次commit的提交信息  </p><pre><code class="bash">$ git commit –amend -m [message] </code></pre><h2 id="五、分支"><a href="#五、分支" class="headerlink" title="五、分支"></a>五、分支</h2><p>列出所有本地分支  </p><pre><code class="bash">$ git branch</code></pre><p>列出所有远程分支  </p><pre><code class="bash">$ git branch -r </code></pre><p>列出所有本地分支和远程分支  </p><pre><code class="bash">$ git branch -a </code></pre><p>新建一个分支，但依然停留在当前分支  </p><pre><code class="bash">$ git branch [branch-name]</code></pre><p>新建一个分支，并切换到该分支  </p><pre><code class="bash">$ git checkout -b [branch] </code></pre><p>新建一个分支，指向指定commit  </p><pre><code class="bash">$ git branch [branch] [commit] </code></pre><p>切换到指定分支，并更新工作区  </p><pre><code class="bash">$ git checkout [branch-name] </code></pre><p>切换到上一个分支  </p><pre><code class="bash">$ git checkout - </code></pre><p>合并指定分支到当前分支  </p><pre><code class="bash">$ git merge [branch] </code></pre><p>删除分支  </p><pre><code class="bash">$ git branch -d [branch-name] </code></pre><p>删除远程分支  </p><pre><code class="bash">$ git push origin –delete [branch-name]$ git branch -dr [remote/branch]</code></pre><h2 id="六、查看信息"><a href="#六、查看信息" class="headerlink" title="六、查看信息"></a>六、查看信息</h2><p>显示有变更的文件  </p><pre><code class="bash">$ git status</code></pre><p>显示当前分支的版本历史  </p><pre><code class="bash">$ git log</code></pre><p>显示commit历史，以及每次commit发生变更的文件  </p><pre><code class="bash">$ git log –stat</code></pre><p>搜索提交历史，根据关键词  </p><pre><code class="bash">$ git log -S [keyword] </code></pre><p>显示指定文件相关的每一次diff  </p><pre><code class="bash">$ git log -p [file]</code></pre><p>显示过去5次提交  </p><pre><code class="bash">$ git log -5 –pretty –oneline </code></pre><p>显示所有提交过的用户，按提交次数排序  </p><pre><code class="bash">$ git shortlog -sn</code></pre><p>显示指定文件是什么人在什么时间修改过  </p><pre><code class="bash">$ git blame [file] </code></pre><p>显示暂存区和工作区的差异  </p><pre><code class="bash">$ git diff </code></pre><p>显示暂存区和上一个commit的差异  </p><pre><code class="bash">$ git diff –cached [file] </code></pre><p>显示工作区与当前分支最新commit之间的差异  </p><pre><code class="bash">$ git diff HEAD</code></pre><p>显示两次提交之间的差异  </p><pre><code class="bash">$ git diff [first-branch]...[second-branch] </code></pre><p>显示某次提交的元数据和内容变化  </p><pre><code class="bash">$ git show [commit]</code></pre><p>显示当前分支的最近几次提交  </p><pre><code class="bash">$ git reflog</code></pre><h2 id="七、远程同步"><a href="#七、远程同步" class="headerlink" title="七、远程同步"></a>七、远程同步</h2><p>下载远程仓库的所有变动  </p><pre><code class="bash">$ git fetch [remote] </code></pre><p>显示所有远程仓库  </p><pre><code class="bash">$ git remote -v </code></pre><p>显示某个远程仓库的信息  </p><pre><code class="bash">$ git remote show [remote]</code></pre><p>增加一个新的远程仓库，并命名  </p><pre><code class="bash">$ git remote add [shortname] [url]</code></pre><p>取回远程仓库的变化，并与本地分支合并  </p><pre><code class="bash">$ git pull [remote] [branch] </code></pre><p>上传本地指定分支到远程仓库  </p><pre><code class="bash">$ git push [remote] [branch] </code></pre><p>强行推送当前分支到远程仓库，即使有冲突  </p><pre><code class="bash">$ git push [remote] –force </code></pre><p>推送所有分支到远程仓库  </p><pre><code class="bash">$ git push [remote] –all</code></pre><h2 id="八、撤销"><a href="#八、撤销" class="headerlink" title="八、撤销"></a>八、撤销</h2><p>恢复暂存区的指定文件到工作区  </p><pre><code class="bash">$ git checkout [file]</code></pre><p>恢复某个commit的指定文件到暂存区和工作区  </p><pre><code class="bash">$ git checkout [commit] [file]</code></pre><p>恢复暂存区的所有文件到工作区  </p><pre><code class="bash">$ git checkout . </code></pre><p>重置暂存区的指定文件，与上一次commit保持一致，但工作区不变  </p><pre><code class="bash">$ git reset [file]</code></pre><p>重置暂存区与工作区，与上一次commit保持一致  </p><pre><code class="bash">$ git reset –hard </code></pre><p>重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变  </p><pre><code class="bash">$ git reset [commit] </code></pre><p>重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致  </p><pre><code class="bash">$ git reset –hard [commit] </code></pre><p>重置当前HEAD为指定commit，但保持暂存区和工作区不变  </p><pre><code class="bash">$ git reset –keep [commit] </code></pre><p>暂时将未提交的变化移除，稍后再移入  </p><pre><code class="bash">$ git stash$ git stash pop</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> GIT </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GIT </tag>
+            
+            <tag> 指令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>数据库唯一索引</title>
+      <link href="/2018/03/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95/"/>
+      <url>/2018/03/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>主键保证数据库里面的每一行都是唯一的，比如身份证，学号等，在表中要求唯一，不重复。唯一索引的作用跟主键的作用一样。<br>不同的是，在一张表里面只能有一个主键，主键不能为空，唯一索引可以有多个，唯一索引可以有一条记录为空，即保证跟别人不一样就行。  </p><p>比如学生表，在学校里面一般用学号做主键，身份证则弄成唯一索引；而到了教育局，他们就把身份证号弄成主键，学号换成了唯一索引。<br>选谁做表的主键，要看实际应用，主键不能为空。  </p><h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180306114450.png" alt="数据库实例表"><br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180306114401.png" alt="索引设置"></p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="java">@Autowiredprivate PolicyVisitDAO policyVisitDAO;try {    policyVisitDAO.insertSelective(policyVisitDO);} catch (DuplicateKeyException e) {    //出现了插入异常(唯一索引冲突异常)，查询是否有必答题填否的，更新回访状态    //......} finally {}</code></pre><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> 索引 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>批处理（跑批）</title>
+      <link href="/2018/03/01/%E6%89%B9%E5%A4%84%E7%90%86_%E8%B7%91%E6%89%B9/"/>
+      <url>/2018/03/01/%E6%89%B9%E5%A4%84%E7%90%86_%E8%B7%91%E6%89%B9/</url>
+      
+        <content type="html"><![CDATA[<h2 id="项目部分结构图"><a href="#项目部分结构图" class="headerlink" title="项目部分结构图"></a>项目部分结构图</h2><p><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180312175629.png" alt="项目部分结构"> </p><h2 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h2><pre><code class="xml">&lt;!--调度工厂，所有触发器放入列表中 --&gt;&lt;bean id=&quot;schedulerFactoryBean&quot;    class=&quot;org.springframework.scheduling.quartz.SchedulerFactoryBean&quot;&gt;    &lt;!-- 是否启动时自动启动任务 --&gt;    &lt;property name=&quot;autoStartup&quot; value=&quot;${schedule.status}&quot; /&gt;    &lt;property name=&quot;triggers&quot;&gt;        &lt;list&gt;            &lt;ref bean=&quot;BATCH_PolicySmsVisitCompensateTrigger&quot; /&gt;        &lt;/list&gt;    &lt;/property&gt;&lt;/bean&gt;******&lt;bean id=&quot;BATCH_PolicySmsVisitCompensateTrigger&quot; class=&quot;org.springframework.scheduling.quartz.CronTriggerFactoryBean&quot;&gt;    &lt;property name=&quot;name&quot; value=&quot;BATCH_PolicySmsVisitCompensateTrigger1&quot; /&gt;    &lt;property name=&quot;description&quot; value=&quot;短信回访补偿处理&quot; /&gt;    &lt;property name=&quot;jobDetail&quot; ref=&quot;BATCH_PolicySmsVisitCompensateProcess&quot; /&gt;    &lt;property name=&quot;cronExpression&quot; value=&quot;${policySmsVisit.compensat.cron}&quot; /&gt;&lt;/bean&gt;&lt;bean id=&quot;BATCH_PolicySmsVisitCompensateProcess&quot; class=&quot;org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean&quot;&gt;    &lt;property name=&quot;targetObject&quot; ref=&quot;policySmsVisitCompensateBatch&quot; /&gt;    &lt;property name=&quot;targetMethod&quot; value=&quot;excute&quot; /&gt;    &lt;property name=&quot;name&quot; value=&quot;BATCH_PolicySmsVisitCompensateProcess1&quot; /&gt;    &lt;property name=&quot;concurrent&quot; value=&quot;false&quot; /&gt;&lt;/bean&gt;</code></pre><hr><p>application-local.properties文件中配置如下（服务器端不会生效，需要由运维特殊配置）  </p><pre><code class="xml">#短信回访补偿处理#测试环境policySmsVisit.compensat.cron = 0 0/5 * * * ?</code></pre><hr><p>业务代码示例如下：</p><pre><code class="java">@Service(&quot;policySmsVisitCompensateBatch&quot;)public class PolicySmsVisitCompensateBatch {    private static final Logger logger = LoggerFactory.getLogger(PolicySmsVisitCompensateBatch.class);    @Autowired    private PolicySmsVisitDAO policySmsVisitDAO;    @Autowired    private PolicySmsVisitCompensateService policySmsVisitCompensateService;    public void excute() {        ******        compensate(policySmsVisitDO);    }    private void compensate(PolicySmsVisitDO policySmsVisitDO) {        ******    }}</code></pre><p>注意：<br><img src="http://p4qtgamvn.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180313095435.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 批处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>相关专业名词解析</title>
+      <link href="/2018/02/27/%E7%9B%B8%E5%85%B3%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90/"/>
+      <url>/2018/02/27/%E7%9B%B8%E5%85%B3%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<font color="#0099ff" size="14" face="黑体">灰度发布</font><br>灰度发布（又名金丝雀发布）是指在黑与白之间，能够平滑过渡的一种发布方式。在其上可以进行A/B testing，即让一部分用户继续用产品特性A，一部分用户开始用产品特性B，如果用户对B没有什么反对意见，那么逐步扩大范围，把所有用户都迁移到B上面来。灰度发布可以保证整体系统的稳定，在初始灰度的时候就可以发现、调整问题，以保证其影响度。<br><br>灰度期：灰度发布开始到结束期间的这一段时间，称为灰度期。<br><br><hr style="border:1 dashed #987cb9" width="99%" color="#987cb9" size="3"><br><font color="#0099ff" size="14" face="黑体">mPaaS</font><br><a href="https://www.cloud.alipay.com/docs/2/47202" target="_blank" rel="noopener">点击进入&gt;&gt;蚂蚁金融云产品介绍</a><br><a href="http://www.sohu.com/a/157525948_99940985" target="_blank" rel="noopener">点击进入&gt;&gt;搜狐科技对金融云的评价</a><br>蚂蚁金融云是蚂蚁金服基于多年积累的金融级互联网技术，为金融机构提供行业云计算服务的平台。<br>蚂蚁金服具备了超大规模的交易处理能力,成功助力了余额宝、芝麻信用、支付宝开放平台、蚂蚁财富等众多创新业务。<br><br>“网商银行”以及印度最大移动支付公司“Paytm”，以及其他蚂蚁全球生态合作的金融机构等，如全球首家上云的相互制寿险机构“信美相互”，都采用了这些超大规模金融级技术。<br><font color="red"><br>蚂蚁金融云的技术架构<br></font><br> <img src="http://p4qtgamvn.bkt.clouddn.com/c62d0b5c2f494d46bb00d6b2b7ed6384_th.jpg" alt="蚂蚁金融云技术架构"><br>关键技术能力：<br>分布式计算 治理与分析 移动 大数据 业务连续性 云计算管理 金融级安全与合规<br>关键技术产品：<br>1. 金融级分布式中间件<br>2. 分布式关系型数据库OceanBase<br>3. 一站式移动平台mPaaS<br>4. 金融级大数据平台<br>5. 智能云客服<br><br><font color="red"><br>蚂蚁金融云的产品服务介绍<br></font><br>基础设施服务（Infrastructure as a Service，简称 IaaS）<br>平台即服务（Platform as a Service，简称 PaaS）<br>软件即服务（Software as a Service，简称 SaaS）<br><img src="http://p4qtgamvn.bkt.clouddn.com/AFC.png" alt="整体框架"><br>- 运维管理：云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾，多租户权限管控。<br>- 监控：分布式云环境集中化监控，统一资源及应用状态视图，智能分析及故障定位。<br>- 中间件：金融级联机交易处理中间件，支持大规模分布式计算，具备数万笔/秒并发能力，严格保证交易数据一致性。<br>- 大数据：一体化大数据解决方案，全面集成数据开发、管理、分析、挖掘、共享工具，具备 EB 级数据处理、实时分析及快速需求响应能力。<br>- 移动：一站式移动金融 APP 开发及全面监控，提供丰富可复用组件，支持动态发布和故障热修复。<br>- 安全：符合金融级系统安全要求的完整云上安全体系，全方位保障金融业务及数据安全。<br><br><hr style="border:1 dashed #987cb9" width="99%" color="#987cb9" size="3"><br><font color="#0099ff" size="14" face="黑体">SIT测试和UAT测试</font>   <p>系统内部集成测试(System Integration Testing) SIT<br>用户验收测试(User Acceptance Testing) UAT<br>SIT在前，UAT在后，UAT测完才可以上线。SIT由公司的测试员来测试，而UAT一般是由用户来测试。  </p><p>SIT，系统集成测试，也叫做集成测试。<br>集成测试的目的是校验功能、性能和可靠性要求，配置在主设计项目中。  </p><p>UAT，用户验收测试，或用户可接受测试。<br>这时相关的用户或独立测试人员根据测试计划和结果对系统进行测试和接收。<br>确定产品是否能够满足合同或用户所规定需求的测试。这是管理性和防御性控制。  </p><p><hr style="border:1 dashed #987cb9" width="99%" color="#987cb9" size="3"></p><p><font color="#0099ff" size="14" face="黑体">M站</font><br>在互联网电商企业中<br>M站一般是指手机网页端的页面，也就是mobile移动端。  </p><hr style="border:1 dashed #987cb9" width="99%" color="#987cb9" size="3">]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 名词解析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>服务器部署应用详解（待续）</title>
+      <link href="/2018/02/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8%E8%AF%A6%E8%A7%A3/"/>
+      <url>/2018/02/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8%E8%AF%A6%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=" "></a><img src="http://p4qtgamvn.bkt.clouddn.com/43934322a3b5ea2c546467916a7d6833.jpg" alt="phtoname"> </h2><p>啊啊啊啊啊啊啊啊啊啊啊啊</p><p><font face="黑体">我是黑体字</font>  </p><p><font face="微软雅黑">我是微软雅黑</font>  </p><p><font face="STCAIYUN">我是华文彩云</font>  </p><p><font color="#0099ff" size="12" face="黑体">黑体</font>  </p><p><font color="#00ffff" size="3">null</font>  </p><h2 id="gray"><a href="#gray" class="headerlink" title="gray  "></a><font color="gray" size="5">gray</font>  </h2><p><font face="黑体">我是黑体字</font>  </p><p><font face="微软雅黑">我是微软雅黑</font>  </p><p><font face="STCAIYUN">我是华文彩云</font>  </p><p><font color="#0099ff" size="7" face="黑体">color=#0099ff size=72 face=”黑体”</font>  </p><p><font color="#00ffff" size="72">color=#00ffff</font>  </p><h2 id="color-gray"><a href="#color-gray" class="headerlink" title="color=gray  "></a><font color="gray" size="72">color=gray</font>  </h2><p><table><tr><td bgcolor="#7FFFD4"><br>背景颜色</td></tr></table></p><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><blockquote><p>你好  </p></blockquote><blockquote><p>他好  </p></blockquote><blockquote><p>大家好  </p></blockquote><pre><code class="java">package com.qyf404.learn.maven;import org.junit.After;import org.junit.Assert;import org.junit.Before;import org.junit.Test;public class AppTest {private App app;@Beforepublic void setUp() {app = new App();}</code></pre><h2 id="在一行字下面紧贴用一条横线，则它成了标题"><a href="#在一行字下面紧贴用一条横线，则它成了标题" class="headerlink" title="在一行字下面紧贴用一条横线，则它成了标题  "></a>在一行字下面紧贴用一条横线，则它成了标题  </h2><p>下面是标题的简单写法(注意：#后面有一个空格)  </p><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><p>普通文字<br><strong>加粗文字</strong>  </p><table><thead><tr><th>水果</th><th style="text-align:right">价格</th><th style="text-align:center">数量</th></tr></thead><tbody><tr><td>香蕉</td><td style="text-align:right">$1</td><td style="text-align:center">5</td></tr><tr><td>苹果</td><td style="text-align:right">$1</td><td style="text-align:center">6</td></tr><tr><td>草莓</td><td style="text-align:right">$1</td><td style="text-align:center">7</td></tr></tbody></table><hr><table><thead><tr><th>水果</th><th style="text-align:right">价格</th><th style="text-align:center">数量</th></tr></thead><tbody><tr><td>哈哈</td><td style="text-align:right">454</td><td style="text-align:center">999</td></tr><tr><td>露露</td><td style="text-align:right">565</td><td style="text-align:center">555</td></tr><tr><td>皮皮</td><td style="text-align:right">676</td><td style="text-align:center">444</td></tr></tbody></table><hr><p>无序列表1</p><ul><li>red</li><li>blue</li><li>yellow</li></ul><hr><p>无序列表2</p><ul><li>red</li><li>blue</li><li>yellow</li></ul><hr><p>无序列表3</p><ul><li>red</li><li>blue</li><li>yellow</li></ul><hr><p>有序列表</p><ol><li>red</li><li>blue</li><li>yellow</li></ol><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 部署应用 </tag>
+            
+            <tag> 域名解析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2018/02/23/hello-world/"/>
+      <url>/2018/02/23/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+  
+  
+</search>
