@@ -1317,7 +1317,7 @@ left0px
 .post .pjax article a {
   color: #4078c0;
   word-break: break-all;
-  font-family: sans-serif;
+  font-family: Menlo;
 }
 .post .pjax article a:hover {
   text-decoration: underline;
@@ -1340,7 +1340,7 @@ left0px
   border-bottom: 1px solid #d9d9d9;
   padding: 10px 30px;
   color: #969696;
-  font-family: "Open Sans", "Hiragino Sans GB", sans-serif;
+  font-family: "Open Sans", "Hiragino Sans GB", Menlo;
   display: inline-block;
 }
 .post .pjax article blockquote {
@@ -1419,12 +1419,12 @@ left0px
 }
 .post .pjax article :not(pre) > code {
   color: #bf1827;
-  font-family: sans-serif;
+  font-family: Menlo;
 }
 .post .pjax article pre > code {
   font-size: 15px;
   border-radius: 3px;
-  font-family: Consolas;
+  font-family: Menlo;
 /* 滚动条 */
 }
 .post .pjax article pre > code::-webkit-scrollbar-thumb:horizontal {
@@ -1485,7 +1485,7 @@ left0px
 .post .copyright a {
   color: #4078c0;
   word-break: break-all;
-  font-family: sans-serif;
+  font-family: Menlo;
 }
 .post .copyright a:hover {
   text-decoration: underline;
@@ -1503,7 +1503,7 @@ left0px
 .post .article_copyright a {
   color: #595f67;
   word-break: break-all;
-  font-family: sans-serif;
+  font-family: Menlo;
 }
 .post .article_copyright a:hover {
   text-decoration: underline;
