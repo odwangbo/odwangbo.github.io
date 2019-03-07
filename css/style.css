@@ -1514,7 +1514,7 @@ body {
   height: 100%;
   margin: 0;
   color: #283444;
-  font: 400 16px/1 "Open Sans", "Hiragino Sans GB", sans-serif;
+  font: 400 16px/1 Menlo;
   -webkit-font-smoothing: subpixel-antialiased;
   -webkit-text-size-adjust: none;
   overflow: hidden;
@@ -1657,7 +1657,7 @@ img.pswp__img {
 @media screen and (max-width: 1468px) {
   html,
   body {
-    font: 400 15px/1 "Open Sans", "Hiragino Sans GB", sans-serif;
+    font: 400 15px/1 Menlo;
   }
   .nav {
     width: 492px;
