@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="stylesheet" href="/css/hl_theme/darcula.css">
+<link rel="stylesheet" href="/css/hl_theme/sublime.css">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -85,9 +85,9 @@
     
     <li data-rel="服务器"> 服务器 </li>
     
-    <li data-rel="Python开发"> Python开发 </li>
-    
     <li data-rel="生活"> 生活 </li>
+    
+    <li data-rel="Python开发"> Python开发 </li>
     
     <li data-rel="其他"> 其他 </li>
     
@@ -154,19 +154,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">Mybatis</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">工程</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Python</a>
+        <a href="javascript:" class="color3">Mybatis</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">语录</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Python</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -198,11 +198,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Excel</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">工具类</a>
+        <a href="javascript:" class="color3">事务</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -214,15 +210,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">事务</a>
+        <a href="javascript:" class="color1">Excel</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">工具类</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">感受</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">效率</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -231,6 +227,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">接口</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">效率</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -254,14 +254,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">部署应用</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">域名解析</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">数据</a>
     </li>
     
@@ -270,11 +262,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">名词解析</a>
+        <a href="javascript:" class="color5">部署应用</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">域名解析</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">业务流程</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">名词解析</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -661,17 +661,6 @@
         <span>字数:322</span>
         
         
-        <span id="busuanzi_container_page_pv">
-            阅读:<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
         
     </div>
     
@@ -753,7 +742,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GIT','#指令','#Maven','#Mybatis','#工程','#Python','#语录','#爬虫','#SpringBoot','#注解','#http','#码值','#数据库','#基础','#Excel','#工具类','#代码质量','#测试','#事务','#感受','#效率','#支付','#接口','#批处理','#报文','#公司','#查询','#索引','#部署应用','#域名解析','#数据','#脱敏','#名词解析','#业务流程','#IO',],
+            'data': ['#GIT','#指令','#Maven','#工程','#Mybatis','#语录','#Python','#爬虫','#SpringBoot','#注解','#http','#码值','#数据库','#基础','#事务','#代码质量','#测试','#Excel','#工具类','#感受','#支付','#接口','#效率','#批处理','#报文','#公司','#查询','#索引','#数据','#脱敏','#部署应用','#域名解析','#业务流程','#名词解析','#IO',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
@@ -782,8 +771,6 @@
         
 
         /*访问数量*/
-        
-        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
         
 
         /*代码高亮，行号对齐*/
