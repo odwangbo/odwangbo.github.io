@@ -3,29 +3,6 @@
   
     
     <entry>
-      <title>xxx</title>
-      <link href="/2018/10/25/xxx/"/>
-      <url>/2018/10/25/xxx/</url>
-      
-        <content type="html"><![CDATA[<h2 id="xxx"><a href="#xxx" class="headerlink" title="xxx"></a>xxx</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> Java开发 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工程 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>Maven常用命令</title>
       <link href="/2018/07/12/Maven%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
       <url>/2018/07/12/Maven%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
