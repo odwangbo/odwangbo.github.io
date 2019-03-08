@@ -720,7 +720,7 @@ div.ac > ul > li:before,
   margin-top: 12px;
   padding: 20px 0px 0px 20px;
   color: #2eb695;
-  font-size: 18px;
+  font-size: 16px;
   font-family: inherit;
   background: inherit;
   border: none;
@@ -816,8 +816,8 @@ left0px
   float: left;
 }
 .nav-right .title-list .tags-list li a {
-  height: 18px;
-  line-height: 18px;
+  height: 16px;
+  line-height: 16px;
   font-size: 17px;
   float: left;
   padding: 0 5px 0 10px;
@@ -832,7 +832,7 @@ left0px
   height: 0;
   position: absolute;
   top: 0;
-  left: -18px;
+  left: -16px;
   border: 9px solid transparent;
   border-right-color: #d0d0d0;
 }
@@ -930,7 +930,7 @@ left0px
   top: 7px;
   left: 12px;
   z-index: 1;
-  font-size: 18px;
+  font-size: 16px;
   color: #309e85;
 }
 .nav-right .title-list nav a#top:before,
@@ -1137,7 +1137,7 @@ left0px
 }
 .post {
   height: 100%;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.6;
   background: #fff;
   overflow-x: hidden;
@@ -1240,8 +1240,8 @@ left0px
   content: "\e936";
 }
 .post .pjax article .article-meta .tag a {
-  height: 18px;
-  line-height: 18px;
+  height: 16px;
+  line-height: 16px;
   font-size: 0.9em;
   padding: 0 5px 0 10px;
   color: #fff;
@@ -1259,7 +1259,7 @@ left0px
   height: 0;
   position: absolute;
   top: 0;
-  left: -18px;
+  left: -16px;
   border: 9px solid transparent;
   border-right-color: #d0d0d0;
 }
