@@ -2,6 +2,29 @@
 <search> 
   
     
+    <entry>
+      <title>test</title>
+      <link href="/2018/10/23/test/"/>
+      <url>/2018/10/23/test/</url>
+      
+        <content type="html"><![CDATA[<h2 id="页面测试"><a href="#页面测试" class="headerlink" title="页面测试"></a>页面测试</h2><h3 id="太阳"><a href="#太阳" class="headerlink" title="太阳"></a>太阳</h3><h3 id="月亮"><a href="#月亮" class="headerlink" title="月亮"></a>月亮</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 分类1 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 标签a </tag>
+            
+        </tags>
+      
+    </entry>
+    
   
   
 </search>
